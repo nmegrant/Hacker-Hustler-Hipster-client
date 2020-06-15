@@ -3,3 +3,9 @@ export function selectToken() {
     return state.user.token;
   };
 }
+
+export function selectUser() {
+  return (state) => {
+    return state.user;
+  };
+}
