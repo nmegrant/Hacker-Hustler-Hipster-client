@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function HomepageCard(props) {
   return (
@@ -12,7 +13,9 @@ export default function HomepageCard(props) {
           </div>
         );
       })}
-      <button>See More</button>
+      <button>
+        <Link to={`/homepages/${props.userId}`}>Show me more</Link>
+      </button>
     </div>
   );
 }
