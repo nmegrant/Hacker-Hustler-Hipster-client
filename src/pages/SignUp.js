@@ -9,11 +9,11 @@ export default function SignUp() {
 
   function submitForm(event) {
     event.preventDefault();
-    //Add in alter for this later
-    // if (password !== confirmPassword) {
-    //   console.log("Password don't match");
-    // }
-    console.log({ name, email, password, confirmPassword, role });
+    // Add in alert for this later
+    if (password !== confirmPassword) {
+      console.log("Password don't match");
+    }
+    console.log({ name, email, password, role });
     setName("");
     setEmail("");
     setPassword("");
@@ -48,7 +48,28 @@ export default function SignUp() {
           value={confirmPassword}
           onChange={(event) => setConfirmPassword(event.target.value)}
         ></input>
-
+        <p>Role</p>
+        <label>Hacker</label>
+        <input
+          type="radio"
+          name="role"
+          value="Hacker"
+          onChange={(event) => setRole(event.target.value)}
+        ></input>
+        <label>Hipster</label>
+        <input
+          type="radio"
+          name="role"
+          value="Hipster"
+          onChange={(event) => setRole(event.target.value)}
+        ></input>
+        <label>Hustler</label>
+        <input
+          type="radio"
+          name="role"
+          value="Hustler"
+          onChange={(event) => setRole(event.target.value)}
+        ></input>
         <button type="submit" onClick={submitForm}>
           Sign Up!
         </button>
