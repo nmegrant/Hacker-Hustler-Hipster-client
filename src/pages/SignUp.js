@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { signUpThunkCreator } from "../store/user/actions";
 
 export default function SignUp() {
   const [name, setName] = useState("");
@@ -6,6 +8,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("");
+  const dispatch = useDispatch();
 
   function submitForm(event) {
     event.preventDefault();
@@ -13,7 +16,7 @@ export default function SignUp() {
     if (password !== confirmPassword) {
       console.log("Password don't match");
     }
-    console.log({ name, email, password, role });
+    dispatch(signUpThunkCreator({ name, email, password, role }));
     setName("");
     setEmail("");
     setPassword("");
