@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { loginThunkCreator } from "../store/user/actions";
 
 export default function Login() {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
   function submitForm(event) {
     event.preventDefault();
+    dispatch(loginThunkCreator(email, password));
+    setEmail("");
+    setPassword("");
   }
 
   return (
@@ -14,7 +20,7 @@ export default function Login() {
       <form>
         <label>email</label>
         <input
-          type="email"
+          type="text"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         ></input>
