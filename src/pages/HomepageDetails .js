@@ -9,8 +9,6 @@ export default function HomepageDetails() {
   const dispatch = useDispatch();
   const details = useSelector(selectHomepageDetails());
 
-  console.log(details);
-
   useEffect(() => {
     dispatch(fetchHomepageDetailsThunkCreator(parameters.homepageId));
   }, [dispatch, parameters.homepageId]);
@@ -19,6 +17,10 @@ export default function HomepageDetails() {
     <div>
       <h1>{details.user ? details.user.name : null}</h1>
       <h2>{details.user ? details.user.role : null}</h2>
+      <h5>
+        Looking for
+        {details.idea ? " talent to work on my idea!" : " an idea to work on!"}
+      </h5>
       <h4>{details.byline}</h4>
       <h3>{details.location}</h3>
       {details.websites
