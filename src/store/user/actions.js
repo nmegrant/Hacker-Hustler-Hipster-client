@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export function loginedIn(userAndToken) {
+export function loggedIn(userAndToken) {
   return {
     type: "LOGGED_IN",
     payload: userAndToken,
   };
 }
 
-export function LoggedOut() {
+export function loggedOut() {
   return {
     type: "LOGGED_OUT",
     payload: null,
@@ -21,7 +21,7 @@ export function loginThunkCreator(email, password) {
         email,
         password,
       });
-      console.log(response);
+      dispatch(loggedIn(response.data));
     } catch (error) {
       console.log(`Error: ${error}`);
     }
@@ -35,6 +35,7 @@ export function signUpThunkCreator(newUser) {
         `http://localhost:4000/signup`,
         newUser
       );
+      dispatch(loggedIn(response.data));
     } catch (error) {
       console.log(`Error: ${error}`);
     }
