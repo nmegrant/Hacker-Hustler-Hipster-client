@@ -1,25 +1,23 @@
 import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Homepages from "./pages/Homepages";
 import HomepageDetails from "./pages/HomepageDetails ";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import User from "./pages/User";
+import NavBanner from "./components/NavBanner";
 import "./App.css";
-import Header from "./components/Header";
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      <NavBanner />
       <Switch>
         <Route exact path="/" component={Homepages} />
-        <Route
-          exact
-          path="/homepages/:homepageId"
-          component={HomepageDetails}
-        />
+        <Route path="/homepages/:homepageId" component={HomepageDetails} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
+        <Route path="/user" component={User} />
       </Switch>
     </div>
   );
