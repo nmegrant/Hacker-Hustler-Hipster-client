@@ -5,11 +5,14 @@ import HomepageDetails from "./pages/HomepageDetails ";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import "./App.css";
+
+//Need to organize this
 import { useSelector, useDispatch } from "react-redux";
 import { selectToken } from "./store/user/selectors";
 import { loggedOut } from "./store/user/actions";
 
 function App() {
+  //organize this
   const token = useSelector(selectToken());
   const dispatch = useDispatch();
 
