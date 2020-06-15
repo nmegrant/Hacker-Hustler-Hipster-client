@@ -5,27 +5,12 @@ import HomepageDetails from "./pages/HomepageDetails ";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import "./App.css";
-
-//Need to organize this
-import { useSelector, useDispatch } from "react-redux";
-import { selectToken } from "./store/user/selectors";
-import { loggedOut } from "./store/user/actions";
+import Header from "./components/Header";
 
 function App() {
-  //organize this
-  const token = useSelector(selectToken());
-  const dispatch = useDispatch();
-
   return (
     <div className="App">
-      {token ? (
-        <button onClick={() => dispatch(loggedOut())}>Log Out</button>
-      ) : (
-        <button>
-          <Link to="/login">Log In</Link>
-        </button>
-      )}
-
+      <Header />
       <Switch>
         <Route exact path="/" component={Homepages} />
         <Route
