@@ -4,7 +4,7 @@ import { fetchHomepagesThunkCreator } from "../store/homepages/actions";
 import { selectHomepages } from "../store/homepages/selectors";
 import HomepageCard from "../components/HomepageCard";
 
-import { CardDeck } from "react-bootstrap/";
+import CardDeck from "react-bootstrap/CardDeck";
 
 export default function Homepages() {
   const dispatch = useDispatch();
@@ -21,6 +21,7 @@ export default function Homepages() {
         return (
           <HomepageCard
             key={homepage.id}
+            homepageId={homepage.id}
             role={homepage.user.role}
             userId={homepage.user.id}
             name={homepage.user.name}
