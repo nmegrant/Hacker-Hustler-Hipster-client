@@ -1,5 +1,5 @@
 import React from "react";
-import { selectHomepageDetails } from "../store/homepageDetails/selectors";
+import EditHomepage from "../components/EditHomepage";
 
 import { Tabs, Tab } from "react-bootstrap/";
 
@@ -10,7 +10,7 @@ export default function MyPage() {
         <h1>Homepage stuff</h1>
       </Tab>
       <Tab eventKey="edit" title="Edit Homepage">
-        <h1>Form to edit homepage</h1>
+        <EditHomepage />
       </Tab>
       <Tab eventKey="ideas" title="Ideas">
         <h1>Ideas and a form to add ideas</h1>
