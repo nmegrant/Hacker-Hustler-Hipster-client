@@ -4,7 +4,9 @@ import { fetchHomepagesThunkCreator } from "../store/homepages/actions";
 import { selectHomepages } from "../store/homepages/selectors";
 import HomepageCard from "../components/HomepageCard";
 
-import CardDeck from "react-bootstrap/CardDeck";
+// import CardDeck from "react-bootstrap/CardDeck";
+import Container from "react-bootstrap/Container";
+import { Row } from "react-bootstrap";
 
 export default function Homepages() {
   const dispatch = useDispatch();
@@ -16,7 +18,7 @@ export default function Homepages() {
   const homepages = useSelector(selectHomepages());
 
   return (
-    <CardDeck style={{ margin: "20px" }}>
+    <Container as={Row} fluid style={{ justifyContent: "center" }}>
       {homepages.map((homepage) => {
         return (
           <HomepageCard
@@ -30,6 +32,6 @@ export default function Homepages() {
           />
         );
       })}
-    </CardDeck>
+    </Container>
   );
 }
