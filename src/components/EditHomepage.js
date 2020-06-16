@@ -13,6 +13,11 @@ export default function EditHomepage() {
   const [idea, setIdea] = useState(false);
   const [location, setLocation] = useState("");
 
+  const [website, setWebsite] = useState("");
+  const [websites, setWebsites] = useState([]);
+
+  // const [tag, setTag] = useState("");
+  // const [tags, setTags] = useState([]);
   // navigator.geolocation.getCurrentPosition(function (position) {
   //   let latitude = position.coords.latitude;
   //   let longitude = position.coords.longitude;
@@ -29,8 +34,20 @@ export default function EditHomepage() {
 
   function submitForm(event) {
     event.preventDefault();
-    console.log({ byline, experience, location, bio, idea });
+    console.log({ byline, experience, location, bio, idea, websites });
   }
+
+  function submitWebsite(event) {
+    event.preventDefault();
+    setWebsites([...websites, website]);
+    setWebsite("");
+  }
+
+  // function submitTag(event) {
+  //   event.preventDefault();
+  //   setTags([...tags, tag]);
+  //   setTag("");
+  // }
 
   return (
     <Container>
@@ -105,10 +122,36 @@ export default function EditHomepage() {
             onChange={(event) => setBio(event.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Button type="submit" onClick={submitForm}>
-          Update Information
+        <Form.Group controlId="formGroupWebsites" className="mt-5">
+          <Form.Label>What are some websites that show your skills?</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Press enter to add the url your page"
+            value={website}
+            onChange={(event) => setWebsite(event.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <Button type="submit" onClick={submitWebsite}>
+          Enter Website
         </Button>
+        {/* <Form.Group controlId="formGroupTags" className="mt-5">
+          <Form.Label>
+            Add some skill tags, this is how teammates will find you
+          </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Press enter to add a skill"
+            value={tag}
+            onChange={(event) => setTag(event.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <Button type="submit" onClick={submitTag}>
+          Add tag
+        </Button> */}
       </Form>
+      <Button type="submit" onClick={submitForm} className="mt-5">
+        Update Information
+      </Button>
     </Container>
   );
 }
