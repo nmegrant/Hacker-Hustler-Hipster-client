@@ -4,6 +4,8 @@ import { fetchHomepagesThunkCreator } from "../store/homepages/actions";
 import { selectHomepages } from "../store/homepages/selectors";
 import HomepageCard from "../components/HomepageCard";
 
+import Container from "react-bootstrap/Container";
+
 export default function Homepages() {
   const dispatch = useDispatch();
 
@@ -14,11 +16,12 @@ export default function Homepages() {
   const homepages = useSelector(selectHomepages());
 
   return (
-    <div>
+    <Container>
       {homepages.map((homepage) => {
         return (
           <HomepageCard
             key={homepage.id}
+            role={homepage.user.role}
             userId={homepage.user.id}
             name={homepage.user.name}
             byline={homepage.byline}
@@ -26,6 +29,6 @@ export default function Homepages() {
           />
         );
       })}
-    </div>
+    </Container>
   );
 }
