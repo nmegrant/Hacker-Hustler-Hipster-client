@@ -15,7 +15,7 @@ export default function NavBanner() {
 
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">Hacker Hipster Hustler</Navbar.Brand>
+      <Navbar.Brand>Hacker Hipster Hustler</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
