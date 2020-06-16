@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
-// import Container from "react-bootstrap/Container";
-// import { Row } from "react-bootstrap";
 
 export default function HomepageCard(props) {
   return (
