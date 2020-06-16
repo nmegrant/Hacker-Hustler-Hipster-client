@@ -38,7 +38,6 @@ export default function EditHomepage() {
 
   function submitForm(event) {
     event.preventDefault();
-    console.log({ byline, experience, location, bio, idea, websites });
     dispatch(
       sendHomepageInfoThunkCreator(
         byline,
@@ -94,7 +93,6 @@ export default function EditHomepage() {
                 id={`inline-${type}-2`}
                 onChange={() => {
                   if (idea === false) {
-                    console.log("test");
                     setIdea(true);
                   }
                 }}
