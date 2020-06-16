@@ -19,6 +19,11 @@ export default function (state = initialState, action) {
         ...initialState,
         token: null,
       };
+    case "STILL_LOGGED_IN":
+      return {
+        ...state,
+        ...action.payload,
+      };
     default:
       return state;
   }
