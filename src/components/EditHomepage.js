@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 // import Geocode from "react-geocode";
+
+import { sendHomepageInfoThunkCreator } from "../store/mypage/actions";
 
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
@@ -7,6 +10,7 @@ import Button from "react-bootstrap/Button";
 import { Col } from "react-bootstrap";
 
 export default function EditHomepage() {
+  const dispatch = useDispatch();
   const [byline, setByline] = useState("");
   const [experience, setExperience] = useState("");
   const [bio, setBio] = useState("");
@@ -35,6 +39,20 @@ export default function EditHomepage() {
   function submitForm(event) {
     event.preventDefault();
     console.log({ byline, experience, location, bio, idea, websites });
+    dispatch(
+      sendHomepageInfoThunkCreator(
+        byline,
+        experience,
+        bio,
+        idea,
+        location,
+        websites
+      )
+    );
+    setBio("");
+    setByline("");
+    setExperience("");
+    setLocation("");
   }
 
   function submitWebsite(event) {
