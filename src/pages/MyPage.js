@@ -9,7 +9,7 @@ export default function MyPage() {
       <Tab eventKey="homepage" title="My Homepage">
         <h1>Homepage stuff</h1>
       </Tab>
-      <Tab eventKey="edit" title="Edit">
+      <Tab eventKey="edit" title="Edit Homepage">
         <h1>Form to edit homepage</h1>
       </Tab>
       <Tab eventKey="ideas" title="Ideas">
