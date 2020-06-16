@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import { fetchHomepageDetailsThunkCreator } from "../store/homepageDetails/actions";
 import { selectHomepageDetails } from "../store/homepageDetails/selectors";
 
+import Container from "react-bootstrap/Container";
+import Badge from "react-bootstrap/Badge";
+
 export default function HomepageDetails() {
   const parameters = useParams();
   const dispatch = useDispatch();
@@ -14,7 +17,7 @@ export default function HomepageDetails() {
   }, [dispatch, parameters.homepageId]);
 
   return (
-    <div>
+    <Container>
       <h1>{details.user ? details.user.name : null}</h1>
       <h2>{details.user ? details.user.role : null}</h2>
       <h5>
@@ -31,13 +34,23 @@ export default function HomepageDetails() {
       <h4>Skills</h4>
       {details.user
         ? details.user.tags.map((tag) => {
-            return <h5 key={tag.id}>{tag.skill}</h5>;
+            return (
+              <span key={tag.id}>
+                <Badge
+                  pill
+                  variant="info"
+                  style={{ marginLeft: "5px", marginRight: "5px" }}
+                >
+                  {tag.skill}
+                </Badge>
+              </span>
+            );
           })
         : null}
       <h4>Projects and Experience</h4>
       <p>{details.experience}</p>
       <h4>A bit more about me</h4>
       <p>{details.bio}</p>
-    </div>
+    </Container>
   );
 }
