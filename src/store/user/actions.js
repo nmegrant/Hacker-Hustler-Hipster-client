@@ -1,4 +1,5 @@
 import axios from "axios";
+import { selectToken } from "./selectors";
 
 export function loggedIn(userAndToken) {
   return {
@@ -11,6 +12,13 @@ export function loggedOut() {
   return {
     type: "LOGGED_OUT",
     payload: null,
+  };
+}
+
+export function stillLoggedIn(userAndToken) {
+  return {
+    type: "STILL_LOGGED_IN",
+    payload: userAndToken,
   };
 }
 
@@ -38,6 +46,24 @@ export function signUpThunkCreator(newUser) {
       dispatch(loggedIn(response.data));
     } catch (error) {
       console.log(`Error: ${error}`);
+    }
+  };
+}
+
+export function getLoggedInUserThunkCreator() {
+  return async function getUserThunk(dispatch, getState) {
+    const tokenFunction = selectToken();
+    const token = tokenFunction(getState());
+    if (token === null) {
+      return;
+    }
+    try {
+      const response = await axios.get(`http://localhost:4000/user`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      dispatch(stillLoggedIn(response.data));
+    } catch (error) {
+      console.log(`Error1: ${error}`);
     }
   };
 }
