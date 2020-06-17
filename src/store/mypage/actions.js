@@ -44,7 +44,7 @@ export function sendHomepageInfoThunkCreator(
 }
 
 //fetch mypage details
-export function fetchHomepageDetailsThunkCreator(id) {
+export function fetchHomepageDetailsThunkCreator() {
   return async function fetchMyPageDetailsThunk(dispatch, getState) {
     const token = localStorage.getItem("token");
     try {
