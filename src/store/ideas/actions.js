@@ -7,6 +7,13 @@ export function ideasFetched(ideas) {
   };
 }
 
+export function newIdeaAdded(idea) {
+  return {
+    type: "NEW_IDEA_ADDED",
+    payload: idea,
+  };
+}
+
 export function fetchIdeasThunkCreator() {
   return async function fetchIdeas(dispatch, getState) {
     const token = localStorage.getItem("token");
@@ -18,5 +25,18 @@ export function fetchIdeasThunkCreator() {
     } catch (error) {
       console.log(`Error: ${error}`);
     }
+  };
+}
+
+export function addNewIdeaThunkCreator(idea) {
+  return async function addNewIdea(dispatch, getState) {
+    const token = localStorage.getItem("token");
+    try {
+      const newIdea = await axios.post(`http://localhost:4000/ideas`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log(newIdea.data);
+      //   dispatch(newIdeaAdded(newIdea.data));
+    } catch (error) {}
   };
 }
