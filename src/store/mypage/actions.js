@@ -21,6 +21,15 @@ export function sendHomepageInfoThunkCreator(
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+      if (urls) {
+        const newWebsites = await axios.post(
+          `http://localhost:4000/websites/`,
+          urls,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+      }
     } catch (error) {
       console.log(`Error: ${error}`);
     }
