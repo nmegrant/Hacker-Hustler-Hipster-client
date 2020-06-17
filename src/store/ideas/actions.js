@@ -46,8 +46,11 @@ export function deleteIdeaThunkCreator(id) {
   return async function deleteIdeaThunk(dispatch, getState) {
     const token = localStorage.getItem("token");
     try {
-      await axios.delete(`http://localhost:4000/ideas`, id, {
+      await axios.delete(`http://localhost:4000/ideas`, {
         headers: { Authorization: `Bearer ${token}` },
+        data: {
+          id,
+        },
       });
     } catch (error) {
       console.log(`Error: ${error}`);

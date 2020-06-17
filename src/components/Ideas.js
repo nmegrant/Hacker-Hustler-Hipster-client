@@ -23,7 +23,7 @@ export default function Ideas() {
 
   useEffect(() => {
     dispatch(fetchIdeasThunkCreator());
-  }, [dispatch, ideas]);
+  }, [dispatch]);
 
   function submitIdea(event) {
     event.preventDefault();

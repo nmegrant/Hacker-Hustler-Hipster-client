@@ -2,11 +2,15 @@ import React from "react";
 
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { useDispatch } from "react-redux";
+import { deleteIdeaThunkCreator } from "../store/ideas/actions";
 
 export default function IdeaCard(props) {
+  const dispatch = useDispatch();
+
   function deleteIdea(event) {
     event.preventDefault();
-    console.log(props.ideaData.id);
+    dispatch(deleteIdeaThunkCreator(props.ideaData.id));
   }
 
   return (
