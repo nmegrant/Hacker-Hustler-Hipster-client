@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import EditHomepage from "../components/EditHomepage";
+import MyHomepage from "../components/MyHomepage";
+import Ideas from "../components/Ideas";
 import { fetchHomepageDetailsThunkCreator } from "../store/mypage/actions";
 import { selectMyPageDetails } from "../store/mypage/selector";
 
@@ -14,18 +16,16 @@ export default function MyPage() {
     dispatch(fetchHomepageDetailsThunkCreator());
   }, [dispatch]);
 
-  console.log(myPage);
-
   return (
     <Tabs defaultActiveKey="homepage" id="uncontrolled-tab-example">
       <Tab eventKey="homepage" title="My Homepage">
-        <h1>Homepage stuff</h1>
+        <MyHomepage myInfo={myPage} />
       </Tab>
       <Tab eventKey="edit" title="Edit Homepage">
         <EditHomepage />
       </Tab>
       <Tab eventKey="ideas" title="Ideas">
-        <h1>Ideas and a form to add ideas</h1>
+        <Ideas />
       </Tab>
     </Tabs>
   );
