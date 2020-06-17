@@ -1,5 +1,12 @@
 import axios from "axios";
 
+export function myPageDetailsFetched(details) {
+  return {
+    type: "FETCHED_MY_PAGE_DETAILS",
+    payload: details,
+  };
+}
+
 export function sendHomepageInfoThunkCreator(
   byline,
   experience,
@@ -30,6 +37,21 @@ export function sendHomepageInfoThunkCreator(
           }
         );
       }
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
+  };
+}
+
+//fetch mypage details
+export function fetchHomepageDetailsThunkCreator(id) {
+  return async function fetchMyPageDetailsThunk(dispatch, getState) {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.get(`http://localhost:4000/mypage`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      dispatch(myPageDetailsFetched(response.data));
     } catch (error) {
       console.log(`Error: ${error}`);
     }
