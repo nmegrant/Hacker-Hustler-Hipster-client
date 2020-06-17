@@ -51,7 +51,6 @@ export function fetchHomepageDetailsThunkCreator(id) {
       const response = await axios.get(`http://localhost:4000/mypage`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(response.data);
       dispatch(myPageDetailsFetched(response.data));
     } catch (error) {
       console.log(`Error: ${error}`);
