@@ -32,11 +32,10 @@ export function addNewIdeaThunkCreator(idea) {
   return async function addNewIdea(dispatch, getState) {
     const token = localStorage.getItem("token");
     try {
-      const newIdea = await axios.post(`http://localhost:4000/ideas`, {
+      const newIdea = await axios.post(`http://localhost:4000/ideas`, idea, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(newIdea.data);
-      //   dispatch(newIdeaAdded(newIdea.data));
+      dispatch(newIdeaAdded(newIdea.data));
     } catch (error) {}
   };
 }

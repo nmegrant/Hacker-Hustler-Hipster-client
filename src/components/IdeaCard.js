@@ -4,7 +4,11 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
 export default function IdeaCard(props) {
-  console.log(props.ideaData);
+  function deleteIdea(event) {
+    event.preventDefault();
+    console.log(props.ideaData.id);
+  }
+
   return (
     <Card style={{ width: "200px", margin: "20px" }} border="info">
       <Card.Body>
@@ -12,7 +16,9 @@ export default function IdeaCard(props) {
         <Card.Text>{props.ideaData.description}</Card.Text>
       </Card.Body>
       <Card.Footer>
-        <Button>Delete This Idea</Button>
+        <Button variant="danger" onClick={deleteIdea}>
+          Delete This Idea
+        </Button>
       </Card.Footer>
     </Card>
   );
