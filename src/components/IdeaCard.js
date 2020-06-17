@@ -17,7 +17,7 @@ export default function IdeaCard(props) {
       </Card.Body>
       <Card.Footer>
         <Button variant="danger" onClick={deleteIdea}>
-          Delete This Idea
+          Delete Idea
         </Button>
       </Card.Footer>
     </Card>

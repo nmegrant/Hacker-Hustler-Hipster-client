@@ -36,6 +36,21 @@ export function addNewIdeaThunkCreator(idea) {
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(newIdeaAdded(newIdea.data));
-    } catch (error) {}
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
+  };
+}
+
+export function deleteIdeaThunkCreator(id) {
+  return async function deleteIdeaThunk(dispatch, getState) {
+    const token = localStorage.getItem("token");
+    try {
+      await axios.delete(`http://localhost:4000/ideas`, id, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
   };
 }
