@@ -10,4 +10,5 @@ export default combineReducers({
   homepageDetails,
   user,
   myPage,
+  ideas,
 });
