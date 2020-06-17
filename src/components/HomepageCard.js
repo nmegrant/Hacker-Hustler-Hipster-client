@@ -7,13 +7,12 @@ import Badge from "react-bootstrap/Badge";
 
 export default function HomepageCard(props) {
   return (
-    <Card style={{ width: "20rem" }} border="info">
+    <Card style={{ width: "200px", margin: "20px" }} border="info">
       <Card.Body>
         <Card.Title>
           {props.name} - {props.role}
         </Card.Title>
         <Card.Text>{props.byline}</Card.Text>
-
         {props.tags.map((tag) => {
           return (
             <span key={tag.id}>
@@ -30,7 +29,10 @@ export default function HomepageCard(props) {
       </Card.Body>
       <Card.Footer>
         <Button>
-          <Link to={`/homepages/${props.userId}`} style={{ color: "white" }}>
+          <Link
+            to={`/homepages/${props.homepageId}`}
+            style={{ color: "white" }}
+          >
             Show me more
           </Link>
         </Button>
