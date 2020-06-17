@@ -10,29 +10,26 @@ export function sendHomepageInfoThunkCreator(
 ) {
   return async function sendInfoThunk(dispatch, getState) {
     const token = localStorage.getItem("token");
-
     if (token === null) {
       return;
     }
     try {
-      //   const myHomepageResponse = await axios.patch(
-      //     `http://localhost:4000/mypage/`,
-      //     { byline, experience, bio, idea, location },
-      //     {
-      //       headers: { Authorization: `Bearer ${token}` },
-      //     }
-      //   );
-      console.log(urls);
-      //   if (urls) {
-      //     console.log("Here!");
-      //     const newWebsites = await axios.post(
-      //       `http://localhost:4000/websites/`,
-      //       urls,
-      //       {
-      //         headers: { Authorization: `Bearer ${token}` },
-      //       }
-      //     );
-      //   }
+      await axios.patch(
+        `http://localhost:4000/mypage/`,
+        { byline, experience, bio, idea, location },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      if (urls.length > 1) {
+        await axios.post(
+          `http://localhost:4000/websites/`,
+          { urls },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+      }
     } catch (error) {
       console.log(`Error: ${error}`);
     }
