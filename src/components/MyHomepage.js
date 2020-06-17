@@ -4,7 +4,6 @@ import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
 
 export default function MyHomepage(props) {
-  console.log(props.myInfo);
   return (
     <Container>
       <h1>{props.myInfo.user ? props.myInfo.user.name : null}</h1>
