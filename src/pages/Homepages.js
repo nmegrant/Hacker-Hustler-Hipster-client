@@ -4,7 +4,6 @@ import { fetchHomepagesThunkCreator } from "../store/homepages/actions";
 import { selectHomepages } from "../store/homepages/selectors";
 import HomepageCard from "../components/HomepageCard";
 
-// import CardDeck from "react-bootstrap/CardDeck";
 import Container from "react-bootstrap/Container";
 import { Row } from "react-bootstrap";
 
