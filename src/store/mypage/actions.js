@@ -21,7 +21,7 @@ export function sendHomepageInfoThunkCreator(
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      if (urls.length > 1) {
+      if (urls.length > 0) {
         await axios.post(
           `http://localhost:4000/websites/`,
           { urls },
