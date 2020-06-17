@@ -69,7 +69,7 @@ export default function SignUp() {
           ></Form.Control>
         </Form.Group>
 
-        <Form.Group controlId="formBasicPasswordConfirm">
+        <Form.Group controlId="formBasicRole">
           <Form.Label>Team Role</Form.Label>
           {["radio"].map((type) => (
             <div key={`inline-${type}`} className="mb-3">

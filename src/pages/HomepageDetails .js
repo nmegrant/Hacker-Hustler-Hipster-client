@@ -24,8 +24,9 @@ export default function HomepageDetails() {
         Looking for
         {details.idea ? " talent to work on my idea!" : " an idea to work on!"}
       </h5>
+
       <h4>{details.byline}</h4>
-      <h3>{details.location}</h3>
+      <h3>Located in {details.location}</h3>
       {details.websites
         ? details.websites.map((website) => {
             return <p key={website.id}>{website.url}</p>;
