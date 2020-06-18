@@ -22,15 +22,12 @@ export default function HomepageDetails() {
   return (
     <Container as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
       <h1>{details.user ? details.user.name : null}</h1>
-      <h2>{details.user ? details.user.role : null}</h2>
+      <span></span> <h2>{details.user ? details.user.role : null}</h2>
       <h5>
         Looking for
         {details.idea ? " talent to work on my idea!" : " an idea to work on!"}
       </h5>
-
-      <h4>{details.byline}</h4>
       <h3>Located in {details.location}</h3>
-
       <h5>Check out these websites to see some of my skills</h5>
       <ListGroup horizontal style={{ flexWrap: "wrap" }}>
         {details.websites
@@ -41,7 +38,6 @@ export default function HomepageDetails() {
             })
           : null}
       </ListGroup>
-
       <h4>Skills</h4>
       {details.user
         ? details.user.tags.map((tag) => {
