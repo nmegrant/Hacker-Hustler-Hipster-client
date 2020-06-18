@@ -40,7 +40,7 @@ export default function EditHomepage() {
   const [websites, setWebsites] = useState([]);
 
   const [skill, setSkill] = useState([]);
-  // const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState([]);
   const skillList = useSelector(selectSkills()).map((skill) => skill.skill);
 
   useEffect(() => {
@@ -63,6 +63,8 @@ export default function EditHomepage() {
     setByline("");
     setExperience("");
     setLocation("");
+    setWebsites([]);
+    setSkills([]);
   }
 
   function submitWebsite(event) {
@@ -73,7 +75,7 @@ export default function EditHomepage() {
 
   function submitSkill(event) {
     event.preventDefault();
-    console.log(skill);
+    setSkills([...skills, ...skill]);
     setSkill([]);
   }
 
