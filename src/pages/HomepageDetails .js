@@ -6,6 +6,9 @@ import { selectHomepageDetails } from "../store/homepageDetails/selectors";
 
 import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
+import ListGroup from "react-bootstrap/ListGroup";
+import Card from "react-bootstrap/Card";
+import { Col } from "react-bootstrap";
 
 export default function HomepageDetails() {
   const parameters = useParams();
@@ -17,7 +20,7 @@ export default function HomepageDetails() {
   }, [dispatch, parameters.homepageId]);
 
   return (
-    <Container>
+    <Container as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
       <h1>{details.user ? details.user.name : null}</h1>
       <h2>{details.user ? details.user.role : null}</h2>
       <h5>
@@ -27,11 +30,18 @@ export default function HomepageDetails() {
 
       <h4>{details.byline}</h4>
       <h3>Located in {details.location}</h3>
-      {details.websites
-        ? details.websites.map((website) => {
-            return <p key={website.id}>{website.url}</p>;
-          })
-        : null}
+
+      <h5>Check out these websites to see some of my skills</h5>
+      <ListGroup horizontal style={{ flexWrap: "wrap" }}>
+        {details.websites
+          ? details.websites.map((website) => {
+              return (
+                <ListGroup.Item key={website.id}>{website.url}</ListGroup.Item>
+              );
+            })
+          : null}
+      </ListGroup>
+
       <h4>Skills</h4>
       {details.user
         ? details.user.tags.map((tag) => {
@@ -48,10 +58,20 @@ export default function HomepageDetails() {
             );
           })
         : null}
-      <h4>Projects and Experience</h4>
-      <p>{details.experience}</p>
-      <h4>A bit more about me</h4>
-      <p>{details.bio}</p>
+      <Card style={{ margin: "20px" }} border="info">
+        <Card.Header>Projects and Experience</Card.Header>
+        <Card.Body>
+          {/* <Card.Title>Special title treatment</Card.Title> */}
+          <Card.Text>{details.experience}</Card.Text>
+        </Card.Body>
+      </Card>
+      <Card style={{ margin: "20px" }} border="info">
+        <Card.Header>A bit more about me</Card.Header>
+        <Card.Body>
+          {/* <Card.Title>Special title treatment</Card.Title> */}
+          <Card.Text>{details.bio}</Card.Text>
+        </Card.Body>
+      </Card>
     </Container>
   );
 }

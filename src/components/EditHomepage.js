@@ -22,8 +22,8 @@ export default function EditHomepage() {
   const [websites, setWebsites] = useState([]);
 
   const [skill, setSkill] = useState("");
-  const [skills, setSkills] = useState([]);
-  const tagList = ["c++", "Javascript", "Python"];
+  // const [skills, setSkills] = useState([]);
+  // const tagList = ["c++", "Javascript", "Python"];
 
   // const [tag, setTag] = useState("");
   // const [tags, setTags] = useState([]);
