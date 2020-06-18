@@ -61,6 +61,10 @@ export default function Homepages() {
         {searchSkills
           ? searchSkills.map((skill, index) => (
               <Badge
+                as={Button}
+                onClick={() =>
+                  setSearchSkills([...searchSkills.filter((s) => s !== skill)])
+                }
                 pill
                 variant="info"
                 style={{ marginLeft: "5px", marginRight: "5px" }}
@@ -70,6 +74,9 @@ export default function Homepages() {
               </Badge>
             ))
           : null}
+        {searchSkills.length > 0 ? (
+          <p>Click on a skill to remove it from the search</p>
+        ) : null}
       </Col>
       <Container as={Row} fluid style={{ justifyContent: "center" }}>
         {homepages.map((homepage) => {
