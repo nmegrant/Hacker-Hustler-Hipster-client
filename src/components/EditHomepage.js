@@ -56,7 +56,8 @@ export default function EditHomepage() {
         bio,
         idea,
         location,
-        websites
+        websites,
+        skills
       )
     );
     setBio("");
