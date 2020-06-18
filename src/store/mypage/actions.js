@@ -20,7 +20,8 @@ export function sendHomepageInfoThunkCreator(
   bio,
   idea,
   location,
-  urls
+  urls,
+  skills
 ) {
   return async function sendInfoThunk(dispatch, getState) {
     const token = localStorage.getItem("token");
@@ -40,6 +41,15 @@ export function sendHomepageInfoThunkCreator(
         await axios.post(
           `http://localhost:4000/websites/`,
           { urls },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+      }
+      if (skills.length > 0) {
+        await axios.post(
+          `http://localhost:4000/skills/user/`,
+          { skills },
           {
             headers: { Authorization: `Bearer ${token}` },
           }
