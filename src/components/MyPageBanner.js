@@ -1,13 +1,13 @@
 import React from "react";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
-export default function MyPageBanner() {
+export default function MyPageBanner(props) {
   return (
     <Jumbotron>
-      <h1>Hello, world!</h1>
+      <h1>{props.name}</h1>
       <p>
-        This is a simple hero unit, a simple jumbotron-style component for
-        calling extra attention to featured content or information.
+        View and edit the information others can see and use to find you. Create
+        and manage your ideas for a start up.
       </p>
     </Jumbotron>
   );
