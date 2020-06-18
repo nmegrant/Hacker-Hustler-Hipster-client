@@ -5,6 +5,7 @@ import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import { Col } from "react-bootstrap";
+import Jumbotron from "react-bootstrap/Jumbotron";
 
 export default function MyHomepage(props) {
   return (
@@ -17,7 +18,7 @@ export default function MyHomepage(props) {
           ? " talent to work on my idea!"
           : " an idea to work on!"}
       </h5>
-      <h4>{props.myInfo.byline}</h4>
+      <p>{props.myInfo.byline}</p>
       <h3>Located in {props.myInfo.location}</h3>
       <h5>Check out these websites to see some of my skills</h5>
       <Container>

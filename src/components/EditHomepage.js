@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 // import Geocode from "react-geocode";
-import Autosuggest from "react-bootstrap-autosuggest";
+import { Typeahead } from "react-bootstrap-typeahead";
 
 import { sendHomepageInfoThunkCreator } from "../store/mypage/actions";
+import { fetchSkillsThunkCreator } from "../store/skills/actions";
 
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
@@ -11,20 +12,6 @@ import Button from "react-bootstrap/Button";
 import { Col } from "react-bootstrap";
 
 export default function EditHomepage() {
-  const dispatch = useDispatch();
-  const [byline, setByline] = useState("");
-  const [experience, setExperience] = useState("");
-  const [bio, setBio] = useState("");
-  const [idea, setIdea] = useState(false);
-  const [location, setLocation] = useState("");
-
-  const [website, setWebsite] = useState("");
-  const [websites, setWebsites] = useState([]);
-
-  const [skill, setSkill] = useState("");
-  // const [skills, setSkills] = useState([]);
-  // const tagList = ["c++", "Javascript", "Python"];
-
   // const [tag, setTag] = useState("");
   // const [tags, setTags] = useState([]);
   // navigator.geolocation.getCurrentPosition(function (position) {
@@ -40,6 +27,24 @@ export default function EditHomepage() {
   //     }
   //   );
   // });
+
+  const dispatch = useDispatch();
+  const [byline, setByline] = useState("");
+  const [experience, setExperience] = useState("");
+  const [bio, setBio] = useState("");
+  const [idea, setIdea] = useState(false);
+  const [location, setLocation] = useState("");
+
+  const [website, setWebsite] = useState("");
+  const [websites, setWebsites] = useState([]);
+
+  const [skill, setSkill] = useState([]);
+  // const [skills, setSkills] = useState([]);
+  const skillList = ["c++", "Javascript", "Python"];
+
+  useEffect(() => {
+    dispatch(fetchSkillsThunkCreator());
+  }, [dispatch]);
 
   function submitForm(event) {
     event.preventDefault();
@@ -68,13 +73,20 @@ export default function EditHomepage() {
   function submitSkill(event) {
     event.preventDefault();
     console.log(skill);
-    // setTags([...tags, tag]);
-    setSkill("");
+    setSkill([]);
   }
 
   return (
     <Container>
       <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
+        <Button
+          variant="success"
+          type="submit"
+          onClick={submitForm}
+          style={{ margin: "10px" }}
+        >
+          Update Information
+        </Button>
         <Form.Group>
           <Form.Label>What are you looking for?</Form.Label>
           {["radio"].map((type) => (
@@ -126,14 +138,14 @@ export default function EditHomepage() {
         </Form.Group>
         <Form.Group controlId="formGroupSkills">
           <Form.Label>Add Skills</Form.Label>
-          {/* <Autosuggest
-            datalist={tagList}
-            datalistOnly
-            // value={skill}
-            // valueIsItem
-            // onChange={(event) => setSkill(event.target.value)}
-            placeholder="Add skills"
-          ></Autosuggest> */}
+          {/* SKILL DROP DOWN */}
+          <Typeahead
+            id="Add skill dropdown"
+            onChange={(selected) => setSkill(selected)}
+            options={skillList}
+            selected={skill}
+          />
+          {/* SKILL DROP DOWN */}
           <Button
             type="submit"
             onClick={submitSkill}
@@ -171,13 +183,14 @@ export default function EditHomepage() {
             onChange={(event) => setWebsite(event.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Button type="submit" onClick={submitWebsite}>
+        <Button
+          type="submit"
+          onClick={submitWebsite}
+          style={{ margin: "10px" }}
+        >
           Enter Website
         </Button>
       </Form>
-      <Button type="submit" onClick={submitForm} className="mt-5">
-        Update Information
-      </Button>
     </Container>
   );
 }
