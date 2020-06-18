@@ -5,12 +5,10 @@ import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import { Col } from "react-bootstrap";
-import Jumbotron from "react-bootstrap/Jumbotron";
 
 export default function MyHomepage(props) {
   return (
     <Container as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-      <h1>{props.myInfo.user ? props.myInfo.user.name : null}</h1>
       <h2>{props.myInfo.user ? props.myInfo.user.role : null}</h2>
       <h5>
         Looking for
@@ -50,7 +48,6 @@ export default function MyHomepage(props) {
             );
           })
         : null}
-
       <Card style={{ margin: "20px" }} border="info">
         <Card.Header>Projects and Experience</Card.Header>
         <Card.Body>
