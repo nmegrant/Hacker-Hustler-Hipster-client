@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 // import Geocode from "react-geocode";
+import Autosuggest from "react-bootstrap-autosuggest";
 
 import { sendHomepageInfoThunkCreator } from "../store/mypage/actions";
 
@@ -19,6 +20,10 @@ export default function EditHomepage() {
 
   const [website, setWebsite] = useState("");
   const [websites, setWebsites] = useState([]);
+
+  const [skill, setSkill] = useState("");
+  const [skills, setSkills] = useState([]);
+  const tagList = ["c++", "Javascript", "Python"];
 
   // const [tag, setTag] = useState("");
   // const [tags, setTags] = useState([]);
@@ -60,11 +65,12 @@ export default function EditHomepage() {
     setWebsite("");
   }
 
-  // function submitTag(event) {
-  //   event.preventDefault();
-  //   setTags([...tags, tag]);
-  //   setTag("");
-  // }
+  function submitSkill(event) {
+    event.preventDefault();
+    console.log(skill);
+    // setTags([...tags, tag]);
+    setSkill("");
+  }
 
   return (
     <Container>
@@ -118,6 +124,24 @@ export default function EditHomepage() {
             onChange={(event) => setByline(event.target.value)}
           ></Form.Control>
         </Form.Group>
+        <Form.Group controlId="formGroupSkills">
+          <Form.Label>Add Skills</Form.Label>
+          {/* <Autosuggest
+            datalist={tagList}
+            datalistOnly
+            // value={skill}
+            // valueIsItem
+            // onChange={(event) => setSkill(event.target.value)}
+            placeholder="Add skills"
+          ></Autosuggest> */}
+          <Button
+            type="submit"
+            onClick={submitSkill}
+            style={{ margin: "10px" }}
+          >
+            Add Skill
+          </Button>{" "}
+        </Form.Group>
         <Form.Group controlId="formGroupProjectsandExpereince">
           <Form.Label>Projects and Expereince</Form.Label>
           <Form.Control
@@ -150,20 +174,6 @@ export default function EditHomepage() {
         <Button type="submit" onClick={submitWebsite}>
           Enter Website
         </Button>
-        {/* <Form.Group controlId="formGroupTags" className="mt-5">
-          <Form.Label>
-            Add some skill tags, this is how teammates will find you
-          </Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Press enter to add a skill"
-            value={tag}
-            onChange={(event) => setTag(event.target.value)}
-          ></Form.Control>
-        </Form.Group>
-        <Button type="submit" onClick={submitTag}>
-          Add tag
-        </Button> */}
       </Form>
       <Button type="submit" onClick={submitForm} className="mt-5">
         Update Information
