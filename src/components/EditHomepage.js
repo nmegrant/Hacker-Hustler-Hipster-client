@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import Geocode from "react-geocode";
 import { Typeahead } from "react-bootstrap-typeahead";
 
 import { sendHomepageInfoThunkCreator } from "../store/mypage/actions";
+import { selectSkills } from "../store/skills/selectors";
 import { fetchSkillsThunkCreator } from "../store/skills/actions";
 
 import Form from "react-bootstrap/Form";
@@ -40,7 +41,7 @@ export default function EditHomepage() {
 
   const [skill, setSkill] = useState([]);
   // const [skills, setSkills] = useState([]);
-  const skillList = ["c++", "Javascript", "Python"];
+  const skillList = useSelector(selectSkills()).map((skill) => skill.skill);
 
   useEffect(() => {
     dispatch(fetchSkillsThunkCreator());
