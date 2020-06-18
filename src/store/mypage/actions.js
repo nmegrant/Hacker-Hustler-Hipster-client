@@ -7,6 +7,13 @@ export function myPageDetailsFetched(details) {
   };
 }
 
+export function editMyHomepageDetails(homepageDetails) {
+  return {
+    type: "UPDATE_MY_PAGE_DETAILS",
+    payload: homepageDetails,
+  };
+}
+
 export function sendHomepageInfoThunkCreator(
   byline,
   experience,
@@ -21,13 +28,14 @@ export function sendHomepageInfoThunkCreator(
       return;
     }
     try {
-      await axios.patch(
+      let homepageDetails = await axios.patch(
         `http://localhost:4000/mypage/`,
         { byline, experience, bio, idea, location },
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+      dispatch(editMyHomepageDetails(homepageDetails.data));
       if (urls.length > 0) {
         await axios.post(
           `http://localhost:4000/websites/`,

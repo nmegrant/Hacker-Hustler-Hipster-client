@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 // import Geocode from "react-geocode";
+import { Typeahead } from "react-bootstrap-typeahead";
 
 import { sendHomepageInfoThunkCreator } from "../store/mypage/actions";
+import { selectSkills } from "../store/skills/selectors";
+import { fetchSkillsThunkCreator } from "../store/skills/actions";
 
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
@@ -10,16 +13,6 @@ import Button from "react-bootstrap/Button";
 import { Col } from "react-bootstrap";
 
 export default function EditHomepage() {
-  const dispatch = useDispatch();
-  const [byline, setByline] = useState("");
-  const [experience, setExperience] = useState("");
-  const [bio, setBio] = useState("");
-  const [idea, setIdea] = useState(false);
-  const [location, setLocation] = useState("");
-
-  const [website, setWebsite] = useState("");
-  const [websites, setWebsites] = useState([]);
-
   // const [tag, setTag] = useState("");
   // const [tags, setTags] = useState([]);
   // navigator.geolocation.getCurrentPosition(function (position) {
@@ -35,6 +28,24 @@ export default function EditHomepage() {
   //     }
   //   );
   // });
+
+  const dispatch = useDispatch();
+  const [byline, setByline] = useState("");
+  const [experience, setExperience] = useState("");
+  const [bio, setBio] = useState("");
+  const [idea, setIdea] = useState(false);
+  const [location, setLocation] = useState("");
+
+  const [website, setWebsite] = useState("");
+  const [websites, setWebsites] = useState([]);
+
+  const [skill, setSkill] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const skillList = useSelector(selectSkills()).map((skill) => skill.skill);
+
+  useEffect(() => {
+    dispatch(fetchSkillsThunkCreator());
+  }, [dispatch]);
 
   function submitForm(event) {
     event.preventDefault();
@@ -52,6 +63,8 @@ export default function EditHomepage() {
     setByline("");
     setExperience("");
     setLocation("");
+    setWebsites([]);
+    setSkills([]);
   }
 
   function submitWebsite(event) {
@@ -60,15 +73,23 @@ export default function EditHomepage() {
     setWebsite("");
   }
 
-  // function submitTag(event) {
-  //   event.preventDefault();
-  //   setTags([...tags, tag]);
-  //   setTag("");
-  // }
+  function submitSkill(event) {
+    event.preventDefault();
+    setSkills([...skills, ...skill]);
+    setSkill([]);
+  }
 
   return (
     <Container>
       <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
+        <Button
+          variant="success"
+          type="submit"
+          onClick={submitForm}
+          style={{ margin: "10px" }}
+        >
+          Update Information
+        </Button>
         <Form.Group>
           <Form.Label>What are you looking for?</Form.Label>
           {["radio"].map((type) => (
@@ -118,6 +139,24 @@ export default function EditHomepage() {
             onChange={(event) => setByline(event.target.value)}
           ></Form.Control>
         </Form.Group>
+        <Form.Group controlId="formGroupSkills">
+          <Form.Label>Add Skills</Form.Label>
+          {/* SKILL DROP DOWN */}
+          <Typeahead
+            id="Add skill dropdown"
+            onChange={(selected) => setSkill(selected)}
+            options={skillList}
+            selected={skill}
+          />
+          {/* SKILL DROP DOWN */}
+          <Button
+            type="submit"
+            onClick={submitSkill}
+            style={{ margin: "10px" }}
+          >
+            Add Skill
+          </Button>{" "}
+        </Form.Group>
         <Form.Group controlId="formGroupProjectsandExpereince">
           <Form.Label>Projects and Expereince</Form.Label>
           <Form.Control
@@ -147,27 +186,14 @@ export default function EditHomepage() {
             onChange={(event) => setWebsite(event.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Button type="submit" onClick={submitWebsite}>
+        <Button
+          type="submit"
+          onClick={submitWebsite}
+          style={{ margin: "10px" }}
+        >
           Enter Website
         </Button>
-        {/* <Form.Group controlId="formGroupTags" className="mt-5">
-          <Form.Label>
-            Add some skill tags, this is how teammates will find you
-          </Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Press enter to add a skill"
-            value={tag}
-            onChange={(event) => setTag(event.target.value)}
-          ></Form.Control>
-        </Form.Group>
-        <Button type="submit" onClick={submitTag}>
-          Add tag
-        </Button> */}
       </Form>
-      <Button type="submit" onClick={submitForm} className="mt-5">
-        Update Information
-      </Button>
     </Container>
   );
 }

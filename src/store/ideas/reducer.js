@@ -5,7 +5,10 @@ export default function ideasReducer(state = initialState, action) {
     case "FETCH_IDEAS":
       return [...action.payload];
     case "NEW_IDEA_ADDED":
-      return [...state, ...action.payload];
+      return [...state, action.payload];
+    case "DELETE_IDEA":
+      let newState = [...state].filter((idea) => idea.id !== action.payload);
+      return [...newState];
     default:
       return state;
   }
