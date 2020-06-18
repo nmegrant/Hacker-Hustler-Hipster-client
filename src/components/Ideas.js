@@ -26,7 +26,7 @@ export default function Ideas() {
   }, [dispatch]);
 
   function submitIdea(event) {
-    event.preventDefault();
+    // event.preventDefault();
     const newIdea = { title, description, hacker, hipster, hustler };
     dispatch(addNewIdeaThunkCreator(newIdea));
     setTitle("");
