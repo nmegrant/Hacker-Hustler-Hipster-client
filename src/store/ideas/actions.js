@@ -14,6 +14,13 @@ export function newIdeaAdded(idea) {
   };
 }
 
+export function deleteIdea(id) {
+  return {
+    type: "DELETE_IDEA",
+    payload: id,
+  };
+}
+
 export function fetchIdeasThunkCreator() {
   return async function fetchIdeas(dispatch, getState) {
     const token = localStorage.getItem("token");
@@ -52,6 +59,7 @@ export function deleteIdeaThunkCreator(id) {
           id,
         },
       });
+      dispatch(deleteIdea(id));
     } catch (error) {
       console.log(`Error: ${error}`);
     }
