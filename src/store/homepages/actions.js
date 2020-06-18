@@ -17,7 +17,7 @@ export function fetchHomepagesThunkCreator(skills) {
       });
       dispatch(homepagesFetched(response.data));
     } catch (error) {
-      console.log(`Error: ${error}`);
+      console.log(`Error2: ${error}`);
     }
   };
 }

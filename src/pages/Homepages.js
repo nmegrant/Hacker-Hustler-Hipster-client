@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Typeahead } from "react-bootstrap-typeahead";
 
 import HomepageCard from "../components/HomepageCard";
+import Badge from "react-bootstrap/Badge";
 
 import { fetchHomepagesThunkCreator } from "../store/homepages/actions";
 import { fetchSkillsThunkCreator } from "../store/skills/actions";
@@ -10,7 +11,7 @@ import { selectHomepages } from "../store/homepages/selectors";
 import { selectSkills } from "../store/skills/selectors";
 
 import Container from "react-bootstrap/Container";
-import { Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
@@ -35,10 +36,6 @@ export default function Homepages() {
     setSearchSkill([]);
   }
 
-  function submitSearch(event) {
-    event.preventDefault();
-  }
-
   return (
     <Container>
       {/* <Row> */}
@@ -57,13 +54,23 @@ export default function Homepages() {
             style={{ margin: "10px" }}
           >
             Filter By Skills
-          </Button>{" "}
+          </Button>
         </Form.Group>
       </Form>
-      <Button type="submit" onClick={submitSearch} style={{ margin: "10px" }}>
-        Search
-      </Button>{" "}
-      {/* </Row> */}
+      <Col>
+        {searchSkills
+          ? searchSkills.map((skill, index) => (
+              <Badge
+                pill
+                variant="info"
+                style={{ marginLeft: "5px", marginRight: "5px" }}
+                key={index}
+              >
+                {skill}
+              </Badge>
+            ))
+          : null}
+      </Col>
       <Container as={Row} fluid style={{ justifyContent: "center" }}>
         {homepages.map((homepage) => {
           return (
