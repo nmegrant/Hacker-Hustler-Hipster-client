@@ -11,7 +11,9 @@ export function fetchHomepagesThunkCreator(skills) {
   return async function homepagesThunk(dispatch, getState) {
     try {
       const response = await axios.get(`http://localhost:4000/homepages`, {
-        skills,
+        params: {
+          skills,
+        },
       });
       dispatch(homepagesFetched(response.data));
     } catch (error) {
