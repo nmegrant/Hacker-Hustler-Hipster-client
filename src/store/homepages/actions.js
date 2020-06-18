@@ -7,10 +7,12 @@ export function homepagesFetched(homepages) {
   };
 }
 
-export function fetchHomepagesThunkCreator() {
+export function fetchHomepagesThunkCreator(skills) {
   return async function homepagesThunk(dispatch, getState) {
     try {
-      const response = await axios.get(`http://localhost:4000/homepages`);
+      const response = await axios.get(`http://localhost:4000/homepages`, {
+        skills,
+      });
       dispatch(homepagesFetched(response.data));
     } catch (error) {
       console.log(`Error: ${error}`);
