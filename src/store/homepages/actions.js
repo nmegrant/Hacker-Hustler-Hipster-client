@@ -17,3 +17,11 @@ export function fetchHomepagesThunkCreator(skills) {
     }
   };
 }
+
+export function fetchFilteredHomepageThunkCreator(searchSkills) {
+  return async function filteredHompagesThunk(dispatch, getState) {
+    try {
+      console.log(searchSkills);
+    } catch (error) {}
+  };
+}
