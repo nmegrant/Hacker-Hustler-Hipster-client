@@ -18,10 +18,18 @@ export function fetchHomepagesThunkCreator(skills) {
   };
 }
 
-export function fetchFilteredHomepageThunkCreator(searchSkills) {
+export function fetchFilteredHomepageThunkCreator(skills) {
   return async function filteredHompagesThunk(dispatch, getState) {
     try {
-      console.log(searchSkills);
+      const response = await axios.get(
+        `http://localhost:4000/homepages/skills`,
+        {
+          params: {
+            skills,
+          },
+        }
+      );
+      dispatch(homepagesFetched(response.data));
     } catch (error) {}
   };
 }
