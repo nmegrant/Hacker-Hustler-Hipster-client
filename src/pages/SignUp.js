@@ -102,7 +102,14 @@ export default function SignUp() {
             </div>
           ))}
         </Form.Group>
-        <Button type="submit" onClick={submitForm}>
+        <Button
+          type="submit"
+          onClick={submitForm}
+          style={{
+            backgroundColor: "#6610f2",
+            border: "#6610f2",
+          }}
+        >
           Sign Up!
         </Button>
       </Form>
