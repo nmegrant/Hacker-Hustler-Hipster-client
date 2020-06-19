@@ -84,7 +84,7 @@ export default function EditHomepage() {
     <Container>
       <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
         <Button
-          variant="success"
+          variant="info"
           type="submit"
           onClick={submitForm}
           style={{ margin: "10px" }}
@@ -153,7 +153,11 @@ export default function EditHomepage() {
           <Button
             type="submit"
             onClick={submitSkill}
-            style={{ margin: "10px" }}
+            style={{
+              margin: "10px",
+              backgroundColor: "#6610f2",
+              border: "#6610f2",
+            }}
           >
             Add Skill
           </Button>{" "}
@@ -190,7 +194,11 @@ export default function EditHomepage() {
         <Button
           type="submit"
           onClick={submitWebsite}
-          style={{ margin: "10px" }}
+          style={{
+            margin: "10px",
+            backgroundColor: "#6610f2",
+            border: "#6610f2",
+          }}
         >
           Enter Website
         </Button>

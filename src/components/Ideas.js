@@ -98,7 +98,12 @@ export default function Ideas() {
             />
           </div>
         ))}
-        <Button type="submit" onClick={submitIdea} style={{ margin: "5px" }}>
+        <Button
+          variant="info"
+          type="submit"
+          onClick={submitIdea}
+          style={{ margin: "5px" }}
+        >
           Save Idea
         </Button>
       </Form>

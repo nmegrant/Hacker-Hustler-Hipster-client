@@ -7,7 +7,7 @@ export function homepagesFetched(homepages) {
   };
 }
 
-export function fetchHomepagesThunkCreator(skills) {
+export function fetchHomepagesThunkCreator() {
   return async function homepagesThunk(dispatch, getState) {
     try {
       const response = await axios.get(`http://localhost:4000/homepages`);
@@ -18,18 +18,30 @@ export function fetchHomepagesThunkCreator(skills) {
   };
 }
 
-export function fetchFilteredHomepageThunkCreator(skills) {
+export function fetchFilteredHomepageThunkCreator(skills, role) {
   return async function filteredHompagesThunk(dispatch, getState) {
     try {
-      const response = await axios.get(
-        `http://localhost:4000/homepages/skills`,
-        {
+      let responseSkills;
+      let responseRole;
+      if (skills.length > 0) {
+        responseSkills = await axios.get(
+          `http://localhost:4000/homepages/skills`,
+          {
+            params: {
+              skills,
+            },
+          }
+        );
+      }
+      if (role.length > 0) {
+        responseRole = await axios.get(`http://localhost:4000/homepages/role`, {
           params: {
-            skills,
+            role,
           },
-        }
-      );
-      dispatch(homepagesFetched(response.data));
+        });
+      }
+      console.log(responseRole.data);
+      dispatch(homepagesFetched(responseSkills.data));
     } catch (error) {}
   };
 }
