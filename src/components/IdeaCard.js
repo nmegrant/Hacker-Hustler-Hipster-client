@@ -14,7 +14,11 @@ export default function IdeaCard(props) {
   }
 
   return (
-    <Card style={{ width: "200px", margin: "20px" }} border="info">
+    <Card
+      style={{ width: "200px", margin: "20px" }}
+      border="info"
+      className="rounded mb-0"
+    >
       <Card.Body>
         <Card.Title>{props.ideaData.title}</Card.Title>
         <Card.Text>{props.ideaData.description}</Card.Text>
