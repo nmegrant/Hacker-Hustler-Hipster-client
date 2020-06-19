@@ -18,29 +18,30 @@ export function fetchHomepagesThunkCreator() {
   };
 }
 
-export function fetchSkillFilteredHomepageThunkCreator(skills, role) {
+export function fetchFilteredHomepageThunkCreator(skills, role) {
   return async function filteredHompagesThunk(dispatch, getState) {
     try {
-      console.log(role);
-      const response1 = await axios.get(
-        `http://localhost:4000/homepages/skills`,
-        {
-          params: {
-            skills,
-          },
-        }
-      );
-      console.log(role);
-      const response2 = await axios.get(
-        `http://localhost:4000/homepages/role`,
-        {
+      let responseSkills;
+      let responseRole;
+      if (skills.length > 0) {
+        responseSkills = await axios.get(
+          `http://localhost:4000/homepages/skills`,
+          {
+            params: {
+              skills,
+            },
+          }
+        );
+      }
+      if (role.length > 0) {
+        responseRole = await axios.get(`http://localhost:4000/homepages/role`, {
           params: {
             role,
           },
-        }
-      );
-      console.log(response2.data);
-      dispatch(homepagesFetched(response1.data));
+        });
+      }
+      console.log(responseRole.data);
+      dispatch(homepagesFetched(responseSkills.data));
     } catch (error) {}
   };
 }
