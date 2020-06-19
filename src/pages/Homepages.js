@@ -27,6 +27,7 @@ export default function Homepages() {
   const skillList = useSelector(selectSkills()).map((skill) => skill.skill);
 
   const [role, setRole] = useState("");
+  const [idea, setIdea] = useState(null);
 
   useEffect(() => {
     dispatch(fetchHomepagesThunkCreator());
@@ -41,10 +42,10 @@ export default function Homepages() {
 
   function submitSearch(event) {
     event.preventDefault();
-    dispatch(fetchFilteredHomepageThunkCreator(searchSkills, role));
-
+    dispatch(fetchFilteredHomepageThunkCreator(searchSkills, role, idea));
     setSearchSkills([]);
     setRole("");
+    setIdea(null);
   }
 
   function submitSeeAll(event) {
@@ -120,8 +121,8 @@ export default function Homepages() {
                 label="I have an idea"
                 type={type}
                 id={`inline-${type}-1`}
-                value={false}
-                // onChange={(event) => setIdea(event.target.value)}
+                value={true}
+                onChange={(event) => setIdea(event.target.value)}
               />
               <Form.Check
                 name="Idea"
@@ -130,7 +131,7 @@ export default function Homepages() {
                 type={type}
                 id={`inline-${type}-2`}
                 value={false}
-                // onChange={(event) => setIdea(event.target.value)}
+                onChange={(event) => setIdea(event.target.value)}
               />
             </div>
           ))}

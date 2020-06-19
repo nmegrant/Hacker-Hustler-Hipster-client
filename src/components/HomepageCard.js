@@ -7,7 +7,11 @@ import Badge from "react-bootstrap/Badge";
 
 export default function HomepageCard(props) {
   return (
-    <Card style={{ width: "200px", margin: "20px" }} border="info">
+    <Card
+      style={{ width: "200px", margin: "20px" }}
+      border="info"
+      className="rounded mb-0"
+    >
       <Card.Body>
         <Card.Title>
           {props.name} - {props.role}

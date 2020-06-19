@@ -41,8 +41,8 @@ export function fetchFilteredHomepageThunkCreator(skills, role, idea) {
           },
         });
       }
-      if (idea.length > 0) {
-        responseRole = await axios.get(`http://localhost:4000/homepages/idea`, {
+      if (idea !== null) {
+        responseIdea = await axios.get(`http://localhost:4000/homepages/idea`, {
           params: {
             idea,
           },
