@@ -43,6 +43,11 @@ export default function Homepages() {
     setSearchSkills([]);
   }
 
+  function submitSeeAll(event) {
+    event.preventDefault();
+    dispatch(fetchHomepagesThunkCreator());
+  }
+
   return (
     <Container>
       {/* <Row> */}
@@ -59,6 +64,7 @@ export default function Homepages() {
             type="submit"
             onClick={submitSearchSkill}
             style={{ margin: "10px" }}
+            variant="info"
           >
             Filter By Skills
           </Button>
@@ -147,7 +153,26 @@ export default function Homepages() {
           <p>Click on a skill to remove it from the search</p>
         ) : null}
       </Col>
-      <Button onClick={submitSearch}>Filter</Button>
+      <Button
+        onClick={submitSearch}
+        style={{
+          marginRight: "10px",
+          backgroundColor: "#6610f2",
+          border: "#6610f2",
+        }}
+      >
+        Filter
+      </Button>
+      <Button
+        onClick={submitSeeAll}
+        style={{
+          marginLeft: "10px",
+          backgroundColor: "#6610f2",
+          border: "#6610f2",
+        }}
+      >
+        See All
+      </Button>
       <Container as={Row} fluid style={{ justifyContent: "center" }}>
         {homepages.map((homepage) => {
           return (
