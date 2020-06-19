@@ -51,6 +51,9 @@ export default function Homepages() {
   function submitSeeAll(event) {
     event.preventDefault();
     dispatch(fetchHomepagesThunkCreator());
+    setSearchSkills([]);
+    setRole("");
+    setIdea(null);
   }
 
   return (
