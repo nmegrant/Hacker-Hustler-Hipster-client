@@ -50,7 +50,14 @@ export default function Login() {
             onChange={(event) => setPassword(event.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Button type="submit" onClick={submitForm}>
+        <Button
+          type="submit"
+          onClick={submitForm}
+          style={{
+            backgroundColor: "#6610f2",
+            border: "#6610f2",
+          }}
+        >
           Login
         </Button>
       </Form>

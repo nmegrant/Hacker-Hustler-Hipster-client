@@ -68,7 +68,6 @@ export default function SignUp() {
             onChange={(event) => setConfirmPassword(event.target.value)}
           ></Form.Control>
         </Form.Group>
-
         <Form.Group controlId="formBasicRole">
           <Form.Label>Team Role</Form.Label>
           {["radio"].map((type) => (
@@ -103,7 +102,14 @@ export default function SignUp() {
             </div>
           ))}
         </Form.Group>
-        <Button type="submit" onClick={submitForm}>
+        <Button
+          type="submit"
+          onClick={submitForm}
+          style={{
+            backgroundColor: "#6610f2",
+            border: "#6610f2",
+          }}
+        >
           Sign Up!
         </Button>
       </Form>
