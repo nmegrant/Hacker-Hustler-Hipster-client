@@ -68,7 +68,6 @@ export default function SignUp() {
             onChange={(event) => setConfirmPassword(event.target.value)}
           ></Form.Control>
         </Form.Group>
-
         <Form.Group controlId="formBasicRole">
           <Form.Label>Team Role</Form.Label>
           {["radio"].map((type) => (
