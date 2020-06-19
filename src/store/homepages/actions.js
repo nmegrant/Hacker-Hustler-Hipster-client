@@ -21,35 +21,20 @@ export function fetchHomepagesThunkCreator() {
 export function fetchFilteredHomepageThunkCreator(skills, role, idea) {
   return async function filteredHompagesThunk(dispatch, getState) {
     try {
-      let responseSkills;
-      let responseRole;
-      let responseIdea;
-      if (skills.length > 0) {
-        responseSkills = await axios.get(
-          `http://localhost:4000/homepages/skills`,
-          {
-            params: {
-              skills,
-            },
-          }
-        );
-      }
-      if (role.length > 0) {
-        responseRole = await axios.get(`http://localhost:4000/homepages/role`, {
+      const response = await axios.get(
+        `http://localhost:4000/homepages/filters`,
+        {
           params: {
+            skills,
             role,
-          },
-        });
-      }
-      if (idea !== null) {
-        responseIdea = await axios.get(`http://localhost:4000/homepages/idea`, {
-          params: {
             idea,
           },
-        });
-      }
-
-      dispatch(homepagesFetched(responseSkills.data));
-    } catch (error) {}
+        }
+      );
+      console.log(response.data);
+      dispatch(homepagesFetched(response.data));
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
   };
 }
