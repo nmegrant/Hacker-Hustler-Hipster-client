@@ -7,7 +7,7 @@ import Badge from "react-bootstrap/Badge";
 
 import {
   fetchHomepagesThunkCreator,
-  fetchSkillFilteredHomepageThunkCreator,
+  fetchFilteredHomepageThunkCreator,
 } from "../store/homepages/actions";
 import { fetchSkillsThunkCreator } from "../store/skills/actions";
 import { selectHomepages } from "../store/homepages/selectors";
@@ -41,7 +41,7 @@ export default function Homepages() {
 
   function submitSearch(event) {
     event.preventDefault();
-    dispatch(fetchSkillFilteredHomepageThunkCreator(searchSkills, role));
+    dispatch(fetchFilteredHomepageThunkCreator(searchSkills, role));
 
     setSearchSkills([]);
     setRole("");
