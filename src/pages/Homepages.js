@@ -5,7 +5,10 @@ import { Typeahead } from "react-bootstrap-typeahead";
 import HomepageCard from "../components/HomepageCard";
 import Badge from "react-bootstrap/Badge";
 
-import { fetchHomepagesThunkCreator } from "../store/homepages/actions";
+import {
+  fetchHomepagesThunkCreator,
+  fetchFilteredHomepageThunkCreator,
+} from "../store/homepages/actions";
 import { fetchSkillsThunkCreator } from "../store/skills/actions";
 import { selectHomepages } from "../store/homepages/selectors";
 import { selectSkills } from "../store/skills/selectors";
@@ -36,7 +39,7 @@ export default function Homepages() {
 
   function submitSearch(event) {
     event.preventDefault();
-    // dispatch(fetchFilteredHomepageThunkCreator());
+    dispatch(fetchFilteredHomepageThunkCreator(searchSkills));
     setSearchSkills([]);
   }
 
