@@ -7,7 +7,7 @@ import Badge from "react-bootstrap/Badge";
 
 import {
   fetchHomepagesThunkCreator,
-  fetchFilteredHomepageThunkCreator,
+  fetchSkillFilteredHomepageThunkCreator,
 } from "../store/homepages/actions";
 import { fetchSkillsThunkCreator } from "../store/skills/actions";
 import { selectHomepages } from "../store/homepages/selectors";
@@ -26,6 +26,8 @@ export default function Homepages() {
   const [searchSkills, setSearchSkills] = useState([]);
   const skillList = useSelector(selectSkills()).map((skill) => skill.skill);
 
+  const [role, setRole] = useState("");
+
   useEffect(() => {
     dispatch(fetchHomepagesThunkCreator());
     dispatch(fetchSkillsThunkCreator());
@@ -39,8 +41,10 @@ export default function Homepages() {
 
   function submitSearch(event) {
     event.preventDefault();
-    dispatch(fetchFilteredHomepageThunkCreator(searchSkills));
+    dispatch(fetchSkillFilteredHomepageThunkCreator(searchSkills, role));
+
     setSearchSkills([]);
+    setRole("");
   }
 
   function submitSeeAll(event) {
@@ -80,7 +84,7 @@ export default function Homepages() {
                 type={type}
                 id={`inline-${type}-1`}
                 value="Hacker"
-                // onChange={(event) => setRole(event.target.value)}
+                onChange={(event) => setRole(event.target.value)}
               />
               <Form.Check
                 name="Role"
@@ -89,7 +93,7 @@ export default function Homepages() {
                 type={type}
                 id={`inline-${type}-2`}
                 value="Hustler"
-                // onChange={(event) => setRole(event.target.value)}
+                onChange={(event) => setRole(event.target.value)}
               />
               <Form.Check
                 name="Role"
@@ -98,7 +102,7 @@ export default function Homepages() {
                 type={type}
                 id={`inline-${type}-3`}
                 value="Hipster"
-                // onChange={(event) => setRole(event.target.value)}
+                onChange={(event) => setRole(event.target.value)}
               />
             </div>
           ))}
@@ -117,7 +121,7 @@ export default function Homepages() {
                 type={type}
                 id={`inline-${type}-1`}
                 value={false}
-                // onChange={(event) => setRole(event.target.value)}
+                // onChange={(event) => setIdea(event.target.value)}
               />
               <Form.Check
                 name="Idea"
@@ -126,7 +130,7 @@ export default function Homepages() {
                 type={type}
                 id={`inline-${type}-2`}
                 value={false}
-                // onChange={(event) => setRole(event.target.value)}
+                // onChange={(event) => setIdea(event.target.value)}
               />
             </div>
           ))}

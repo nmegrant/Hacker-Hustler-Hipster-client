@@ -7,7 +7,7 @@ export function homepagesFetched(homepages) {
   };
 }
 
-export function fetchHomepagesThunkCreator(skills) {
+export function fetchHomepagesThunkCreator() {
   return async function homepagesThunk(dispatch, getState) {
     try {
       const response = await axios.get(`http://localhost:4000/homepages`);
@@ -18,10 +18,11 @@ export function fetchHomepagesThunkCreator(skills) {
   };
 }
 
-export function fetchFilteredHomepageThunkCreator(skills) {
+export function fetchSkillFilteredHomepageThunkCreator(skills, role) {
   return async function filteredHompagesThunk(dispatch, getState) {
     try {
-      const response = await axios.get(
+      console.log(role);
+      const response1 = await axios.get(
         `http://localhost:4000/homepages/skills`,
         {
           params: {
@@ -29,7 +30,17 @@ export function fetchFilteredHomepageThunkCreator(skills) {
           },
         }
       );
-      dispatch(homepagesFetched(response.data));
+      console.log(role);
+      const response2 = await axios.get(
+        `http://localhost:4000/homepages/role`,
+        {
+          params: {
+            role,
+          },
+        }
+      );
+      console.log(response2.data);
+      dispatch(homepagesFetched(response1.data));
     } catch (error) {}
   };
 }
