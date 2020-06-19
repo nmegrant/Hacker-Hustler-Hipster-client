@@ -28,10 +28,10 @@ export default function HomepageCard(props) {
         })}
       </Card.Body>
       <Card.Footer>
-        <Button>
+        <Button variant="outline-info">
           <Link
             to={`/homepages/${props.homepageId}`}
-            style={{ color: "white" }}
+            style={{ color: "#6610f2" }}
           >
             Show me more
           </Link>
