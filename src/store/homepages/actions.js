@@ -48,7 +48,7 @@ export function fetchFilteredHomepageThunkCreator(skills, role, idea) {
           },
         });
       }
-      console.log(responseIdea.data);
+
       dispatch(homepagesFetched(responseSkills.data));
     } catch (error) {}
   };
