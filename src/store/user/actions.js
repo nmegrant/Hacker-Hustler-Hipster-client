@@ -34,6 +34,7 @@ export function loginThunkCreator(email, password) {
       dispatch(showMessageThunkCreator("Logged in", "info"));
     } catch (error) {
       console.log(`Error: ${error}`);
+      dispatch(showMessageThunkCreator(error.response.data.message, "danger"));
     }
   };
 }
@@ -49,6 +50,7 @@ export function signUpThunkCreator(newUser) {
       dispatch(showMessageThunkCreator("Account Created", "info"));
     } catch (error) {
       console.log(`Error: ${error}`);
+      dispatch(showMessageThunkCreator(error.response.data.message, "danger"));
     }
   };
 }
@@ -67,6 +69,7 @@ export function getLoggedInUserThunkCreator() {
       dispatch(stillLoggedIn(response.data));
     } catch (error) {
       console.log(`Error1: ${error}`);
+      dispatch(showMessageThunkCreator(error.response.data.message, "danger"));
       dispatch(loggedOut());
     }
   };

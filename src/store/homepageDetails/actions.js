@@ -1,4 +1,5 @@
 import axios from "axios";
+import { showMessageThunkCreator } from "../appState/actions";
 
 export function homepageDetailsFetched(details) {
   return {
@@ -16,6 +17,7 @@ export function fetchHomepageDetailsThunkCreator(id) {
       dispatch(homepageDetailsFetched(homepageDetails.data));
     } catch (error) {
       console.log(`Error: ${error}`);
+      dispatch(showMessageThunkCreator(error.response.data.message, "danger"));
     }
   };
 }
