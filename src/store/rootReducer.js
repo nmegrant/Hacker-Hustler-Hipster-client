@@ -5,6 +5,7 @@ import user from "./user/reducer";
 import myPage from "./mypage/reducer";
 import ideas from "./ideas/reducer";
 import skills from "./skills/reducer";
+import appState from "./appState/reducer";
 
 export default combineReducers({
   homepages,
@@ -13,4 +14,5 @@ export default combineReducers({
   myPage,
   ideas,
   skills,
+  appState,
 });

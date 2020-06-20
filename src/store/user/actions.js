@@ -1,5 +1,6 @@
 import axios from "axios";
 import { selectToken } from "./selectors";
+import { showMessageThunkCreator } from "../appState/actions";
 
 export function loggedIn(userAndToken) {
   return {
@@ -30,8 +31,10 @@ export function loginThunkCreator(email, password) {
         password,
       });
       dispatch(loggedIn(response.data));
+      dispatch(showMessageThunkCreator("Logged in", "info"));
     } catch (error) {
       console.log(`Error: ${error}`);
+      dispatch(showMessageThunkCreator(error.response.data.message, "danger"));
     }
   };
 }
@@ -44,8 +47,10 @@ export function signUpThunkCreator(newUser) {
         newUser
       );
       dispatch(loggedIn(response.data));
+      dispatch(showMessageThunkCreator("Account Created", "info"));
     } catch (error) {
       console.log(`Error: ${error}`);
+      dispatch(showMessageThunkCreator(error.response.data.message, "danger"));
     }
   };
 }
@@ -64,6 +69,7 @@ export function getLoggedInUserThunkCreator() {
       dispatch(stillLoggedIn(response.data));
     } catch (error) {
       console.log(`Error1: ${error}`);
+      dispatch(showMessageThunkCreator(error.response.data.message, "danger"));
       dispatch(loggedOut());
     }
   };

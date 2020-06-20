@@ -1,4 +1,5 @@
 import axios from "axios";
+import { appLoading, appDoneLoading } from "../appState/actions";
 
 export function ideasFetched(ideas) {
   return {
@@ -25,10 +26,12 @@ export function fetchIdeasThunkCreator() {
   return async function fetchIdeas(dispatch, getState) {
     const token = localStorage.getItem("token");
     try {
+      dispatch(appLoading());
       const ideas = await axios.get(`http://localhost:4000/ideas`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(ideasFetched(ideas.data));
+      dispatch(appDoneLoading());
     } catch (error) {
       console.log(`Error: ${error}`);
     }
