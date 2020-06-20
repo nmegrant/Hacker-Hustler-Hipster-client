@@ -1,5 +1,6 @@
 import axios from "axios";
 import { selectToken } from "./selectors";
+import { showMessageThunkCreator } from "../appState/actions";
 
 export function loggedIn(userAndToken) {
   return {
@@ -30,6 +31,7 @@ export function loginThunkCreator(email, password) {
         password,
       });
       dispatch(loggedIn(response.data));
+      dispatch(showMessageThunkCreator());
     } catch (error) {
       console.log(`Error: ${error}`);
     }
