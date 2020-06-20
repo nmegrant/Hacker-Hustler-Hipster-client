@@ -38,7 +38,15 @@ export default function NavBanner() {
           </Navbar.Text>
         ) : null}
         {token ? (
-          <Button onClick={() => dispatch(loggedOut())}>Log Out</Button>
+          <Button
+            onClick={() => dispatch(loggedOut())}
+            style={{
+              backgroundColor: "rgba(102, 16, 242, 1)",
+              border: "rgba(102, 16, 242, 1)",
+            }}
+          >
+            Log Out
+          </Button>
         ) : null}
       </Navbar.Collapse>
     </Navbar>
