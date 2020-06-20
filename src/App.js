@@ -7,6 +7,7 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import MyPage from "./pages/MyPage";
 import NavBanner from "./components/NavBanner";
+import AlertBox from "./components/AlertBox";
 import "./App.css";
 import { getLoggedInUserThunkCreator } from "./store/user/actions";
 
@@ -20,6 +21,7 @@ function App() {
   return (
     <div className="App">
       <NavBanner />
+      <AlertBox />
       <Switch>
         <Route exact path="/" component={Homepages} />
         <Route path="/homepages/:homepageId" component={HomepageDetails} />
