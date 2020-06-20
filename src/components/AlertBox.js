@@ -9,10 +9,10 @@ export default function AlertBox() {
   let showMessage = false;
   let variant;
   let text;
-  if (message.info !== null) {
+  if (message !== null) {
     showMessage = true;
-    variant = message.info.variant;
-    text = message.info.message;
+    variant = message.variant;
+    text = message.message;
   } else {
     showMessage = false;
     variant = null;

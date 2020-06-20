@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import Homepages from "./pages/Homepages";
 import HomepageDetails from "./pages/HomepageDetails ";
@@ -11,9 +11,12 @@ import AlertBox from "./components/AlertBox";
 import Loading from "./components/Loading";
 import "./App.css";
 import { getLoggedInUserThunkCreator } from "./store/user/actions";
+import { selectLoadingStatus } from "./store/appState/selectors";
 
 function App() {
   const dispatch = useDispatch();
+
+  const loading = useSelector(selectLoadingStatus());
 
   useEffect(() => {
     dispatch(getLoggedInUserThunkCreator());
@@ -22,7 +25,7 @@ function App() {
   return (
     <div className="App">
       <NavBanner />
-      {/* <Loading /> */}
+      {loading ? <Loading /> : null}
       <AlertBox />
       <Switch>
         <Route exact path="/" component={Homepages} />
