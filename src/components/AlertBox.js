@@ -7,13 +7,22 @@ export default function AlertBox() {
   const message = useSelector(selectMessage());
 
   console.log(message);
+
+  let showMessage = false;
+  let variant;
+  let text;
+  if (message.info !== null) {
+    showMessage = true;
+    variant = message.info.variant;
+    text = message.info.message;
+  } else {
+    showMessage = false;
+    variant = null;
+    text = null;
+  }
   return (
-    <Alert
-      variant={message.info ? message.info.variant : null}
-      show={message.info ? true : false}
-    >
-      {" "}
-      {message.info ? message.info.message : null}
+    <Alert variant={variant} show={showMessage}>
+      {text}
     </Alert>
   );
 }
