@@ -7,6 +7,13 @@ export default function AlertBox() {
   const message = useSelector(selectMessage());
 
   console.log(message);
-
-  return <Alert variant="info"> "Hello"</Alert>;
+  return (
+    <Alert
+      variant={message.info ? message.info.variant : null}
+      show={message.info ? true : false}
+    >
+      {" "}
+      {message.info ? message.info.message : null}
+    </Alert>
+  );
 }
