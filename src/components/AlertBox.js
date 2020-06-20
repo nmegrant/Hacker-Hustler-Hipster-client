@@ -1,6 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Alert from "react-bootstrap/Alert";
+import { selectMessage } from "../store/appState/selectors";
 
 export default function AlertBox() {
-  return <Alert variant="info">This is a alert—check it out!</Alert>;
+  const message = useSelector(selectMessage());
+
+  console.log(message);
+
+  return <Alert variant="info"> "Hello"</Alert>;
 }
