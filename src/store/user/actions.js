@@ -31,7 +31,7 @@ export function loginThunkCreator(email, password) {
         password,
       });
       dispatch(loggedIn(response.data));
-      dispatch(showMessageThunkCreator());
+      dispatch(showMessageThunkCreator("Logged in", "info"));
     } catch (error) {
       console.log(`Error: ${error}`);
     }
@@ -46,6 +46,7 @@ export function signUpThunkCreator(newUser) {
         newUser
       );
       dispatch(loggedIn(response.data));
+      dispatch(showMessageThunkCreator("Account Created", "info"));
     } catch (error) {
       console.log(`Error: ${error}`);
     }

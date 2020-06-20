@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loggedOut } from "../store/user/actions";
 import { selectToken, selectUser } from "../store/user/selectors";
+import { showMessageThunkCreator } from "../store/appState/actions";
 
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -39,7 +40,10 @@ export default function NavBanner() {
         ) : null}
         {token ? (
           <Button
-            onClick={() => dispatch(loggedOut())}
+            onClick={() => {
+              dispatch(loggedOut());
+              dispatch(showMessageThunkCreator("Logged out", "info"));
+            }}
             style={{
               backgroundColor: "rgba(102, 16, 242, 1)",
               border: "rgba(102, 16, 242, 1)",

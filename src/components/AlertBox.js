@@ -6,8 +6,6 @@ import { selectMessage } from "../store/appState/selectors";
 export default function AlertBox() {
   const message = useSelector(selectMessage());
 
-  console.log(message);
-
   let showMessage = false;
   let variant;
   let text;
