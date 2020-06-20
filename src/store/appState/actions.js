@@ -17,7 +17,7 @@ export function clearMessage() {
 
 export function showMessageThunkCreator(message, variant) {
   return function showMessage(dispatch, getState) {
-    dispatch(setMessage("Hello", "info"));
+    dispatch(setMessage(message, variant));
     setTimeout(() => dispatch(clearMessage()), 2000);
   };
 }
