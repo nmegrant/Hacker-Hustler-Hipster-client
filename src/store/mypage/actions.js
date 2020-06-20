@@ -1,4 +1,6 @@
 import axios from "axios";
+import { showMessageThunkCreator } from "../appState/actions";
+import { appLoading, appDoneLoading } from "../appState/actions";
 
 export function myPageDetailsFetched(details) {
   return {
@@ -14,6 +16,7 @@ export function editMyHomepageDetails(homepageDetails) {
   };
 }
 
+//Edit/update homepage info
 export function sendHomepageInfoThunkCreator(
   byline,
   experience,
@@ -55,6 +58,7 @@ export function sendHomepageInfoThunkCreator(
           }
         );
       }
+      dispatch(showMessageThunkCreator("Homepage Updated", "info"));
     } catch (error) {
       console.log(`Error: ${error}`);
     }
@@ -66,10 +70,12 @@ export function fetchHomepageDetailsThunkCreator() {
   return async function fetchMyPageDetailsThunk(dispatch, getState) {
     const token = localStorage.getItem("token");
     try {
+      dispatch(appLoading());
       const response = await axios.get(`http://localhost:4000/mypage`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(myPageDetailsFetched(response.data));
+      dispatch(appDoneLoading());
     } catch (error) {
       console.log(`Error: ${error}`);
     }
