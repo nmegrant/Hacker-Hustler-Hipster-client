@@ -15,6 +15,20 @@ export function clearMessage() {
   };
 }
 
+export function appLoading() {
+  return {
+    type: "LOADING",
+    payload: true,
+  };
+}
+
+export function appDoneLoading() {
+  return {
+    type: "DONE_LOADING",
+    payload: false,
+  };
+}
+
 export function showMessageThunkCreator(message, variant) {
   return function showMessage(dispatch, getState) {
     dispatch(setMessage(message, variant));

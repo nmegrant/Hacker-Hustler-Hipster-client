@@ -12,12 +12,12 @@ export default function appStateReducer(state = initialState, action) {
     case "LOADING":
       return {
         ...state,
-        loading: true,
+        loading: action.payload,
       };
     case "DONE_LOADING":
       return {
         ...state,
-        loading: false,
+        loading: action.payload,
       };
     default:
       return state;
