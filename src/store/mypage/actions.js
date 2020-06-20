@@ -1,4 +1,5 @@
 import axios from "axios";
+import { showMessageThunkCreator } from "../appState/actions";
 
 export function myPageDetailsFetched(details) {
   return {
@@ -55,6 +56,7 @@ export function sendHomepageInfoThunkCreator(
           }
         );
       }
+      dispatch(showMessageThunkCreator("Homepage Updated", "info"));
     } catch (error) {
       console.log(`Error: ${error}`);
     }
