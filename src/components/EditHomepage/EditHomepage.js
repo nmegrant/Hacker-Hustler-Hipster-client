@@ -3,14 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 // import Geocode from "react-geocode";
 import { Typeahead } from "react-bootstrap-typeahead";
 
-import { sendHomepageInfoThunkCreator } from "../store/mypage/actions";
-import { selectSkills } from "../store/skills/selectors";
-import { fetchSkillsThunkCreator } from "../store/skills/actions";
+import { sendHomepageInfoThunkCreator } from "../../store/mypage/actions";
+import { selectSkills } from "../../store/skills/selectors";
+import { fetchSkillsThunkCreator } from "../../store/skills/actions";
+
+import "./EditHomepage.css";
 
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import { Col } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
+import Badge from "react-bootstrap/Badge";
 
 export default function EditHomepage() {
   // const [tag, setTag] = useState("");
@@ -33,8 +36,8 @@ export default function EditHomepage() {
   const [byline, setByline] = useState("");
   const [experience, setExperience] = useState("");
   const [bio, setBio] = useState("");
-  const [idea, setIdea] = useState(false);
   const [location, setLocation] = useState("");
+  const [idea, setIdea] = useState(false);
 
   const [website, setWebsite] = useState("");
   const [websites, setWebsites] = useState([]);
@@ -60,10 +63,11 @@ export default function EditHomepage() {
         skills
       )
     );
-    setBio("");
-    setByline("");
-    setExperience("");
-    setLocation("");
+    setBio(bio);
+    setByline(byline);
+    setExperience(experience);
+    setLocation(location);
+    setIdea(idea);
     setWebsites([]);
     setSkills([]);
   }
@@ -161,6 +165,25 @@ export default function EditHomepage() {
           >
             Add Skill
           </Button>{" "}
+          <Container as={Row}>
+            {skills.length > 0
+              ? skills.map((skill, index) => (
+                  <Badge
+                    as={Button}
+                    onClick={() =>
+                      setSkills([...skills.filter((s) => s !== skill)])
+                    }
+                    pill
+                    variant="info"
+                    style={{ marginLeft: "5px", marginRight: "5px" }}
+                    key={index}
+                    className="skillsBadges"
+                  >
+                    {skill}
+                  </Badge>
+                ))
+              : null}
+          </Container>
         </Form.Group>
         <Form.Group controlId="formGroupProjectsandExpereince">
           <Form.Label>Projects and Expereince</Form.Label>

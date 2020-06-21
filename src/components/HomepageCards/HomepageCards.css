@@ -1,0 +1,7 @@
+.zoomie {
+  transition: transform 0.2s;
+}
+
+.zoomie:hover {
+  transform: scale(1.1);
+}
