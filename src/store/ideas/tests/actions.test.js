@@ -17,8 +17,6 @@ describe("#fetchDeleteAddIdeas", () => {
     });
   });
 
-  //Do newIdeaAdded
-
   describe("if adding a new idea object to the idea arry", () => {
     test("should return the idea object", () => {
       const idea = {};
@@ -33,6 +31,22 @@ describe("#fetchDeleteAddIdeas", () => {
       const idea = { test: "test" };
       const action = ideasFetched(idea);
       expect(action.payload).toEqual(idea);
+    });
+  });
+  describe("if deleting an idea object from the idea array", () => {
+    test("should return the id of the idea object", () => {
+      const id = 1;
+      const expected = {
+        type: "NEW_IDEA_ADDED",
+        payload: 1,
+      };
+      expect(newIdeaAdded(id)).toEqual(expected);
+    });
+
+    test("the payload of whats returned should be an id number with the same value id", () => {
+      const id = 2;
+      const action = ideasFetched(id);
+      expect(action.payload).toEqual(id);
     });
   });
 });
