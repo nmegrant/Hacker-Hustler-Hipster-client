@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Typeahead } from "react-bootstrap-typeahead";
 
-import HomepageCard from "../../components/HomepageCard";
+import HomepageCard from "../../components/HomepageCards/HomepageCard";
 import Badge from "react-bootstrap/Badge";
 
 import "./Homepages.css";
