@@ -12,69 +12,61 @@ describe("userReducer", () => {
     });
   });
 
-  //   describe("when given a LOGGED_IN action type", () => {
-  //     test("returns a new state with the payload object", () => {
-  //       const user = {
-  //         token: 1234,
-  //         name: "George",
-  //         email: "george@test.com",
-  //         role: "Hacker",
-  //       };
-  //       const action = { type: "LOGGED_IN", payload: user };
-  //       const newState = reducer(initialState, action);
-  //       expect(newState).toEqual(user);
-  //     });
-  //     test("returns a new state with the payload object values are correct", () => {
-  //       const user = {
-  //         token: 1234,
-  //         name: "George",
-  //         email: "george@test.com",
-  //         role: "Hacker",
-  //       };
-  //       const action = { type: "LOGGED_IN", payload: user };
-  //       const newState = reducer(initialState, action);
-  //       expect(newState.token).toBe(user.token);
-  //       expect(newState.name).toBe(user.name);
-  //       expect(newState.email).toBe(user.email);
-  //       expect(newState.role).toBe(user.role);
-  //     });
-  //   });
-  //   describe("when given a LOGGED_OUT action type", () => {
-  //     test("returns a new state equal to initial state", () => {
-  //       const user = {
-  //         token: 1234,
-  //         name: "George",
-  //         email: "george@test.com",
-  //         role: "Hacker",
-  //       };
-  //       const action = { type: "LOGGED_IN", payload: user };
-  //       const newState = reducer(initialState, action);
-  //       const logoutAction = { type: "LOGGED_OUT" };
-  //       const newLogoutState = reducer(newState, logoutAction);
-  //       expect(newLogoutState).toEqual(initialState);
-  //     });
-  //   });
-  //   describe("when given a STILL_LOGGED_IN action type", () => {
-  //     test("returns the same state as the new state", () => {
-  //       const user = {
-  //         token: 1234,
-  //         name: "George",
-  //         email: "george@test.com",
-  //         role: "Hacker",
-  //       };
-  //       const action = { type: "STILL_LOGGED_IN", payload: user };
-  //       const newState = reducer(initialState, action);
-  //       const stillLoggedInAction = {
-  //         type: "STILL_LOGGED_IN",
-  //         payload: {
-  //           token: 1234,
-  //           name: "George",
-  //           email: "george@test.com",
-  //           role: "Hacker",
-  //         },
-  //       };
-  //       const newLoggedInState = reducer(newState, stillLoggedInAction);
-  //       expect(newLoggedInState).toEqual(user);
-  //     });
-  //   });
+  describe("when given a SET_MESSAGE action type", () => {
+    test("returns info object", () => {
+      let message = "Hi";
+      let variant = "info";
+      const info = {
+        message,
+        variant,
+      };
+      const action = { type: "SET_MESSAGE", payload: info };
+      const newState = reducer(initialState, action);
+      expect(newState).toEqual({ info, loading: false });
+    });
+    test("returns a new state with the payload object values are correct", () => {
+      let message = "Hi";
+      let variant = "info";
+      const info = {
+        message,
+        variant,
+      };
+      const action = { type: "SET_MESSAGE", payload: info };
+      const newState = reducer(initialState, action);
+      expect(newState.info.message).toBe(message);
+      expect(newState.info.variant).toBe(variant);
+    });
+  });
+  describe("when given a CLEAR_MESSAGE action type", () => {
+    test("returns null", () => {
+      let message = "Hi";
+      let variant = "info";
+      const info = {
+        message,
+        variant,
+      };
+      const action = { type: "SET_MESSAGE", payload: info };
+      const newState = reducer(initialState, action);
+      const clearAction = { type: "CLEAR_MESSAGE", payload: null };
+      const newClearState = reducer(newState, clearAction);
+      expect(newClearState).toEqual({ info: null, loading: false });
+    });
+  });
+  //
+  describe("when given a LOADING action type", () => {
+    test("returns loading object", () => {
+      const action = { type: "LOADING", payload: true };
+      const newState = reducer(initialState, action);
+      expect(newState).toEqual({ info: null, loading: true });
+    });
+  });
+  describe("when given a DONE_LOADING action type", () => {
+    test("returns null", () => {
+      const action = { type: "LOADING", payload: true };
+      const newState = reducer(initialState, action);
+      const doneAction = { type: "DONE_LOADING", payload: false };
+      const newDoneState = reducer(newState, doneAction);
+      expect(newDoneState).toEqual({ info: null, loading: false });
+    });
+  });
 });
