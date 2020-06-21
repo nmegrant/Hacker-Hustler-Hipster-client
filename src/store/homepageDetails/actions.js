@@ -21,6 +21,7 @@ export function fetchHomepageDetailsThunkCreator(id) {
     } catch (error) {
       console.log(`Error: ${error}`);
       dispatch(showMessageThunkCreator(error.response.data.message, "danger"));
+      dispatch(appDoneLoading());
     }
   };
 }
