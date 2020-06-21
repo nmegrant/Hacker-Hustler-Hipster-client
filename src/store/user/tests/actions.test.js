@@ -1,4 +1,11 @@
-import { loggedIn, loggedOut, stillLoggedIn } from "../actions";
+import {
+  loggedIn,
+  loggedOut,
+  stillLoggedIn,
+  loginThunkCreator,
+  signUpThunkCreator,
+} from "../actions";
+import axios from "axios";
 
 describe("#fetchUserandloggin/out", () => {
   describe("if given an object with user info", () => {
@@ -48,20 +55,54 @@ describe("#fetchUserandloggin/out", () => {
   });
 });
 
-//GET THIS WORKING
-// describe("#fetchHomepages", () => {
-//     describe("when called", () => {
-//       test("should dispatch an action FETCH_HOMEPAGES_SUCCESS", async () => {
-//         const fakeHomepages = [{}, {}];
-//         const response = { data: { homepages: { rows: fakeHomepages } } };
-//         axios.get.mockImplementationOnce(() => Promise.resolve(response));
-//         const dispatch = jest.fn();
-//         const getState = jest.fn().mockReturnValueOnce({ homepages: [] });
-//         await fetchHomepages()(dispatch, getState);
-//         expect(dispatch).toHaveBeenCalledWith(
-//           fetchHomepagesSuccess(fakeHomepages)
-//         );
-//         expect(getState).toHaveBeenCalledTimes(1);
-//       });
-//     });
-//   });
+jest.mock("axios");
+
+describe("#postLogin", () => {
+  describe("when called and success", () => {
+    test("should dispatch an action post to log in", async () => {
+      const fakeUser = {};
+      const response = { data: fakeUser };
+      axios.post.mockImplementationOnce(() => Promise.resolve(response));
+      const dispatch = jest.fn();
+      const getState = jest.fn().mockReturnValueOnce([]);
+      await loginThunkCreator()(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledWith(loggedIn(fakeUser));
+      expect(dispatch).toHaveBeenCalledTimes(2);
+    });
+  });
+  describe("when called and failed", () => {
+    test("should dispatch an action message", async () => {
+      const error = { response: { data: { message: "error" } } };
+      axios.post.mockImplementationOnce(() => Promise.reject(error));
+      const dispatch = jest.fn();
+      const getState = jest.fn().mockReturnValueOnce([]);
+      await loginThunkCreator()(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledTimes(1);
+    });
+  });
+});
+
+describe("#postSignUp", () => {
+  describe("when called and success", () => {
+    test("should dispatch an action post to sign in", async () => {
+      const fakeUser = {};
+      const response = { data: fakeUser };
+      axios.post.mockImplementationOnce(() => Promise.resolve(response));
+      const dispatch = jest.fn();
+      const getState = jest.fn().mockReturnValueOnce([]);
+      await signUpThunkCreator()(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledWith(loggedIn(fakeUser));
+      expect(dispatch).toHaveBeenCalledTimes(2);
+    });
+  });
+  describe("when called and failed", () => {
+    test("should dispatch an action message", async () => {
+      const error = { response: { data: { message: "error" } } };
+      axios.post.mockImplementationOnce(() => Promise.reject(error));
+      const dispatch = jest.fn();
+      const getState = jest.fn().mockReturnValueOnce([]);
+      await signUpThunkCreator()(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledTimes(1);
+    });
+  });
+});
