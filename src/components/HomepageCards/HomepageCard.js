@@ -5,12 +5,15 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 
+import "./HomepageCards.css";
+
 export default function HomepageCard(props) {
   return (
     <Card
       style={{ width: "250px", margin: "20px" }}
       border="info"
       className="rounded mb-0"
+      className="zoomie"
     >
       <Card.Body>
         <Card.Title>

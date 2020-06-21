@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Typeahead } from "react-bootstrap-typeahead";
 
-import HomepageCard from "../components/HomepageCard";
+import HomepageCard from "../../components/HomepageCards/HomepageCard";
 import Badge from "react-bootstrap/Badge";
+
+import "./Homepages.css";
 
 import {
   fetchHomepagesThunkCreator,
   fetchFilteredHomepageThunkCreator,
-} from "../store/homepages/actions";
-import { fetchSkillsThunkCreator } from "../store/skills/actions";
-import { selectHomepages } from "../store/homepages/selectors";
-import { selectSkills } from "../store/skills/selectors";
+} from "../../store/homepages/actions";
+import { fetchSkillsThunkCreator } from "../../store/skills/actions";
+import { selectHomepages } from "../../store/homepages/selectors";
+import { selectSkills } from "../../store/skills/selectors";
 
 import Container from "react-bootstrap/Container";
 import { Col, Row } from "react-bootstrap";
@@ -123,7 +125,7 @@ export default function Homepages() {
                 name="Idea"
                 label="I have an idea"
                 type={type}
-                id={`inline-${type}-1`}
+                id={`inline-${type}-1a`}
                 value={true}
                 onChange={(event) => setIdea(event.target.value)}
               />
@@ -132,7 +134,7 @@ export default function Homepages() {
                 inline
                 label="I don't have an idea"
                 type={type}
-                id={`inline-${type}-2`}
+                id={`inline-${type}-2a`}
                 value={false}
                 onChange={(event) => setIdea(event.target.value)}
               />
@@ -152,6 +154,7 @@ export default function Homepages() {
                 variant="info"
                 style={{ marginLeft: "5px", marginRight: "5px" }}
                 key={index}
+                className="skillsBadges"
               >
                 {skill}
               </Badge>
@@ -161,24 +164,10 @@ export default function Homepages() {
           <p>Click on a skill to remove it from the search</p>
         ) : null}
       </Col>
-      <Button
-        onClick={submitSearch}
-        style={{
-          marginRight: "10px",
-          backgroundColor: "#6610f2",
-          border: "#6610f2",
-        }}
-      >
+      <Button onClick={submitSearch} className="filter">
         Filter
       </Button>
-      <Button
-        onClick={submitSeeAll}
-        style={{
-          marginLeft: "10px",
-          backgroundColor: "#6610f2",
-          border: "#6610f2",
-        }}
-      >
+      <Button onClick={submitSeeAll} className="seeAll">
         See All
       </Button>
       <Container as={Row} fluid style={{ justifyContent: "center" }}>

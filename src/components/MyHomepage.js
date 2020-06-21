@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
-import { Col } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 
 export default function MyHomepage(props) {
   return (
@@ -19,13 +19,13 @@ export default function MyHomepage(props) {
       <p>{props.myInfo.byline}</p>
       <h3>Located in {props.myInfo.location}</h3>
       <h5>Check out these websites to see some of my skills</h5>
-      <Container>
+      <Container as={Row} style={{ justifyContent: "center" }}>
         <ListGroup horizontal style={{ flexWrap: "wrap" }}>
           {props.myInfo.websites
             ? props.myInfo.websites.map((website) => {
                 return (
                   <ListGroup.Item key={website.id}>
-                    {website.url}
+                    <a href={`http://${website.url}`}>{website.url}</a>
                   </ListGroup.Item>
                 );
               })
