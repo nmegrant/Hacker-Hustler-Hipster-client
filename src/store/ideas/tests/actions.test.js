@@ -1,4 +1,13 @@
-import { ideasFetched, newIdeaAdded, deleteIdea } from "../actions";
+import {
+  ideasFetched,
+  newIdeaAdded,
+  deleteIdea,
+  fetchIdeasThunkCreator,
+  addNewIdeaThunkCreator,
+  deleteIdeaThunkCreator,
+} from "../actions";
+import { appLoading, appDoneLoading } from "../../appState/actions";
+import axios from "axios";
 
 describe("#fetchDeleteAddIdeas", () => {
   describe("if given an array of idea objects", () => {
@@ -51,20 +60,4 @@ describe("#fetchDeleteAddIdeas", () => {
   });
 });
 
-//GET THIS WORKING
-// describe("#fetchHomepages", () => {
-//     describe("when called", () => {
-//       test("should dispatch an action FETCH_HOMEPAGES_SUCCESS", async () => {
-//         const fakeHomepages = [{}, {}];
-//         const response = { data: { homepages: { rows: fakeHomepages } } };
-//         axios.get.mockImplementationOnce(() => Promise.resolve(response));
-//         const dispatch = jest.fn();
-//         const getState = jest.fn().mockReturnValueOnce({ homepages: [] });
-//         await fetchHomepages()(dispatch, getState);
-//         expect(dispatch).toHaveBeenCalledWith(
-//           fetchHomepagesSuccess(fakeHomepages)
-//         );
-//         expect(getState).toHaveBeenCalledTimes(1);
-//       });
-//     });
-//   });
+jest.mock("axios");
