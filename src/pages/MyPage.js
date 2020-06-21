@@ -5,7 +5,7 @@ import MyHomepage from "../components/MyHomepage";
 import Ideas from "../components/Ideas";
 import MyPageBanner from "../components/MyPageBanner";
 
-import { fetchHomepageDetailsThunkCreator } from "../store/mypage/actions";
+import { fetchMyHomepageDetailsThunkCreator } from "../store/mypage/actions";
 import { selectMyPageDetails } from "../store/mypage/selector";
 
 import { Tabs, Tab } from "react-bootstrap/";
@@ -15,7 +15,7 @@ export default function MyPage() {
   const myPage = useSelector(selectMyPageDetails());
 
   useEffect(() => {
-    dispatch(fetchHomepageDetailsThunkCreator());
+    dispatch(fetchMyHomepageDetailsThunkCreator());
   }, [dispatch]);
 
   return (

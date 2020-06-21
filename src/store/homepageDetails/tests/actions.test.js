@@ -1,4 +1,9 @@
-import { homepageDetailsFetched } from "../actions";
+import {
+  homepageDetailsFetched,
+  fetchHomepageDetailsThunkCreator,
+} from "../actions";
+import { appLoading, appDoneLoading } from "../../appState/actions";
+import axios from "axios";
 
 describe("#fetchHomepageDetails", () => {
   describe("if given an object of homepage details", () => {
@@ -19,20 +24,35 @@ describe("#fetchHomepageDetails", () => {
   });
 });
 
-//GET THIS WORKING
-// describe("#fetchHomepages", () => {
-//     describe("when called", () => {
-//       test("should dispatch an action FETCH_HOMEPAGES_SUCCESS", async () => {
-//         const fakeHomepages = [{}, {}];
-//         const response = { data: { homepages: { rows: fakeHomepages } } };
-//         axios.get.mockImplementationOnce(() => Promise.resolve(response));
-//         const dispatch = jest.fn();
-//         const getState = jest.fn().mockReturnValueOnce({ homepages: [] });
-//         await fetchHomepages()(dispatch, getState);
-//         expect(dispatch).toHaveBeenCalledWith(
-//           fetchHomepagesSuccess(fakeHomepages)
-//         );
-//         expect(getState).toHaveBeenCalledTimes(1);
-//       });
-//     });
-//   });
+jest.mock("axios");
+
+describe("#fetchHomepageDetails", () => {
+  describe("when called", () => {
+    test("should dispatch an action FETCHED_DETAILS, APP_LOADING, APP_DONE_LOADING", async () => {
+      const fakeHomepageDetails = {};
+      const response = { data: fakeHomepageDetails };
+      axios.get.mockImplementationOnce(() => Promise.resolve(response));
+      const dispatch = jest.fn();
+      const getState = jest.fn().mockReturnValueOnce([]);
+      await fetchHomepageDetailsThunkCreator()(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledWith(appLoading());
+      expect(dispatch).toHaveBeenCalledWith(
+        homepageDetailsFetched(fakeHomepageDetails)
+      );
+      expect(dispatch).toHaveBeenCalledWith(appDoneLoading());
+      expect(dispatch).toHaveBeenCalledTimes(3);
+    });
+  });
+  describe("when called and reject", () => {
+    test("error should dispatch showMessageThunkCreator", async () => {
+      const error = { response: { data: { message: "error" } } };
+      axios.get.mockImplementationOnce(() => Promise.reject(error));
+      const dispatch = jest.fn();
+      const getState = jest.fn().mockReturnValueOnce([]);
+      await fetchHomepageDetailsThunkCreator()(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledWith(appLoading());
+      expect(dispatch).toHaveBeenCalledWith(appDoneLoading());
+      expect(dispatch).toHaveBeenCalledTimes(3);
+    });
+  });
+});

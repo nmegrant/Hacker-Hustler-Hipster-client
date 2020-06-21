@@ -1,4 +1,5 @@
-import { fetchedSkills } from "../actions";
+import { fetchedSkills, fetchSkillsThunkCreator } from "../actions";
+import axios from "axios";
 
 describe("#fetchSkills", () => {
   describe("if given an array with skill info", () => {
@@ -21,20 +22,19 @@ describe("#fetchSkills", () => {
   });
 });
 
-//GET THIS WORKING
-// describe("#fetchHomepages", () => {
-//     describe("when called", () => {
-//       test("should dispatch an action FETCH_HOMEPAGES_SUCCESS", async () => {
-//         const fakeHomepages = [{}, {}];
-//         const response = { data: { homepages: { rows: fakeHomepages } } };
-//         axios.get.mockImplementationOnce(() => Promise.resolve(response));
-//         const dispatch = jest.fn();
-//         const getState = jest.fn().mockReturnValueOnce({ homepages: [] });
-//         await fetchHomepages()(dispatch, getState);
-//         expect(dispatch).toHaveBeenCalledWith(
-//           fetchHomepagesSuccess(fakeHomepages)
-//         );
-//         expect(getState).toHaveBeenCalledTimes(1);
-//       });
-//     });
-//   });
+jest.mock("axios");
+
+describe("#fetchSkills", () => {
+  describe("when called", () => {
+    test("should dispatch an action to fetch skills", async () => {
+      const fakeSkills = [{}, {}];
+      const response = { data: fakeSkills };
+      axios.get.mockImplementationOnce(() => Promise.resolve(response));
+      const dispatch = jest.fn();
+      const getState = jest.fn().mockReturnValueOnce([]);
+      await fetchSkillsThunkCreator()(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledWith(fetchedSkills(fakeSkills));
+      expect(dispatch).toHaveBeenCalledTimes(1);
+    });
+  });
+});

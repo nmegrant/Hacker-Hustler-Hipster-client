@@ -1,4 +1,10 @@
-import { myPageDetailsFetched, editMyHomepageDetails } from "../actions";
+import {
+  myPageDetailsFetched,
+  editMyHomepageDetails,
+  fetchMyHomepageDetailsThunkCreator,
+} from "../actions";
+import axios from "axios";
+import { appLoading, appDoneLoading } from "../../appState/actions";
 
 describe("#fetchEditMypage", () => {
   describe("if given an object with mypage info", () => {
@@ -24,20 +30,23 @@ describe("#fetchEditMypage", () => {
   });
 });
 
-//GET THIS WORKING
-// describe("#fetchHomepages", () => {
-//     describe("when called", () => {
-//       test("should dispatch an action FETCH_HOMEPAGES_SUCCESS", async () => {
-//         const fakeHomepages = [{}, {}];
-//         const response = { data: { homepages: { rows: fakeHomepages } } };
-//         axios.get.mockImplementationOnce(() => Promise.resolve(response));
-//         const dispatch = jest.fn();
-//         const getState = jest.fn().mockReturnValueOnce({ homepages: [] });
-//         await fetchHomepages()(dispatch, getState);
-//         expect(dispatch).toHaveBeenCalledWith(
-//           fetchHomepagesSuccess(fakeHomepages)
-//         );
-//         expect(getState).toHaveBeenCalledTimes(1);
-//       });
-//     });
-//   });
+jest.mock("axios");
+
+describe("#fetchHomepageDetails", () => {
+  describe("when called", () => {
+    test("should dispatch an action FETCHED_DETAILS, APP_LOADING, APP_DONE_LOADING", async () => {
+      const fakeMyHomepageDetail = {};
+      const response = { data: fakeMyHomepageDetail };
+      axios.get.mockImplementationOnce(() => Promise.resolve(response));
+      const dispatch = jest.fn();
+      const getState = jest.fn().mockReturnValueOnce([]);
+      await fetchMyHomepageDetailsThunkCreator()(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledWith(appLoading());
+      expect(dispatch).toHaveBeenCalledWith(
+        myPageDetailsFetched(fakeMyHomepageDetail)
+      );
+      expect(dispatch).toHaveBeenCalledWith(appDoneLoading());
+      expect(dispatch).toHaveBeenCalledTimes(3);
+    });
+  });
+});
