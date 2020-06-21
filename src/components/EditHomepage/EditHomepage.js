@@ -130,7 +130,7 @@ export default function EditHomepage() {
           <Form.Label>Where are you located?</Form.Label>
           <Form.Control
             type="text"
-            // placeholder="Location"
+            placeholder="Location"
             value={location}
             onChange={(event) => setLocation(event.target.value)}
           ></Form.Control>
@@ -139,7 +139,7 @@ export default function EditHomepage() {
           <Form.Label>Catchy Byline</Form.Label>
           <Form.Control
             type="text"
-            // placeholder="Enter a phrase to catch people's attention!"
+            placeholder="Enter a phrase to catch people's attention!"
             value={byline}
             onChange={(event) => setByline(event.target.value)}
           ></Form.Control>
@@ -190,7 +190,7 @@ export default function EditHomepage() {
           <Form.Control
             as="textarea"
             rows="3"
-            // placeholder="Tell everyone about past projects and professional successes"
+            placeholder="Tell everyone about past projects and professional successes"
             value={experience}
             onChange={(event) => setExperience(event.target.value)}
           ></Form.Control>
@@ -200,7 +200,7 @@ export default function EditHomepage() {
           <Form.Control
             as="textarea"
             rows="3"
-            // placeholder="More about you! What makes you a great teammate?"
+            placeholder="More about you! What makes you a great teammate?"
             value={bio}
             onChange={(event) => setBio(event.target.value)}
           ></Form.Control>
@@ -209,7 +209,7 @@ export default function EditHomepage() {
           <Form.Label>What are some websites that show your skills?</Form.Label>
           <Form.Control
             type="text"
-            // placeholder="Press enter to add the url your page"
+            placeholder="Press enter to add the url your page"
             value={website}
             onChange={(event) => setWebsite(event.target.value)}
           ></Form.Control>
