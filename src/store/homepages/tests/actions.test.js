@@ -1,4 +1,10 @@
-import { homepagesFetched } from "../actions";
+import {
+  homepagesFetched,
+  fetchHomepagesThunkCreator,
+  fetchFilteredHomepageThunkCreator,
+} from "../actions";
+import { appLoading, appDoneLoading } from "../../appState/actions";
+import axios from "axios";
 
 describe("#fetchHomepages", () => {
   describe("if given an array of homepages", () => {
@@ -23,20 +29,38 @@ describe("#fetchHomepages", () => {
   });
 });
 
-//GET THIS WORKING
-// describe("#fetchHomepages", () => {
-//     describe("when called", () => {
-//       test("should dispatch an action FETCH_HOMEPAGES_SUCCESS", async () => {
-//         const fakeHomepages = [{}, {}];
-//         const response = { data: { homepages: { rows: fakeHomepages } } };
-//         axios.get.mockImplementationOnce(() => Promise.resolve(response));
-//         const dispatch = jest.fn();
-//         const getState = jest.fn().mockReturnValueOnce({ homepages: [] });
-//         await fetchHomepages()(dispatch, getState);
-//         expect(dispatch).toHaveBeenCalledWith(
-//           fetchHomepagesSuccess(fakeHomepages)
-//         );
-//         expect(getState).toHaveBeenCalledTimes(1);
-//       });
-//     });
-//   });
+jest.mock("axios");
+
+describe("#fetchHomepages", () => {
+  describe("when called", () => {
+    test("should dispatch an action HOMEPAGES_FETCHED, APP_LOADING, APP_DONE_LOADING", async () => {
+      const fakeHomepages = [{}, {}];
+      const response = { data: fakeHomepages };
+      axios.get.mockImplementationOnce(() => Promise.resolve(response));
+      const dispatch = jest.fn();
+      const getState = jest.fn().mockReturnValueOnce([]);
+      await fetchHomepagesThunkCreator()(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledWith(appLoading());
+      expect(dispatch).toHaveBeenCalledWith(homepagesFetched(fakeHomepages));
+      expect(dispatch).toHaveBeenCalledWith(appDoneLoading());
+      expect(dispatch).toHaveBeenCalledTimes(3);
+    });
+  });
+});
+
+describe("#fetchFilteredHomepages", () => {
+  describe("when called", () => {
+    test("should dispatch an action HOMEPAGES_FETCHED, APP_LOADING, APP_DONE_LOADING", async () => {
+      const fakeHomepages = [{}, {}];
+      const response = { data: fakeHomepages };
+      axios.get.mockImplementationOnce(() => Promise.resolve(response));
+      const dispatch = jest.fn();
+      const getState = jest.fn().mockReturnValueOnce([]);
+      await fetchFilteredHomepageThunkCreator()(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledWith(appLoading());
+      expect(dispatch).toHaveBeenCalledWith(homepagesFetched(fakeHomepages));
+      expect(dispatch).toHaveBeenCalledWith(appDoneLoading());
+      expect(dispatch).toHaveBeenCalledTimes(3);
+    });
+  });
+});
