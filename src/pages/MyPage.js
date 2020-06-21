@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import EditHomepage from "../components/EditHomepage";
+import EditHomepage from "../components/EditHomepage/EditHomepage";
 import MyHomepage from "../components/MyHomepage";
 import Ideas from "../components/Ideas";
 import MyPageBanner from "../components/MyPageBanner";
