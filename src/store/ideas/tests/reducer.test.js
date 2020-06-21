@@ -18,8 +18,29 @@ describe("ideasReducer", () => {
       expect(newState).toEqual(ideas);
     });
   });
+
+  describe("when given a NEW_IDEA_ADDED action type", () => {
+    test("returns a new state that is length + 1 of the original state", () => {
+      const ideas = [{ test: "test" }, { test: "test" }, { test: "test" }];
+      const idea = { newIdea: "newIdea" };
+      const action = {
+        type: "NEW_IDEA_ADDED",
+        payload: idea,
+      };
+      const newState = reducer(ideas, action);
+      expect(newState).toHaveLength(ideas.length + 1);
+    });
+  });
+  describe("when given a DELETE_IDEA action type", () => {
+    test("returns a new state that is length - 1 of the original state", () => {
+      const ideas = [{ id: 1 }, { id: 2 }, { id: 2 }];
+      const id = 1;
+      const action = {
+        type: "DELETE_IDEA",
+        payload: id,
+      };
+      const newState = reducer(ideas, action);
+      expect(newState).toHaveLength(ideas.length - 1);
+    });
+  });
 });
-
-//Do NEW_IDEA_ADDED
-
-//Do DELETE_IDEA

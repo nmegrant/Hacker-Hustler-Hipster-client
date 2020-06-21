@@ -1,4 +1,4 @@
-import { ideasFetched, newIdeaAdded } from "../actions";
+import { ideasFetched, newIdeaAdded, deleteIdea } from "../actions";
 
 describe("#fetchDeleteAddIdeas", () => {
   describe("if given an array of idea objects", () => {
@@ -29,7 +29,7 @@ describe("#fetchDeleteAddIdeas", () => {
 
     test("the payload of whats returned should be an object with the same value idea object", () => {
       const idea = { test: "test" };
-      const action = ideasFetched(idea);
+      const action = deleteIdea(idea);
       expect(action.payload).toEqual(idea);
     });
   });
@@ -37,21 +37,19 @@ describe("#fetchDeleteAddIdeas", () => {
     test("should return the id of the idea object", () => {
       const id = 1;
       const expected = {
-        type: "NEW_IDEA_ADDED",
+        type: "DELETE_IDEA",
         payload: 1,
       };
-      expect(newIdeaAdded(id)).toEqual(expected);
+      expect(deleteIdea(id)).toEqual(expected);
     });
 
     test("the payload of whats returned should be an id number with the same value id", () => {
       const id = 2;
-      const action = ideasFetched(id);
-      expect(action.payload).toEqual(id);
+      const action = deleteIdea(id);
+      expect(action.payload).toBe(id);
     });
   });
 });
-
-//Do deleteIdea
 
 //GET THIS WORKING
 // describe("#fetchHomepages", () => {
