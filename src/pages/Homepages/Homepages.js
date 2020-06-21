@@ -125,7 +125,7 @@ export default function Homepages() {
                 name="Idea"
                 label="I have an idea"
                 type={type}
-                id={`inline-${type}-1`}
+                id={`inline-${type}-1a`}
                 value={true}
                 onChange={(event) => setIdea(event.target.value)}
               />
@@ -134,7 +134,7 @@ export default function Homepages() {
                 inline
                 label="I don't have an idea"
                 type={type}
-                id={`inline-${type}-2`}
+                id={`inline-${type}-2a`}
                 value={false}
                 onChange={(event) => setIdea(event.target.value)}
               />
