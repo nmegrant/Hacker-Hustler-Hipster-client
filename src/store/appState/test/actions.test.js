@@ -3,7 +3,9 @@ import {
   clearMessage,
   appLoading,
   appDoneLoading,
+  showMessageThunkCreator,
 } from "../actions";
+import axios from "axios";
 
 describe("#appstate", () => {
   describe("if given set message with message and variant", () => {
@@ -28,6 +30,15 @@ describe("#appstate", () => {
         variant,
       });
     });
+    describe("if given clear message ", () => {
+      test("should return an object containing null payload", () => {
+        const expected = {
+          type: "CLEAR_MESSAGE",
+          payload: null,
+        };
+        expect(clearMessage()).toEqual(expected);
+      });
+    });
   });
   describe("if given apploading", () => {
     test("should return an action type LOADING and payload true", () => {
@@ -49,20 +60,19 @@ describe("#appstate", () => {
   });
 });
 
-//GET THIS WORKING
-// describe("#fetchHomepages", () => {
-//     describe("when called", () => {
-//       test("should dispatch an action FETCH_HOMEPAGES_SUCCESS", async () => {
-//         const fakeHomepages = [{}, {}];
-//         const response = { data: { homepages: { rows: fakeHomepages } } };
-//         axios.get.mockImplementationOnce(() => Promise.resolve(response));
-//         const dispatch = jest.fn();
-//         const getState = jest.fn().mockReturnValueOnce({ homepages: [] });
-//         await fetchHomepages()(dispatch, getState);
-//         expect(dispatch).toHaveBeenCalledWith(
-//           fetchHomepagesSuccess(fakeHomepages)
-//         );
-//         expect(getState).toHaveBeenCalledTimes(1);
-//       });
-//     });
-//   });
+jest.mock("axios");
+
+describe("#fetchHomepageDetails", () => {
+  describe("when called", () => {
+    test("should dispatch an action set message", async () => {
+      const message = "Hi";
+      const variant = "info";
+      axios.get.mockImplementationOnce(() => Promise.resolve());
+      const dispatch = jest.fn();
+      const getState = jest.fn().mockReturnValueOnce([]);
+      await showMessageThunkCreator(message, variant)(dispatch, getState);
+      expect(dispatch).toHaveBeenCalledWith(setMessage(message, variant));
+      expect(dispatch).toHaveBeenCalledTimes(1);
+    });
+  });
+});

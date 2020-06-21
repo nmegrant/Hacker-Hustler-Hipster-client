@@ -3,7 +3,6 @@ import {
   fetchHomepageDetailsThunkCreator,
 } from "../actions";
 import { appLoading, appDoneLoading } from "../../appState/actions";
-import { showMessageThunkCreator } from "../../appState/actions";
 import axios from "axios";
 
 describe("#fetchHomepageDetails", () => {
