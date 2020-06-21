@@ -36,7 +36,6 @@ export function fetchFilteredHomepageThunkCreator(skills, role, idea) {
           },
         }
       );
-      console.log(response.data);
       dispatch(homepagesFetched(response.data));
       dispatch(appDoneLoading());
     } catch (error) {
