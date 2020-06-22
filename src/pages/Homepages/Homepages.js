@@ -59,132 +59,141 @@ export default function Homepages() {
   }
 
   return (
-    <Container>
-      {/* <Row> */}
-      <Form as={Row}>
-        <Form.Group controlId="formGroupSkills" style={{ margin: "10px" }}>
-          <Form.Label>Add Skills</Form.Label>
-          <Typeahead
-            id="Add skill dropdown for search"
-            onChange={(selected) => setSearchSkill(selected)}
-            options={skillList}
-            selected={searchSkill}
-          />
-          <Button
-            type="submit"
-            onClick={submitSearchSkill}
-            style={{ margin: "10px" }}
-            variant="info"
-          >
-            Filter By Skills
-          </Button>
-        </Form.Group>
-        <Form.Group controlId="formBasicRole" style={{ margin: "10px" }}>
-          <Form.Label>Looking for a Hacker, Hipster, or Hustler?</Form.Label>
-          {["radio"].map((type) => (
-            <div key={`inline-${type}`} className="mb-3">
-              <Form.Check
-                inline
-                name="Role"
-                label="Hacker"
-                type={type}
-                id={`inline-${type}-1`}
-                value="Hacker"
-                onChange={(event) => setRole(event.target.value)}
+    <Container style={{ maxWidth: "100%" }}>
+      <Row style={{ maxWidth: "100%" }}>
+        <Col md={3}>
+          <Form>
+            <Form.Group controlId="formGroupSkills" style={{ margin: "10px" }}>
+              <Form.Label>Add Skills</Form.Label>
+              <Typeahead
+                id="Add skill dropdown for search"
+                onChange={(selected) => setSearchSkill(selected)}
+                options={skillList}
+                selected={searchSkill}
               />
-              <Form.Check
-                name="Role"
-                inline
-                label="Hustler"
-                type={type}
-                id={`inline-${type}-2`}
-                value="Hustler"
-                onChange={(event) => setRole(event.target.value)}
-              />
-              <Form.Check
-                name="Role"
-                inline
-                label="Hipster"
-                type={type}
-                id={`inline-${type}-3`}
-                value="Hipster"
-                onChange={(event) => setRole(event.target.value)}
-              />
-            </div>
-          ))}
-        </Form.Group>
-        <Form.Group controlId="formBasicIdea" style={{ margin: "10px" }}>
-          <Form.Label>
-            Have an idea and need skilled people? Or skilled person looking for
-            a team?
-          </Form.Label>
-          {["radio"].map((type) => (
-            <div key={`inline-${type}`} className="mb-3">
-              <Form.Check
-                inline
-                name="Idea"
-                label="I have an idea"
-                type={type}
-                id={`inline-${type}-1a`}
-                value={true}
-                onChange={(event) => setIdea(event.target.value)}
-              />
-              <Form.Check
-                name="Idea"
-                inline
-                label="I don't have an idea"
-                type={type}
-                id={`inline-${type}-2a`}
-                value={false}
-                onChange={(event) => setIdea(event.target.value)}
-              />
-            </div>
-          ))}
-        </Form.Group>
-      </Form>
-      <Col>
-        {searchSkills
-          ? searchSkills.map((skill, index) => (
-              <Badge
-                as={Button}
-                onClick={() =>
-                  setSearchSkills([...searchSkills.filter((s) => s !== skill)])
-                }
-                pill
+              <Button
+                type="submit"
+                onClick={submitSearchSkill}
+                style={{ margin: "10px" }}
                 variant="info"
-                style={{ marginLeft: "5px", marginRight: "5px" }}
-                key={index}
-                className="skillsBadges"
               >
-                {skill}
-              </Badge>
-            ))
-          : null}
-        {searchSkills.length > 0 ? (
-          <p>Click on a skill to remove it from the search</p>
-        ) : null}
-      </Col>
-      <Button onClick={submitSearch} className="filter">
-        Filter
-      </Button>
-      <Button onClick={submitSeeAll} className="seeAll">
-        See All
-      </Button>
-      <Container as={Row} fluid style={{ justifyContent: "center" }}>
-        {homepages.map((homepage) => {
-          return (
-            <HomepageCard
-              key={homepage.id}
-              homepageId={homepage.id}
-              role={homepage.user.role}
-              userId={homepage.user.id}
-              name={homepage.user.name}
-              byline={homepage.byline}
-              tags={homepage.user.tags}
-            />
-          );
-        })}
-      </Container>
+                Filter By Skills
+              </Button>
+            </Form.Group>
+            <Form.Group controlId="formBasicRole" style={{ margin: "10px" }}>
+              <Form.Label>
+                Looking for a Hacker, Hipster, or Hustler?
+              </Form.Label>
+              {["radio"].map((type) => (
+                <div key={`inline-${type}`} className="mb-3">
+                  <Form.Check
+                    inline
+                    name="Role"
+                    label="Hacker"
+                    type={type}
+                    id={`inline-${type}-1`}
+                    value="Hacker"
+                    onChange={(event) => setRole(event.target.value)}
+                  />
+                  <Form.Check
+                    name="Role"
+                    inline
+                    label="Hustler"
+                    type={type}
+                    id={`inline-${type}-2`}
+                    value="Hustler"
+                    onChange={(event) => setRole(event.target.value)}
+                  />
+                  <Form.Check
+                    name="Role"
+                    inline
+                    label="Hipster"
+                    type={type}
+                    id={`inline-${type}-3`}
+                    value="Hipster"
+                    onChange={(event) => setRole(event.target.value)}
+                  />
+                </div>
+              ))}
+            </Form.Group>
+            <Form.Group controlId="formBasicIdea" style={{ margin: "10px" }}>
+              <Form.Label>
+                Have an idea and need skilled people? Or skilled person looking
+                for a team?
+              </Form.Label>
+              {["radio"].map((type) => (
+                <div key={`inline-${type}`} className="mb-3">
+                  <Form.Check
+                    inline
+                    name="Idea"
+                    label="I have an idea"
+                    type={type}
+                    id={`inline-${type}-1a`}
+                    value={true}
+                    onChange={(event) => setIdea(event.target.value)}
+                  />
+                  <Form.Check
+                    name="Idea"
+                    inline
+                    label="I don't have an idea"
+                    type={type}
+                    id={`inline-${type}-2a`}
+                    value={false}
+                    onChange={(event) => setIdea(event.target.value)}
+                  />
+                </div>
+              ))}
+            </Form.Group>
+          </Form>
+
+          {searchSkills
+            ? searchSkills.map((skill, index) => (
+                <Badge
+                  as={Button}
+                  onClick={() =>
+                    setSearchSkills([
+                      ...searchSkills.filter((s) => s !== skill),
+                    ])
+                  }
+                  pill
+                  variant="info"
+                  style={{ marginLeft: "5px", marginRight: "5px" }}
+                  key={index}
+                  className="skillsBadges"
+                >
+                  {skill}
+                </Badge>
+              ))
+            : null}
+          {searchSkills.length > 0 ? (
+            <p>Click on a skill to remove it from the search</p>
+          ) : null}
+
+          <Button onClick={submitSearch} className="filter">
+            Filter
+          </Button>
+          <Button onClick={submitSeeAll} className="seeAll">
+            See All
+          </Button>
+        </Col>
+        <Col>
+          <Container as={Row} fluid style={{ justifyContent: "center" }}>
+            {homepages.map((homepage) => {
+              return (
+                <HomepageCard
+                  key={homepage.id}
+                  homepageId={homepage.id}
+                  role={homepage.user.role}
+                  userId={homepage.user.id}
+                  name={homepage.user.name}
+                  byline={homepage.byline}
+                  tags={homepage.user.tags}
+                />
+              );
+            })}
+          </Container>
+        </Col>
+      </Row>
     </Container>
   );
 }

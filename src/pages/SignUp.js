@@ -45,6 +45,7 @@ export default function SignUp() {
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email</Form.Label>
           <Form.Control
+            required
             type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}

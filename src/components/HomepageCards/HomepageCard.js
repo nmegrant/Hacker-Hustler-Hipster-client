@@ -12,8 +12,7 @@ export default function HomepageCard(props) {
     <Card
       style={{ width: "250px", margin: "20px" }}
       border="info"
-      className="rounded mb-0"
-      className="zoomie"
+      className="rounded mb-0 zoomie"
     >
       <Card.Body>
         <Card.Title>
