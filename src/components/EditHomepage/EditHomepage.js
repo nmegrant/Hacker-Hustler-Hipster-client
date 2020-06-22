@@ -3,9 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 // import Geocode from "react-geocode";
 import { Typeahead } from "react-bootstrap-typeahead";
 
-import { sendHomepageInfoThunkCreator } from "../../store/mypage/actions";
-import { selectSkills } from "../../store/skills/selectors";
+import {
+  sendHomepageInfoThunkCreator,
+  fetchMyHomepageDetailsThunkCreator,
+} from "../../store/mypage/actions";
 import { fetchSkillsThunkCreator } from "../../store/skills/actions";
+import { selectMyPageDetails } from "../../store/mypage/selector";
+import { selectSkills } from "../../store/skills/selectors";
 
 import "./EditHomepage.css";
 
@@ -33,22 +37,35 @@ export default function EditHomepage() {
   // });
 
   const dispatch = useDispatch();
-  const [byline, setByline] = useState("");
-  const [experience, setExperience] = useState("");
-  const [bio, setBio] = useState("");
-  const [location, setLocation] = useState("");
-  const [idea, setIdea] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchSkillsThunkCreator());
+    dispatch(fetchMyHomepageDetailsThunkCreator());
+  }, [dispatch]);
+
+  const myPage = useSelector(selectMyPageDetails());
+
+  const skillList = useSelector(selectSkills()).map((skill) => skill.skill);
+
+  const [byline, setByline] = useState(
+    myPage.byline !== undefined ? myPage.byline : ""
+  );
+  const [experience, setExperience] = useState(
+    myPage.experience !== undefined ? myPage.experience : ""
+  );
+  const [bio, setBio] = useState(myPage.bio !== undefined ? myPage.bio : "");
+  const [location, setLocation] = useState(
+    myPage.location !== undefined ? myPage.location : ""
+  );
+  const [idea, setIdea] = useState(
+    myPage.idea !== undefined ? myPage.idea : false
+  );
 
   const [website, setWebsite] = useState("");
   const [websites, setWebsites] = useState([]);
 
   const [skill, setSkill] = useState([]);
   const [skills, setSkills] = useState([]);
-  const skillList = useSelector(selectSkills()).map((skill) => skill.skill);
-
-  useEffect(() => {
-    dispatch(fetchSkillsThunkCreator());
-  }, [dispatch]);
 
   function submitForm(event) {
     event.preventDefault();
