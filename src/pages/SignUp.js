@@ -31,7 +31,6 @@ export default function SignUp() {
       if (form.checkValidity() === false) {
         event.stopPropagation();
       }
-
       setValidated(true);
       dispatch(signUpThunkCreator({ name, email, password, role }));
       setName("");
