@@ -48,6 +48,7 @@ export default function NavBanner() {
               backgroundColor: "rgba(102, 16, 242, 1)",
               border: "rgba(102, 16, 242, 1)",
             }}
+            href="/"
           >
             Log Out
           </Button>
