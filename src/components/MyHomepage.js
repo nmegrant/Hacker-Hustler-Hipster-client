@@ -18,8 +18,7 @@ export default function MyHomepage(props) {
       </h5>
       <p>{props.myInfo.byline}</p>
       <h3>Located in {props.myInfo.location}</h3>
-      <h5>Check out these websites to see some of my skills</h5>
-      <Container as={Row} style={{ justifyContent: "center" }}>
+      <Container as={Row} style={{ justifyContent: "center", margin: "3px" }}>
         <ListGroup horizontal style={{ flexWrap: "wrap" }}>
           {props.myInfo.websites
             ? props.myInfo.websites.map((website) => {
