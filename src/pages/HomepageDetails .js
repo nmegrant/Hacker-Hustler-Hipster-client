@@ -8,7 +8,7 @@ import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
-import { Col } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 
 export default function HomepageDetails() {
   const parameters = useParams();
@@ -29,15 +29,19 @@ export default function HomepageDetails() {
       </h5>
       <h3>Located in {details.location}</h3>
       <h5>Check out these websites to see some of my skills</h5>
-      <ListGroup horizontal style={{ flexWrap: "wrap" }}>
-        {details.websites
-          ? details.websites.map((website) => {
-              return (
-                <ListGroup.Item key={website.id}>{website.url}</ListGroup.Item>
-              );
-            })
-          : null}
-      </ListGroup>
+      <Container as={Row} style={{ justifyContent: "center" }}>
+        <ListGroup horizontal style={{ flexWrap: "wrap" }}>
+          {details.websites
+            ? details.websites.map((website) => {
+                return (
+                  <ListGroup.Item key={website.id}>
+                    <a href={`http://${website.url}`}>{website.url}</a>
+                  </ListGroup.Item>
+                );
+              })
+            : null}
+        </ListGroup>
+      </Container>
       <h4>Skills</h4>
       {details.user
         ? details.user.tags.map((tag) => {
