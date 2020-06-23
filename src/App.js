@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import Homepages from "./pages/Homepages/Homepages";
-import HomepageDetails from "./pages/HomepageDetails ";
+import HomepageDetails from "./pages/HomepageDetails/HomepageDetails ";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import MyPage from "./pages/MyPage";
