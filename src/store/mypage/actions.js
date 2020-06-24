@@ -16,6 +16,14 @@ export function editMyHomepageDetails(homepageDetails) {
   };
 }
 
+//need to test
+export function addNewSkills(newSkills) {
+  return {
+    type: "UPDATE_MY_SKILLS",
+    payload: newSkills,
+  };
+}
+
 //Edit/update homepage info
 export function sendHomepageInfoThunkCreator(
   byline,
@@ -50,13 +58,14 @@ export function sendHomepageInfoThunkCreator(
         );
       }
       if (skills.length > 0) {
-        await axios.post(
+        const newSkills = await axios.post(
           `http://localhost:4000/skills/user/`,
           { skills },
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
+        dispatch(addNewSkills(newSkills));
       }
       dispatch(showMessageThunkCreator("Homepage Updated", "info"));
     } catch (error) {

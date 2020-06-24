@@ -13,6 +13,7 @@ import { Tabs, Tab } from "react-bootstrap/";
 export default function MyPage() {
   const dispatch = useDispatch();
   const myPage = useSelector(selectMyPageDetails());
+  console.log(myPage);
 
   useEffect(() => {
     dispatch(fetchMyHomepageDetailsThunkCreator());
