@@ -26,7 +26,6 @@ export default function EditHomepage() {
     navigator.geolocation.getCurrentPosition(getPosition);
   }
   function getPosition(position) {
-    // console.log(position.coords.latitude, position.coords.longitude);
     Geocode.fromLatLng(
       position.coords.latitude,
       position.coords.longitude
@@ -34,7 +33,6 @@ export default function EditHomepage() {
       (response) => {
         const address = response.results[0].formatted_address;
         const addressArray = address.split(" ");
-        // console.log(address);
         setLocation(`${addressArray[3]} ${addressArray[4]}`);
       },
       (error) => {
