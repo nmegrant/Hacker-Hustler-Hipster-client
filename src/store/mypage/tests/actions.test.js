@@ -2,6 +2,7 @@ import {
   myPageDetailsFetched,
   editMyHomepageDetails,
   fetchMyHomepageDetailsThunkCreator,
+  addNewSkills,
 } from "../actions";
 import axios from "axios";
 import { appLoading, appDoneLoading } from "../../appState/actions";
@@ -26,6 +27,16 @@ describe("#fetchEditMypage", () => {
         payload: myPageEdit,
       };
       expect(editMyHomepageDetails(myPageEdit)).toEqual(expected);
+    });
+  });
+  describe("if adding new skill", () => {
+    test("should return the update my skills object", () => {
+      const newSkills = [{ test: "test" }, { test: "test" }];
+      const expected = {
+        type: "UPDATE_MY_SKILLS",
+        payload: newSkills,
+      };
+      expect(addNewSkills(newSkills)).toEqual(expected);
     });
   });
 });
