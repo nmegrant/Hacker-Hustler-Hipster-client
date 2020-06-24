@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signUpThunkCreator } from "../store/user/actions";
+import { showMessageThunkCreator } from "../store/appState/actions";
 
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { Col } from "react-bootstrap";
-
-import { showMessageThunkCreator } from "../store/appState/actions";
 
 export default function SignUp() {
   const [name, setName] = useState("");
@@ -19,6 +18,7 @@ export default function SignUp() {
   const [validated, setValidated] = useState(false);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   function submitForm(event) {
     event.preventDefault();
@@ -30,14 +30,16 @@ export default function SignUp() {
       const form = event.currentTarget;
       if (form.checkValidity() === false) {
         event.stopPropagation();
+      } else {
+        setValidated(true);
+        dispatch(signUpThunkCreator({ name, email, password, role }));
+        setName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setRole("");
+        history.push("/");
       }
-      setValidated(true);
-      dispatch(signUpThunkCreator({ name, email, password, role }));
-      setName("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      setRole("");
     }
   }
 
