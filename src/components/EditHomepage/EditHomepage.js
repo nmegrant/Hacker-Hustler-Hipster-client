@@ -1,4 +1,3 @@
-require("dotenv").config();
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Typeahead } from "react-bootstrap-typeahead";
@@ -17,9 +16,10 @@ import Badge from "react-bootstrap/Badge";
 import "./EditHomepage.css";
 
 import Geocode from "react-geocode";
+require("dotenv").config();
 
 export default function EditHomepage() {
-  Geocode.setApiKey(API_KEY);
+  Geocode.setApiKey(process.env.REACT_APP_API_KEY);
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(getPosition);
@@ -33,6 +33,7 @@ export default function EditHomepage() {
       (response) => {
         const address = response.results[0].formatted_address;
         console.log(address);
+        setLocation(address);
       },
       (error) => {
         console.error(error);
