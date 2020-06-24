@@ -12,7 +12,10 @@ export function fetchHomepagesThunkCreator() {
   return async function homepagesThunk(dispatch, getState) {
     try {
       dispatch(appLoading());
-      const response = await axios.get(`http://localhost:4000/homepages`);
+      const response = await axios.get(
+        // `http://localhost:4000/homepages`
+        `https://hacker-hustler-hipster.herokuapp.com/homepages`
+      );
       dispatch(homepagesFetched(response.data));
       dispatch(appDoneLoading());
     } catch (error) {

@@ -10,7 +10,10 @@ export function fetchedSkills(skills) {
 export function fetchSkillsThunkCreator() {
   return async function fetchSkills(dispatch, getState) {
     try {
-      const skills = await axios.get(`http://localhost:4000/skills`);
+      const skills = await axios.get(
+        // `http://localhost:4000/skills`
+        `https://hacker-hustler-hipster.herokuapp.com/skills`
+      );
       dispatch(fetchedSkills(skills.data));
     } catch (error) {
       console.log(`Error: ${error}`);

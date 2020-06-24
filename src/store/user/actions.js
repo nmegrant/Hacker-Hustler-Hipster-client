@@ -26,10 +26,14 @@ export function stillLoggedIn(userAndToken) {
 export function loginThunkCreator(email, password) {
   return async function (dispatch, getState) {
     try {
-      const response = await axios.post(`http://localhost:4000/login`, {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `https://hacker-hustler-hipster.herokuapp.com/login`,
+        // `http://localhost:4000/login`
+        {
+          email,
+          password,
+        }
+      );
       dispatch(loggedIn(response.data));
       dispatch(showMessageThunkCreator("Logged in", "info"));
     } catch (error) {
@@ -43,7 +47,8 @@ export function signUpThunkCreator(newUser) {
   return async function signUpThunkCreator(dispatch, getState) {
     try {
       const response = await axios.post(
-        `http://localhost:4000/signup`,
+        `https://hacker-hustler-hipster.herokuapp.com/signup`,
+        // `http://localhost:4000/signup`
         newUser
       );
       dispatch(loggedIn(response.data));
@@ -63,9 +68,13 @@ export function getLoggedInUserThunkCreator() {
       return;
     }
     try {
-      const response = await axios.get(`http://localhost:4000/user`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        // `http://localhost:4000/user`
+        `https://hacker-hustler-hipster.herokuapp.com/user`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       dispatch(stillLoggedIn(response.data));
     } catch (error) {
       console.log(`Error1: ${error}`);
