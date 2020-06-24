@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import Geocode from "react-geocode";
 import { Typeahead } from "react-bootstrap-typeahead";
 
-import {
-  sendHomepageInfoThunkCreator,
-  fetchMyHomepageDetailsThunkCreator,
-} from "../../store/mypage/actions";
+import { sendHomepageInfoThunkCreator } from "../../store/mypage/actions";
 import { fetchSkillsThunkCreator } from "../../store/skills/actions";
 import { selectMyPageDetails } from "../../store/mypage/selector";
 import { selectSkills } from "../../store/skills/selectors";
@@ -20,52 +16,34 @@ import { Col, Row } from "react-bootstrap";
 import Badge from "react-bootstrap/Badge";
 
 export default function EditHomepage() {
-  // const [tag, setTag] = useState("");
-  // const [tags, setTags] = useState([]);
-  // navigator.geolocation.getCurrentPosition(function (position) {
-  //   let latitude = position.coords.latitude;
-  //   let longitude = position.coords.longitude;
-  //   Geocode.fromLatLng(latitude, longitude).then(
-  //     (response) => {
-  //       const address = response.results[0].formatted_address;
-  //       console.log(address);
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //     }
-  //   );
-  // });
-
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchSkillsThunkCreator());
-    dispatch(fetchMyHomepageDetailsThunkCreator());
-  }, [dispatch]);
-
   const myPage = useSelector(selectMyPageDetails());
-
   const skillList = useSelector(selectSkills()).map((skill) => skill.skill);
 
-  const [byline, setByline] = useState(
-    myPage.byline !== undefined ? myPage.byline : ""
-  );
-  const [experience, setExperience] = useState(
-    myPage.experience !== undefined ? myPage.experience : ""
-  );
-  const [bio, setBio] = useState(myPage.bio !== undefined ? myPage.bio : "");
-  const [location, setLocation] = useState(
-    myPage.location !== undefined ? myPage.location : ""
-  );
-  const [idea, setIdea] = useState(
-    myPage.idea !== undefined ? myPage.idea : false
-  );
+  const [byline, setByline] = useState("");
+  const [experience, setExperience] = useState("");
+  const [bio, setBio] = useState("");
+  const [location, setLocation] = useState("");
+  const [idea, setIdea] = useState(false);
 
   const [website, setWebsite] = useState("");
   const [websites, setWebsites] = useState([]);
 
   const [skill, setSkill] = useState([]);
   const [skills, setSkills] = useState([]);
+
+  useEffect(() => {
+    dispatch(fetchSkillsThunkCreator());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setByline(myPage.byline ? myPage.byline : "");
+    setExperience(myPage.experience ? myPage.experience : "");
+    setBio(myPage.bio ? myPage.bio : "");
+    setLocation(myPage.location ? myPage.location : "");
+    setIdea(myPage.idea ? myPage.idea : false);
+  }, [myPage]);
 
   function submitForm(event) {
     event.preventDefault();

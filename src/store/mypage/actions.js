@@ -68,9 +68,9 @@ export function sendHomepageInfoThunkCreator(
 //fetch mypage details
 export function fetchMyHomepageDetailsThunkCreator() {
   return async function fetchMyPageDetailsThunk(dispatch, getState) {
-    const token = localStorage.getItem("token");
+    dispatch(appLoading());
     try {
-      dispatch(appLoading());
+      const token = localStorage.getItem("token");
       const response = await axios.get(`http://localhost:4000/mypage`, {
         headers: { Authorization: `Bearer ${token}` },
       });
