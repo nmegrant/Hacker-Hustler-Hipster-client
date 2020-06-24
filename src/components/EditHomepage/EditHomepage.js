@@ -7,15 +7,41 @@ import { fetchSkillsThunkCreator } from "../../store/skills/actions";
 import { selectMyPageDetails } from "../../store/mypage/selector";
 import { selectSkills } from "../../store/skills/selectors";
 
-import "./EditHomepage.css";
-
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { Col, Row } from "react-bootstrap";
 import Badge from "react-bootstrap/Badge";
 
+import "./EditHomepage.css";
+
+import Geocode from "react-geocode";
+require("dotenv").config();
+
 export default function EditHomepage() {
+  Geocode.setApiKey(process.env.REACT_APP_API_KEY);
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(getPosition);
+  }
+  function getPosition(position) {
+    // console.log(position.coords.latitude, position.coords.longitude);
+    Geocode.fromLatLng(
+      position.coords.latitude,
+      position.coords.longitude
+    ).then(
+      (response) => {
+        const address = response.results[0].formatted_address;
+        const addressArray = address.split(" ");
+        // console.log(address);
+        setLocation(`${addressArray[3]} ${addressArray[4]}`);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   const dispatch = useDispatch();
 
   const myPage = useSelector(selectMyPageDetails());
