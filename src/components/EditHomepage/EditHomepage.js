@@ -1,3 +1,4 @@
+require("dotenv").config();
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Typeahead } from "react-bootstrap-typeahead";
@@ -7,15 +8,38 @@ import { fetchSkillsThunkCreator } from "../../store/skills/actions";
 import { selectMyPageDetails } from "../../store/mypage/selector";
 import { selectSkills } from "../../store/skills/selectors";
 
-import "./EditHomepage.css";
-
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { Col, Row } from "react-bootstrap";
 import Badge from "react-bootstrap/Badge";
 
+import "./EditHomepage.css";
+
+import Geocode from "react-geocode";
+
 export default function EditHomepage() {
+  Geocode.setApiKey(API_KEY);
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(getPosition);
+  }
+  function getPosition(position) {
+    console.log(position.coords.latitude, position.coords.longitude);
+    Geocode.fromLatLng(
+      position.coords.latitude,
+      position.coords.longitude
+    ).then(
+      (response) => {
+        const address = response.results[0].formatted_address;
+        console.log(address);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   const dispatch = useDispatch();
 
   const myPage = useSelector(selectMyPageDetails());
