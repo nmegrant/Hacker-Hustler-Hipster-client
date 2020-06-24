@@ -56,12 +56,13 @@ export default function Login() {
           style={{
             backgroundColor: "#6610f2",
             border: "#6610f2",
+            margin: "10px",
           }}
         >
           Login
         </Button>
       </Form>
-      <p>
+      <p style={{ margin: "20px" }}>
         Not a member? Don't miss out! <Link to="/signup">Sign up now.</Link>
       </p>
     </Container>
