@@ -26,7 +26,7 @@ export default function MyPage() {
       </Tab>
       <Tab eventKey="edit" title="Edit Homepage">
         <MyPageBanner name={myPage.user ? myPage.user.name : null} />
-        <EditHomepage />
+        <EditHomepage myInfo={myPage} />
       </Tab>
       <Tab eventKey="ideas" title="Ideas">
         <MyPageBanner name={myPage.user ? myPage.user.name : null} />
