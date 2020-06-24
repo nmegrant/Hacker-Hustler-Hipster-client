@@ -16,11 +16,17 @@ export function editMyHomepageDetails(homepageDetails) {
   };
 }
 
-//need to test
 export function addNewSkills(newSkills) {
   return {
     type: "UPDATE_MY_SKILLS",
     payload: newSkills,
+  };
+}
+
+export function addNewWebsites(newWebsites) {
+  return {
+    type: "ADD_MY_WEBSITE",
+    payload: newWebsites,
   };
 }
 
@@ -49,13 +55,14 @@ export function sendHomepageInfoThunkCreator(
       );
       dispatch(editMyHomepageDetails(homepageDetails.data));
       if (urls.length > 0) {
-        await axios.post(
+        const newWebsites = await axios.post(
           `http://localhost:4000/websites/`,
           { urls },
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
+        dispatch(addNewWebsites(newWebsites.data));
       }
       if (skills.length > 0) {
         const newSkills = await axios.post(

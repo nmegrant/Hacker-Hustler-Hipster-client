@@ -29,14 +29,24 @@ describe("#fetchEditMypage", () => {
       expect(editMyHomepageDetails(myPageEdit)).toEqual(expected);
     });
   });
-  describe("if adding new skill", () => {
-    test("should return the update my skills object", () => {
+  describe("if adding new skills", () => {
+    test("should return my skills action object", () => {
       const newSkills = [{ test: "test" }, { test: "test" }];
       const expected = {
         type: "UPDATE_MY_SKILLS",
         payload: newSkills,
       };
       expect(addNewSkills(newSkills)).toEqual(expected);
+    });
+  });
+  describe("if adding new websites", () => {
+    test("should return my website action object", () => {
+      const newWebsites = [{ test: "test" }, { test: "test" }];
+      const expected = {
+        type: "UPDATE_MY_SKILLS",
+        payload: newWebsites,
+      };
+      expect(addNewSkills(newWebsites)).toEqual(expected);
     });
   });
 });
