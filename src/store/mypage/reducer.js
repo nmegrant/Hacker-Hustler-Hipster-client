@@ -10,6 +10,8 @@ export default function homepageDetailsReducer(state = initialState, action) {
       const holder = { ...state };
       holder.user.tags = [...holder.user.tags, ...action.payload];
       return holder;
+    case "ADD_MY_WEBSITE":
+      return { ...state, websites: [...state.websites, ...action.payload] };
     default:
       return state;
   }
