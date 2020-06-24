@@ -135,7 +135,7 @@ export default function SignUp() {
           Sign Up!
         </Button>
       </Form>
-      <p>
+      <p style={{ margin: "20px" }}>
         Already a member? <Link to="/login">Log in</Link> here.
       </p>
     </Container>

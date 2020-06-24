@@ -17,7 +17,7 @@ export default function MyHomepage(props) {
           : " an idea to work on!"}
       </h5>
       <p>{props.myInfo.byline}</p>
-      <h3>Located in {props.myInfo.location}</h3>
+      <h3 style={{ margin: "10px" }}>Located in {props.myInfo.location}</h3>
       <Container as={Row} style={{ justifyContent: "center", margin: "3px" }}>
         <ListGroup horizontal style={{ flexWrap: "wrap" }}>
           {props.myInfo.websites
@@ -31,7 +31,7 @@ export default function MyHomepage(props) {
             : null}
         </ListGroup>
       </Container>
-      <h4>Skills</h4>
+      <h4 style={{ margin: "10px" }}>Skills</h4>
       {props.myInfo.user
         ? props.myInfo.user.tags.map((tag, index) => {
             return (
