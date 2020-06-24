@@ -51,7 +51,6 @@ describe("myPageReducer", () => {
       expect(newState).toEqual(newInfo);
     });
   });
-
   describe("UPDATE_MY_SKILLS", () => {
     test("returns a new state with skills updated", () => {
       const myPageAndSkills = {
@@ -62,6 +61,19 @@ describe("myPageReducer", () => {
       const action = { type: "UPDATE_MY_SKILLS", payload: newSkills };
       const newState = reducer(myPageAndSkills, action);
       expect(newState.user.tags).toEqual(["test1", "test2", "test3", "test4"]);
+    });
+  });
+  describe("ADD_MY_WEBSITE", () => {
+    test("returns a new state with websites updated", () => {
+      const myPageAndWebsites = {
+        bio: "hello",
+        user: { email: "test", tags: ["test1", "test2"] },
+        websites: ["one", "two"],
+      };
+      const newWebsites = ["test3", "test4"];
+      const action = { type: "ADD_MY_WEBSITE", payload: newWebsites };
+      const newState = reducer(myPageAndWebsites, action);
+      expect(newState.websites).toEqual(["one", "two", "test3", "test4"]);
     });
   });
 });
