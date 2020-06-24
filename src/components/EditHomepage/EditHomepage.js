@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Typeahead } from "react-bootstrap-typeahead";
+import Geocode from "react-geocode";
 
 import { sendHomepageInfoThunkCreator } from "../../store/mypage/actions";
 import { fetchSkillsThunkCreator } from "../../store/skills/actions";
@@ -12,10 +13,10 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { Col, Row } from "react-bootstrap";
 import Badge from "react-bootstrap/Badge";
+import ListGroup from "react-bootstrap/ListGroup";
 
 import "./EditHomepage.css";
 
-import Geocode from "react-geocode";
 require("dotenv").config();
 
 export default function EditHomepage() {
@@ -246,6 +247,28 @@ export default function EditHomepage() {
         >
           Enter Website
         </Button>
+        <Container as={Row}>
+          <ListGroup horizontal style={{ flexWrap: "wrap", margin: "15px" }}>
+            {websites.length > 0
+              ? websites.map((website, index) => {
+                  return (
+                    <ListGroup.Item
+                      className="websiteEntries"
+                      as={Button}
+                      onClick={() =>
+                        setWebsites([...websites.filter((w) => w !== website)])
+                      }
+                      variant="info"
+                      style={{ marginLeft: "5px", marginRight: "5px" }}
+                      key={index}
+                    >
+                      <a href={`http://${website}`}>{website}</a>
+                    </ListGroup.Item>
+                  );
+                })
+              : null}
+          </ListGroup>
+        </Container>
       </Form>
     </Container>
   );
