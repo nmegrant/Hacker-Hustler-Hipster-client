@@ -91,7 +91,7 @@ export default function Ideas() {
               name="lookingFor"
               label="Hustler"
               type={type}
-              id={`inline-${type}-1`}
+              id={`inline-${type}-3`}
               onChange={() => {
                 setHustler(!hustler);
               }}
