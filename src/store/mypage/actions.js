@@ -65,7 +65,7 @@ export function sendHomepageInfoThunkCreator(
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        dispatch(addNewSkills(newSkills));
+        dispatch(addNewSkills(newSkills.data));
       }
       dispatch(showMessageThunkCreator("Homepage Updated", "info"));
     } catch (error) {
