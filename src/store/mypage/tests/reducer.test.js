@@ -13,7 +13,7 @@ describe("myPageReducer", () => {
     test("returns a new state with of the payload object", () => {
       const myPage = { test: "test" };
       const action = { type: "FETCHED_MY_PAGE_DETAILS", payload: myPage };
-      const newState = reducer(myPage, action);
+      const newState = reducer(initialState, action);
       expect(newState.test).toBe(myPage.test);
       expect(newState).toEqual(myPage);
     });
@@ -27,18 +27,18 @@ describe("myPageReducer", () => {
         type: "UPDATE_MY_PAGE_DETAILS",
         payload: newInfo,
       };
-      const newState = reducer(myPage, action);
+      const newState = reducer(initialState, action);
       expect(newState.test2).toBe("newIdea");
     });
     test("returns a original state if no update provided", () => {
       const myPage = { test: "test", test2: "test2" };
-      const newInfo = {};
+      const newInfo = { test2: "test3" };
       const action = {
         type: "UPDATE_MY_PAGE_DETAILS",
         payload: newInfo,
       };
       const newState = reducer(myPage, action);
-      expect(newState.test2).toBe("test2");
+      expect(newState.test2).toBe("test3");
     });
     test("returns a whole new state if entire state updated", () => {
       const myPage = { test: "test", test2: "test2" };
@@ -49,6 +49,19 @@ describe("myPageReducer", () => {
       };
       const newState = reducer(myPage, action);
       expect(newState).toEqual(newInfo);
+    });
+  });
+
+  describe("UPDATE_MY_SKILLS", () => {
+    test("returns a new state with skills updated", () => {
+      const myPageAndSkills = {
+        bio: "hello",
+        user: { email: "test", tags: ["test1", "test2"] },
+      };
+      const newSkills = ["test3", "test4"];
+      const action = { type: "UPDATE_MY_SKILLS", payload: newSkills };
+      const newState = reducer(myPageAndSkills, action);
+      expect(newState.user.tags).toEqual(["test1", "test2", "test3", "test4"]);
     });
   });
 });

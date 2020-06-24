@@ -21,9 +21,9 @@ export default function MyHomepage(props) {
       <Container as={Row} style={{ justifyContent: "center", margin: "3px" }}>
         <ListGroup horizontal style={{ flexWrap: "wrap" }}>
           {props.myInfo.websites
-            ? props.myInfo.websites.map((website) => {
+            ? props.myInfo.websites.map((website, index) => {
                 return (
-                  <ListGroup.Item key={website.id}>
+                  <ListGroup.Item key={index}>
                     <a href={`http://${website.url}`}>{website.url}</a>
                   </ListGroup.Item>
                 );
@@ -33,9 +33,9 @@ export default function MyHomepage(props) {
       </Container>
       <h4>Skills</h4>
       {props.myInfo.user
-        ? props.myInfo.user.tags.map((tag) => {
+        ? props.myInfo.user.tags.map((tag, index) => {
             return (
-              <span key={tag.id}>
+              <span key={index}>
                 <Badge
                   pill
                   variant="info"
