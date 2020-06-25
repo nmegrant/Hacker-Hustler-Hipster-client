@@ -27,8 +27,10 @@ export function loginThunkCreator(email, password) {
   return async function (dispatch, getState) {
     try {
       const response = await axios.post(
-        `https://hacker-hustler-hipster.herokuapp.com/login`,
+        // `https://hacker-hustler-hipster.herokuapp.com/login`
+        `${REACT_APP_URL$}/login`,
         // `http://localhost:4000/login`
+
         {
           email,
           password,
@@ -47,7 +49,8 @@ export function signUpThunkCreator(newUser) {
   return async function signUpThunkCreator(dispatch, getState) {
     try {
       const response = await axios.post(
-        `https://hacker-hustler-hipster.herokuapp.com/signup`,
+        // `https://hacker-hustler-hipster.herokuapp.com/signup`
+        `${REACT_APP_URL$}/signup`,
         // `http://localhost:4000/signup`
         newUser
       );
@@ -70,7 +73,8 @@ export function getLoggedInUserThunkCreator() {
     try {
       const response = await axios.get(
         // `http://localhost:4000/user`
-        `https://hacker-hustler-hipster.herokuapp.com/user`,
+        // `https://hacker-hustler-hipster.herokuapp.com/user`
+        `${REACT_APP_URL$}/user`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

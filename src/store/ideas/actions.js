@@ -29,7 +29,8 @@ export function fetchIdeasThunkCreator() {
       dispatch(appLoading());
       const ideas = await axios.get(
         // `http://localhost:4000/ideas`
-        `https://hacker-hustler-hipster.herokuapp.com/ideas`,
+        // `https://hacker-hustler-hipster.herokuapp.com/ideas`
+        `${REACT_APP_URL$}/ideas`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -48,7 +49,8 @@ export function addNewIdeaThunkCreator(idea) {
     try {
       const newIdea = await axios.post(
         // `http://localhost:4000/ideas`
-        `https://hacker-hustler-hipster.herokuapp.com/ideas`,
+        // `https://hacker-hustler-hipster.herokuapp.com/ideas`
+        `${REACT_APP_URL$}/ideas`,
         idea,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -66,7 +68,8 @@ export function deleteIdeaThunkCreator(id) {
     const token = localStorage.getItem("token");
     try {
       await axios.delete(
-        `https://hacker-hustler-hipster.herokuapp.com/ideas`,
+        // `https://hacker-hustler-hipster.herokuapp.com/ideas`
+        `${REACT_APP_URL$}/ideas`,
         // `http://localhost:4000/ideas`
         {
           headers: { Authorization: `Bearer ${token}` },

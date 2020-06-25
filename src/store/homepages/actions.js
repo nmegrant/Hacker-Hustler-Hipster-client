@@ -14,7 +14,8 @@ export function fetchHomepagesThunkCreator() {
       dispatch(appLoading());
       const response = await axios.get(
         // `http://localhost:4000/homepages`
-        `https://hacker-hustler-hipster.herokuapp.com/homepages`
+        // `https://hacker-hustler-hipster.herokuapp.com/homepages`
+        `${REACT_APP_URL$}/homepages`
       );
       dispatch(homepagesFetched(response.data));
       dispatch(appDoneLoading());
@@ -30,7 +31,9 @@ export function fetchFilteredHomepageThunkCreator(skills, role, idea) {
     try {
       dispatch(appLoading());
       const response = await axios.get(
-        `http://localhost:4000/homepages/filters`,
+        // `http://localhost:4000/homepages/filters`
+        //`https://hacker-hustler-hipster.herokuapp.com/homepages/filters`
+        `${REACT_APP_URL$}/homepages/filters`,
         {
           params: {
             skills,

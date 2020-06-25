@@ -15,7 +15,8 @@ export function fetchHomepageDetailsThunkCreator(id) {
       dispatch(appLoading());
       const homepageDetails = await axios.get(
         // `http://localhost:4000/homepages/${id}`
-        `https://hacker-hustler-hipster.herokuapp.com/homepages/${id}`
+        // `https://hacker-hustler-hipster.herokuapp.com/homepages/${id}`
+        `${REACT_APP_URL$}/hopmeages/${id}`
       );
       dispatch(homepageDetailsFetched(homepageDetails.data));
       dispatch(appDoneLoading());
