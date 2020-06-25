@@ -5,7 +5,7 @@ import {
   appDoneLoading,
   showMessageThunkCreator,
 } from "../actions";
-import axios from "axios";
+import axios from "../../axios";
 
 describe("#appstate", () => {
   describe("if given set message with message and variant", () => {

@@ -5,7 +5,7 @@ import {
   loginThunkCreator,
   signUpThunkCreator,
 } from "../actions";
-import axios from "axios";
+import axios from "../../axios";
 
 describe("#fetchUserandloggin/out", () => {
   describe("if given an object with user info", () => {

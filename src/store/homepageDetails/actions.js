@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axios";
 import { showMessageThunkCreator } from "../appState/actions";
 import { appLoading, appDoneLoading } from "../appState/actions";
 
@@ -13,11 +13,7 @@ export function fetchHomepageDetailsThunkCreator(id) {
   return async function fetchHomepageDetailsThunk(dispatch, getState) {
     try {
       dispatch(appLoading());
-      const homepageDetails = await axios.get(
-        // `http://localhost:4000/homepages/${id}`
-        // `https://hacker-hustler-hipster.herokuapp.com/homepages/${id}`
-        `${REACT_APP_URL$}/hopmeages/${id}`
-      );
+      const homepageDetails = await axios.get(`/homepages/${id}`);
       dispatch(homepageDetailsFetched(homepageDetails.data));
       dispatch(appDoneLoading());
     } catch (error) {

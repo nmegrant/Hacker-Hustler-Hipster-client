@@ -1,10 +1,10 @@
+import axios from "../../axios";
 import {
   homepagesFetched,
   fetchHomepagesThunkCreator,
   fetchFilteredHomepageThunkCreator,
 } from "../actions";
 import { appLoading, appDoneLoading } from "../../appState/actions";
-import axios from "axios";
 
 describe("#fetchHomepages", () => {
   describe("if given an array of homepages", () => {
