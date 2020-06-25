@@ -9,7 +9,7 @@ import { appLoading, appDoneLoading } from "../../appState/actions";
 
 describe("#fetchEditMypage", () => {
   describe("if given an object with mypage info", () => {
-    test("should return an object containing mypage", () => {
+    test("should return an object containing mypage info as payload and FETCHED_MY_PAGE_DETAILS", () => {
       const myPage = { test: "test", test1: "test1" };
       const expected = {
         type: "FETCHED_MY_PAGE_DETAILS",
@@ -20,7 +20,7 @@ describe("#fetchEditMypage", () => {
   });
 
   describe("if editing the my homepage object", () => {
-    test("should return the myhomepage object edit info", () => {
+    test("should return the myhomepage object edit info as payload with type UPDATE_MY_PAGE_DETAILS", () => {
       const myPageEdit = { test: "test" };
       const expected = {
         type: "UPDATE_MY_PAGE_DETAILS",
@@ -30,7 +30,7 @@ describe("#fetchEditMypage", () => {
     });
   });
   describe("if adding new skills", () => {
-    test("should return my skills action object", () => {
+    test("should return my skills action object with type UPDATE_MY_SKILLS and payload newSkills array", () => {
       const newSkills = [{ test: "test" }, { test: "test" }];
       const expected = {
         type: "UPDATE_MY_SKILLS",
@@ -40,7 +40,7 @@ describe("#fetchEditMypage", () => {
     });
   });
   describe("if adding new websites", () => {
-    test("should return my website action object", () => {
+    test("should return my website action object with type UPDATE_MY_SKILLS and payload newWebsites array", () => {
       const newWebsites = [{ test: "test" }, { test: "test" }];
       const expected = {
         type: "UPDATE_MY_SKILLS",

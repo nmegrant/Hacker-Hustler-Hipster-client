@@ -47,7 +47,7 @@ export function sendHomepageInfoThunkCreator(
     }
     try {
       let homepageDetails = await axios.patch(
-        `/mypages`,
+        `/mypage`,
         { byline, experience, bio, idea, location },
         {
           headers: { Authorization: `Bearer ${token}` },

@@ -10,10 +10,10 @@ describe("skillsReducer", () => {
   });
 
   describe("when given a FETCHED_SKILLS action type", () => {
-    test("returns a new state with the payload array of objects object", () => {
+    test("returns a new state with the payload array of objects", () => {
       const skills = [{ test: "test" }, { test1: "test1", test2: "test2" }];
       const action = { type: "FETCHED_SKILLS", payload: skills };
-      const newState = reducer(skills, action);
+      const newState = reducer(initialState, action);
       expect(newState).toHaveLength(skills.length);
       expect(newState).toEqual(skills);
     });

@@ -3,7 +3,7 @@ import axios from "../../axios";
 
 describe("#fetchSkills", () => {
   describe("if given an array with skill info", () => {
-    test("should return an array containing my skill objects", () => {
+    test("should return an action object with type FETCHED_SKILLS and payload of an array of objects", () => {
       const skills = [{ test: "test" }, { test1: "test1" }];
       const expected = {
         type: "FETCHED_SKILLS",
@@ -11,12 +11,8 @@ describe("#fetchSkills", () => {
       };
       expect(fetchedSkills(skills)).toEqual(expected);
     });
-    test("payload should be the same as skills array passed", () => {
+    test("should return a payload that is the same as the array of objects passed", () => {
       const skills = [{ test: "test" }, { test1: "test1" }];
-      const expected = {
-        type: "FETCHED_SKILLS",
-        payload: skills,
-      };
       expect(fetchedSkills(skills).payload).toEqual(skills);
     });
   });
@@ -26,7 +22,7 @@ jest.mock("../../axios");
 
 describe("#fetchSkills", () => {
   describe("when called", () => {
-    test("should dispatch an action to fetch skills", async () => {
+    test("should dispatch an action fetchSkills", async () => {
       const fakeSkills = [{}, {}];
       const response = { data: fakeSkills };
       axios.get.mockImplementationOnce(() => Promise.resolve(response));

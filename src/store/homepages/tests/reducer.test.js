@@ -13,7 +13,7 @@ describe("homepageReducer", () => {
     test("returns a new state with the payload array included", () => {
       const homepages = [{ test: "test" }, { test: "test" }];
       const action = { type: "HOMEPAGES_FETCHED", payload: homepages };
-      const newState = reducer(homepages, action);
+      const newState = reducer(initialState, action);
       expect(newState).toHaveLength(homepages.length);
       expect(newState).toEqual(homepages);
     });

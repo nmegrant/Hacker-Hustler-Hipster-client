@@ -9,7 +9,7 @@ import axios from "../../axios";
 
 describe("#fetchUserandloggin/out", () => {
   describe("if given an object with user info", () => {
-    test("should return an object containing user info", () => {
+    test("should return an object containing payload user info and type LOGGED_IN", () => {
       const user = { test: "test" };
       const expected = {
         type: "LOGGED_IN",
@@ -17,17 +17,13 @@ describe("#fetchUserandloggin/out", () => {
       };
       expect(loggedIn(user)).toEqual(expected);
     });
-    test("payload should be the same as user object passed", () => {
+    test("should return a payload that is the same as user object passed in", () => {
       const user = { test: "test" };
-      const expected = {
-        type: "LOGGED_IN",
-        payload: user,
-      };
       expect(loggedIn(user).payload).toEqual(user);
     });
   });
-  describe("if given an object with action log out", () => {
-    test("should return an object null payload", () => {
+  describe("if loggedOut is called", () => {
+    test("should return a payload object with null payload and type LOGGED_OUT", () => {
       const expected = {
         type: "LOGGED_OUT",
         payload: null,
@@ -35,8 +31,8 @@ describe("#fetchUserandloggin/out", () => {
       expect(loggedOut()).toEqual(expected);
     });
   });
-  describe("if given an object with user info while still logged in", () => {
-    test("should return an object containing user info", () => {
+  describe("if given an object of user info", () => {
+    test("should return an object containing payload user info and type STILL_LOGGED_IN", () => {
       const user = { test: "test" };
       const expected = {
         type: "STILL_LOGGED_IN",
@@ -84,7 +80,7 @@ describe("#postLogin", () => {
 
 describe("#postSignUp", () => {
   describe("when called and success", () => {
-    test("should dispatch an action post to sign in", async () => {
+    test("should dispatch an action post to log in", async () => {
       const fakeUser = {};
       const response = { data: fakeUser };
       axios.post.mockImplementationOnce(() => Promise.resolve(response));

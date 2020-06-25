@@ -9,7 +9,7 @@ import axios from "../../axios";
 
 describe("#appstate", () => {
   describe("if given set message with message and variant", () => {
-    test("should return an object containing message and variant", () => {
+    test("should return an object containing type SET_MESSAGE and payload message and variant", () => {
       let message = "test";
       let variant = "also test";
       const expected = {
@@ -18,7 +18,7 @@ describe("#appstate", () => {
       };
       expect(setMessage(message, variant)).toEqual(expected);
     });
-    test("payload should be the same as message, variant passed", () => {
+    test("should return an action object with type SET_MESSAGE and payload the same as message, variant passed", () => {
       let message = "test";
       let variant = "also test";
       const expected = {
@@ -31,7 +31,7 @@ describe("#appstate", () => {
       });
     });
     describe("if given clear message ", () => {
-      test("should return an object containing null payload", () => {
+      test("should return an action object with type CLEAR_MESSAGE and containing null payload", () => {
         const expected = {
           type: "CLEAR_MESSAGE",
           payload: null,

@@ -13,7 +13,7 @@ describe("userReducer", () => {
   });
 
   describe("when given a SET_MESSAGE action type", () => {
-    test("returns info object", () => {
+    test("returns a new state with the payload containing correct values", () => {
       let message = "Hi";
       let variant = "info";
       const info = {
@@ -24,7 +24,7 @@ describe("userReducer", () => {
       const newState = reducer(initialState, action);
       expect(newState).toEqual({ info, loading: false });
     });
-    test("returns a new state with the payload object values are correct", () => {
+    test("returns a new state with the payload object containing correct values", () => {
       let message = "Hi";
       let variant = "info";
       const info = {
@@ -38,7 +38,7 @@ describe("userReducer", () => {
     });
   });
   describe("when given a CLEAR_MESSAGE action type", () => {
-    test("returns null", () => {
+    test("returns a new state with payload false/null", () => {
       let message = "Hi";
       let variant = "info";
       const info = {
@@ -54,14 +54,14 @@ describe("userReducer", () => {
   });
   //
   describe("when given a LOADING action type", () => {
-    test("returns loading object", () => {
+    test("returns a new state with payload true", () => {
       const action = { type: "LOADING", payload: true };
       const newState = reducer(initialState, action);
       expect(newState).toEqual({ info: null, loading: true });
     });
   });
   describe("when given a DONE_LOADING action type", () => {
-    test("returns null", () => {
+    test("returns a new state with payload null", () => {
       const action = { type: "LOADING", payload: true };
       const newState = reducer(initialState, action);
       const doneAction = { type: "DONE_LOADING", payload: false };
