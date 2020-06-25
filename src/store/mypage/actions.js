@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axios";
 import { showMessageThunkCreator } from "../appState/actions";
 import { appLoading, appDoneLoading } from "../appState/actions";
 
@@ -47,9 +47,7 @@ export function sendHomepageInfoThunkCreator(
     }
     try {
       let homepageDetails = await axios.patch(
-        // `http://localhost:4000/mypage/`
-        // `https://hacker-hustler-hipster.herokuapp.com/mypages`
-        `${REACT_APP_URL$}/mypages`,
+        `/mypages`,
         { byline, experience, bio, idea, location },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -58,9 +56,7 @@ export function sendHomepageInfoThunkCreator(
       dispatch(editMyHomepageDetails(homepageDetails.data));
       if (urls.length > 0) {
         const newWebsites = await axios.post(
-          // `http://localhost:4000/websites`
-          // `https://hacker-hustler-hipster.herokuapp.com/websites`
-          `${REACT_APP_URL$}/websites`,
+          `/websites`,
           { urls },
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -70,9 +66,7 @@ export function sendHomepageInfoThunkCreator(
       }
       if (skills.length > 0) {
         const newSkills = await axios.post(
-          // `http://localhost:4000/skills/user`
-          // `https://hacker-hustler-hipster.herokuapp.com/skills/user`
-          `${REACT_APP_URL$}/skills/user`,
+          `/skills/user`,
           { skills },
           {
             headers: { Authorization: `Bearer ${token}` },
@@ -93,14 +87,9 @@ export function fetchMyHomepageDetailsThunkCreator() {
     dispatch(appLoading());
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(
-        // `https://hacker-hustler-hipster.herokuapp.com/mypage`
-        `${REACT_APP_URL$}/mypage`,
-        // `http://localhost:4000/mypage`
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const response = await axios.get(`/mypage`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       dispatch(myPageDetailsFetched(response.data));
       dispatch(appDoneLoading());
     } catch (error) {

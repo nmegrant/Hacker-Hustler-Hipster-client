@@ -1,10 +1,10 @@
+import axios from "../../axios";
 import {
   myPageDetailsFetched,
   editMyHomepageDetails,
   fetchMyHomepageDetailsThunkCreator,
   addNewSkills,
 } from "../actions";
-import axios from "axios";
 import { appLoading, appDoneLoading } from "../../appState/actions";
 
 describe("#fetchEditMypage", () => {

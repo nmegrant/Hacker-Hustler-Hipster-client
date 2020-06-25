@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axios";
 
 export function fetchedSkills(skills) {
   return {
@@ -13,7 +13,7 @@ export function fetchSkillsThunkCreator() {
       const skills = await axios.get(
         // `http://localhost:4000/skills`
         // `https://hacker-hustler-hipster.herokuapp.com/skills`
-        `${REACT_APP_URL}/skills`
+        `/skills`
       );
       dispatch(fetchedSkills(skills.data));
     } catch (error) {
