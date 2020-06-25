@@ -26,7 +26,7 @@ describe("userReducer", () => {
       const newState = reducer(initialState, action);
       expect(newState).toEqual(user);
     });
-    test("returns a new state with the payload object values are correct", () => {
+    test("returns a new state and the payload object values are correct", () => {
       const user = {
         token: 1234,
         name: "George",
