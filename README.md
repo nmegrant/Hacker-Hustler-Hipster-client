@@ -21,7 +21,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Goals
 
-My goal for this project was to build a full stack app using the technologies learned in the bootcamp. I also wanted to expand on these skills, and implement a few new ones. I focused on testing, writing over 90 unit tests and e2e tests. I used Code Ship to set up Continuous Integration. Any push to master for the server or client triggers the tests to run. In addition, any deployment of the backend on Heroku triggers the tests to run. 
+My goal for this project was to build a full stack app using the technologies learned in the bootcamp. I also wanted to expand on these skills, and implement a few new ones. Getting more experience with user sign up and authentication was a priority, as well as working with a more complex redux store and object-relational database.
+
+I put a heavy emphasis on testing, writing over 90 unit tests and e2e tests. I used Code Ship to set up Continuous Integration. Any push to master for the server or client triggers the tests to run. In addition, any deployment of the backend on Heroku triggers the tests to run. 
 
 I plan to continue working on this app, using it as a platform to explore new technologies and expand my current knowledge of web app development. 
 
@@ -63,6 +65,10 @@ The repository for the backend can be found [here](https://github.com/nmegrant/H
 ### Available Scripts
 
 In the project directory, you can run:
+
+###### `npm start`
+
+Installs all necessary packages to run the project. 
 
 ###### `npm start`
 
