@@ -24,7 +24,7 @@ describe("#fetchHomepageDetails", () => {
   });
 });
 
-jest.mock("axios");
+jest.mock("../../axios");
 
 describe("#fetchHomepageDetails", () => {
   describe("when called", () => {

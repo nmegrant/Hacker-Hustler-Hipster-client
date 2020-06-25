@@ -55,7 +55,7 @@ describe("#fetchUserandloggin/out", () => {
   });
 });
 
-jest.mock("axios");
+jest.mock("../../axios");
 
 describe("#postLogin", () => {
   describe("when called and success", () => {
