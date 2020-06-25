@@ -28,35 +28,39 @@ I plan to continue working on this app, using it as a platform to explore new te
 ### Technologies
 
 ##### Front End
-Node.js
-React
-Redux
-Axios
-Geocode - Geolocation
-React Bootstrap
-React Draggable
-React Bootstrap Typeahead
-Jest
+* Node.js
+* React
+* Redux
+* Axios
+* Geocode - Geolocation
+* React Bootstrap
+* React Draggable
+* React Bootstrap Typeahead
+* Jest
 
 ##### Back End
-Express
-Sequelize
-Postgres
-Jest
-Supertest
+* Express
+* REST
+* Sequelize
+* Postgres
+* Jest
+* Supertest
 
 ### Demo
+![filter-by-skill](https://github.com/nmegrant/Hacker-Hustler-Hipster-client/blob/master/project-info/filter-by-skill.gif)\
+![filter-by-role](https://github.com/nmegrant/Hacker-Hustler-Hipster-client/blob/master/project-info/filter-by-role.gif)\
+![filter-skill-and-role](https://github.com/nmegrant/Hacker-Hustler-Hipster-client/blob/master/project-info/filter-role-skill.gif)
 
 ### Project User Stories and Wireframe
 
-The [user stories](https://github.com/users/nmegrant/projects/3) and [wireframe](https://github.com/nmegrant/Hacker-Hustler-Hipster-client/blob/master/wire_frames_1.png) I used to plan my project. 
+The [user stories](https://github.com/users/nmegrant/projects/3) and [wireframe](https://github.com/nmegrant/Hacker-Hustler-Hipster-client/blob/master/project-info/wire_frames_1.png) I used to plan my project. 
 
 ### Server Repository 
 [![Codeship Status for nmegrant/Hacker-Hustler-Hipster-server](https://app.codeship.com/projects/4cd98ac0-97a5-0138-34ac-7a5d77a8b96c/status?branch=master)](https://app.codeship.com/projects/400815)
 
-The repository for the backend can be found [here](https://github.com/nmegrant/Hacker-Hustler-Hipster-server). This is a RESTful API using Express.js. The database is built using Postgres.[Here](https://github.com/nmegrant/Hacker-Hustler-Hipster-client/blob/master/data_model1.png) is the data model. Object-relational mapping is done using Sequelize. It is tested using Jest and Supertest. 
+The repository for the backend can be found [here](https://github.com/nmegrant/Hacker-Hustler-Hipster-server). This is a RESTful API using Express.js. The database is built using Postgres. [Here](https://github.com/nmegrant/Hacker-Hustler-Hipster-client/blob/master/project-info/data_model1.png) is the data model. Object-relational mapping is done using Sequelize. It is tested using Jest and Supertest. 
 
-##### Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 
