@@ -12,7 +12,8 @@ export function fetchSkillsThunkCreator() {
     try {
       const skills = await axios.get(
         // `http://localhost:4000/skills`
-        `https://hacker-hustler-hipster.herokuapp.com/skills`
+        // `https://hacker-hustler-hipster.herokuapp.com/skills`
+        `${REACT_APP_URL}/skills`
       );
       dispatch(fetchedSkills(skills.data));
     } catch (error) {
