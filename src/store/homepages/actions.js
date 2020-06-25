@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axios";
 import { appLoading, appDoneLoading } from "../appState/actions";
 
 export function homepagesFetched(homepages) {
@@ -12,7 +12,7 @@ export function fetchHomepagesThunkCreator() {
   return async function homepagesThunk(dispatch, getState) {
     try {
       dispatch(appLoading());
-      const response = await axios.get(`http://localhost:4000/homepages`);
+      const response = await axios.get(`/homepages`);
       dispatch(homepagesFetched(response.data));
       dispatch(appDoneLoading());
     } catch (error) {
@@ -26,16 +26,13 @@ export function fetchFilteredHomepageThunkCreator(skills, role, idea) {
   return async function filteredHompagesThunk(dispatch, getState) {
     try {
       dispatch(appLoading());
-      const response = await axios.get(
-        `http://localhost:4000/homepages/filters`,
-        {
-          params: {
-            skills,
-            role,
-            idea,
-          },
-        }
-      );
+      const response = await axios.get(`/homepages/filters`, {
+        params: {
+          skills,
+          role,
+          idea,
+        },
+      });
       dispatch(homepagesFetched(response.data));
       dispatch(appDoneLoading());
     } catch (error) {

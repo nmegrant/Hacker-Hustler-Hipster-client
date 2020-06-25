@@ -1,10 +1,10 @@
+import axios from "../../axios";
 import {
   myPageDetailsFetched,
   editMyHomepageDetails,
   fetchMyHomepageDetailsThunkCreator,
   addNewSkills,
 } from "../actions";
-import axios from "axios";
 import { appLoading, appDoneLoading } from "../../appState/actions";
 
 describe("#fetchEditMypage", () => {
@@ -51,7 +51,7 @@ describe("#fetchEditMypage", () => {
   });
 });
 
-jest.mock("axios");
+jest.mock("../../axios");
 
 describe("#fetchHomepageDetails", () => {
   describe("when called", () => {

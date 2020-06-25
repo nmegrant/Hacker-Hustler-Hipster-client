@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axios.js";
 import { selectToken } from "./selectors";
 import { showMessageThunkCreator } from "../appState/actions";
 
@@ -26,7 +26,7 @@ export function stillLoggedIn(userAndToken) {
 export function loginThunkCreator(email, password) {
   return async function (dispatch, getState) {
     try {
-      const response = await axios.post(`http://localhost:4000/login`, {
+      const response = await axios.post(`/login`, {
         email,
         password,
       });
@@ -42,10 +42,7 @@ export function loginThunkCreator(email, password) {
 export function signUpThunkCreator(newUser) {
   return async function signUpThunkCreator(dispatch, getState) {
     try {
-      const response = await axios.post(
-        `http://localhost:4000/signup`,
-        newUser
-      );
+      const response = await axios.post(`/signup`, newUser);
       dispatch(loggedIn(response.data));
       dispatch(showMessageThunkCreator("Account Created", "info"));
     } catch (error) {
@@ -63,7 +60,7 @@ export function getLoggedInUserThunkCreator() {
       return;
     }
     try {
-      const response = await axios.get(`http://localhost:4000/user`, {
+      const response = await axios.get(`/user`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       dispatch(stillLoggedIn(response.data));

@@ -1,5 +1,5 @@
 import { fetchedSkills, fetchSkillsThunkCreator } from "../actions";
-import axios from "axios";
+import axios from "../../axios";
 
 describe("#fetchSkills", () => {
   describe("if given an array with skill info", () => {
@@ -22,7 +22,7 @@ describe("#fetchSkills", () => {
   });
 });
 
-jest.mock("axios");
+jest.mock("../../axios");
 
 describe("#fetchSkills", () => {
   describe("when called", () => {

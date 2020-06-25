@@ -1,9 +1,9 @@
+import axios from "../../axios";
 import {
   homepageDetailsFetched,
   fetchHomepageDetailsThunkCreator,
 } from "../actions";
 import { appLoading, appDoneLoading } from "../../appState/actions";
-import axios from "axios";
 
 describe("#fetchHomepageDetails", () => {
   describe("if given an object of homepage details", () => {
@@ -24,7 +24,7 @@ describe("#fetchHomepageDetails", () => {
   });
 });
 
-jest.mock("axios");
+jest.mock("../../axios");
 
 describe("#fetchHomepageDetails", () => {
   describe("when called", () => {

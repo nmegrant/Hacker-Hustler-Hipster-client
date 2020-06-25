@@ -1,3 +1,4 @@
+import axios from "../../axios";
 import {
   ideasFetched,
   newIdeaAdded,
@@ -7,7 +8,6 @@ import {
   deleteIdeaThunkCreator,
 } from "../actions";
 import { appLoading, appDoneLoading } from "../../appState/actions";
-import axios from "axios";
 
 describe("#fetchDeleteAddIdeas", () => {
   describe("if given an array of idea objects", () => {
@@ -60,7 +60,7 @@ describe("#fetchDeleteAddIdeas", () => {
   });
 });
 
-jest.mock("axios");
+jest.mock("../../axios");
 
 describe("#fetch/add/deleteIdeas", () => {
   describe("when fetch called", () => {
