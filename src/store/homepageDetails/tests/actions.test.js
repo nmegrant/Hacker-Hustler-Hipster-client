@@ -7,8 +7,7 @@ import { appLoading, appDoneLoading } from "../../appState/actions";
 
 describe("#fetchHomepageDetails", () => {
   describe("if given an object of homepage details", () => {
-    //
-    test("should return an action containing object homepage details", () => {
+    test("should return an action containing type FETCHED_DETAILS and a payload of object homepage details", () => {
       const homepageDetails = {};
       const expected = {
         type: "FETCHED_DETAILS",
@@ -28,7 +27,7 @@ jest.mock("../../axios");
 
 describe("#fetchHomepageDetails", () => {
   describe("when called", () => {
-    test("should dispatch an action FETCHED_DETAILS, APP_LOADING, APP_DONE_LOADING", async () => {
+    test("should dispatch actionz FETCHED_DETAILS, APP_LOADING, APP_DONE_LOADING", async () => {
       const fakeHomepageDetails = {};
       const response = { data: fakeHomepageDetails };
       axios.get.mockImplementationOnce(() => Promise.resolve(response));

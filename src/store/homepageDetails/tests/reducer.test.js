@@ -13,7 +13,7 @@ describe("homepageDetailsReducer", () => {
     test("returns a new state with the payload object included", () => {
       const homepageDetails = { test: "test" };
       const action = { type: "FETCHED_DETAILS", payload: homepageDetails };
-      const newState = reducer(homepageDetails, action);
+      const newState = reducer(initialState, action);
       expect(newState.test).toBe(homepageDetails.test);
       expect(newState).toEqual(homepageDetails);
     });
