@@ -29,7 +29,7 @@ describe("#fetchHomepages", () => {
   });
 });
 
-jest.mock("axios");
+jest.mock("../../axios");
 
 describe("#fetchHomepages", () => {
   describe("when called", () => {

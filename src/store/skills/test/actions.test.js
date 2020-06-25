@@ -22,7 +22,7 @@ describe("#fetchSkills", () => {
   });
 });
 
-jest.mock("axios");
+jest.mock("../../axios");
 
 describe("#fetchSkills", () => {
   describe("when called", () => {

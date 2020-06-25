@@ -60,7 +60,7 @@ describe("#fetchDeleteAddIdeas", () => {
   });
 });
 
-jest.mock("axios");
+jest.mock("../../axios");
 
 describe("#fetch/add/deleteIdeas", () => {
   describe("when fetch called", () => {
