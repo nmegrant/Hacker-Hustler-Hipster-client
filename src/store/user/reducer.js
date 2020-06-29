@@ -3,6 +3,7 @@ const initialState = {
   name: null,
   email: null,
   role: null,
+  darkMode: false,
 };
 
 export default function (state = initialState, action) {
@@ -23,6 +24,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         ...action.payload,
+      };
+    case "SET_MODE":
+      return {
+        ...state,
+        darkMode: action.payload,
       };
     default:
       return state;

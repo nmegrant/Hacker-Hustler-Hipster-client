@@ -12,18 +12,28 @@ import Loading from "./components/Loading";
 import "./App.css";
 import { getLoggedInUserThunkCreator } from "./store/user/actions";
 import { selectLoadingStatus } from "./store/appState/selectors";
+import { selectMode } from "./store/user/selectors";
 
 function App() {
   const dispatch = useDispatch();
-
   const loading = useSelector(selectLoadingStatus());
+  const mode = useSelector(selectMode());
 
   useEffect(() => {
     dispatch(getLoggedInUserThunkCreator());
   }, [dispatch]);
 
+  const colorScheme = mode ? ["#222", "#FFF"] : ["#FFF", "#222"];
+
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{
+        backgroundColor: colorScheme[0],
+        color: colorScheme[1],
+        height: "2000px",
+      }}
+    >
       <NavBanner />
       {loading ? <Loading /> : null}
       <AlertBox />

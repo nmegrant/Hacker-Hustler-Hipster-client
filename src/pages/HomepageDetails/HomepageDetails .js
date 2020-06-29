@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchHomepageDetailsThunkCreator } from "../../store/homepageDetails/actions";
 import { selectHomepageDetails } from "../../store/homepageDetails/selectors";
+import { selectMode } from "../../store/user/selectors";
 
 import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
@@ -16,6 +17,9 @@ export default function HomepageDetails() {
   const parameters = useParams();
   const dispatch = useDispatch();
   const details = useSelector(selectHomepageDetails());
+  const mode = useSelector(selectMode());
+
+  const colorScheme = mode ? ["#222", "#FFF"] : ["#FFF", "#222"];
 
   useEffect(() => {
     dispatch(fetchHomepageDetailsThunkCreator(parameters.homepageId));
@@ -23,7 +27,10 @@ export default function HomepageDetails() {
 
   return (
     <Container as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-      <Container className="bgcolor firstBlock">
+      <Container
+        className="bgcolor firstBlock"
+        style={{ background: colorScheme[0], color: colorScheme[1] }}
+      >
         <Row style={{ justifyContent: "center" }}>
           <h1 style={{ alignSelf: "center", margin: "10px" }}>
             {details.user ? details.user.name : null} -
@@ -40,7 +47,10 @@ export default function HomepageDetails() {
         </h5>
         <h3>Located in {details.location}</h3>
       </Container>
-      <Container className="bgcolor secondBlock">
+      <Container
+        className="bgcolor secondBlock"
+        style={{ background: colorScheme[0], color: colorScheme[1] }}
+      >
         <h5>Check out these websites to see some of my skills</h5>
         <Container
           as={Row}
@@ -75,14 +85,28 @@ export default function HomepageDetails() {
             })
           : null}
       </Container>
-      <Card style={{ margin: "20px" }} border="info">
+      <Card
+        style={{
+          margin: "20px",
+          background: colorScheme[0],
+          color: colorScheme[1],
+        }}
+        border="info"
+      >
         <Card.Header>Projects and Experience</Card.Header>
         <Card.Body>
           {/* <Card.Title>Special title treatment</Card.Title> */}
           <Card.Text>{details.experience}</Card.Text>
         </Card.Body>
       </Card>
-      <Card style={{ margin: "20px" }} border="info">
+      <Card
+        style={{
+          margin: "20px",
+          background: colorScheme[0],
+          color: colorScheme[1],
+        }}
+        border="info"
+      >
         <Card.Header>A bit more about me</Card.Header>
         <Card.Body>
           {/* <Card.Title>Special title treatment</Card.Title> */}

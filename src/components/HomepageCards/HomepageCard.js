@@ -1,16 +1,26 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Badge from "react-bootstrap/Badge";
 
+import { selectMode } from "../../store/user/selectors";
+
 import "./HomepageCards.css";
 
 export default function HomepageCard(props) {
+  const mode = useSelector(selectMode());
+  const colorScheme = mode ? ["#222", "#FFF"] : ["#FFF", "#222"];
   return (
     <Card
-      style={{ width: "250px", margin: "20px" }}
+      style={{
+        width: "250px",
+        margin: "20px",
+        background: colorScheme[0],
+        color: colorScheme[1],
+      }}
       border="info"
       className="rounded mb-0 zoomie"
     >

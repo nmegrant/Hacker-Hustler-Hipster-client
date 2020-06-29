@@ -1,4 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
+import { selectMode } from "../store/user/selectors";
 
 import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
@@ -7,6 +10,8 @@ import Card from "react-bootstrap/Card";
 import { Col, Row } from "react-bootstrap";
 
 export default function MyHomepage(props) {
+  const mode = useSelector(selectMode());
+  const colorScheme = mode ? ["#222", "#FFF"] : ["#FFF", "#222"];
   return (
     <Container as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
       <h2>{props.myInfo.user ? props.myInfo.user.role : null}</h2>
@@ -47,17 +52,29 @@ export default function MyHomepage(props) {
             );
           })
         : null}
-      <Card style={{ margin: "20px" }} border="info">
+      <Card
+        style={{
+          margin: "20px",
+          background: colorScheme[0],
+          color: colorScheme[1],
+        }}
+        border="info"
+      >
         <Card.Header>Projects and Experience</Card.Header>
         <Card.Body>
-          {/* <Card.Title>Special title treatment</Card.Title> */}
           <Card.Text>{props.myInfo.experience}</Card.Text>
         </Card.Body>
       </Card>
-      <Card style={{ margin: "20px" }} border="info">
+      <Card
+        style={{
+          margin: "20px",
+          background: colorScheme[0],
+          color: colorScheme[1],
+        }}
+        border="info"
+      >
         <Card.Header>A bit more about me</Card.Header>
         <Card.Body>
-          {/* <Card.Title>Special title treatment</Card.Title> */}
           <Card.Text>{props.myInfo.bio}</Card.Text>
         </Card.Body>
       </Card>
