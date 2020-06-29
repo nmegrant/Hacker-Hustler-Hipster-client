@@ -6,6 +6,7 @@ describe("userReducer", () => {
     name: null,
     email: null,
     role: null,
+    darkMode: false,
   };
   describe("if given no state and a random action", () => {
     test("returns the inital state", () => {
@@ -21,6 +22,7 @@ describe("userReducer", () => {
         name: "George",
         email: "george@test.com",
         role: "Hacker",
+        darkMode: false,
       };
       const action = { type: "LOGGED_IN", payload: user };
       const newState = reducer(initialState, action);
@@ -32,6 +34,7 @@ describe("userReducer", () => {
         name: "George",
         email: "george@test.com",
         role: "Hacker",
+        darkMode: false,
       };
       const action = { type: "LOGGED_IN", payload: user };
       const newState = reducer(initialState, action);
@@ -48,6 +51,7 @@ describe("userReducer", () => {
         name: "George",
         email: "george@test.com",
         role: "Hacker",
+        darkMode: false,
       };
       const action = { type: "LOGGED_IN", payload: user };
       const newState = reducer(initialState, action);
@@ -63,8 +67,9 @@ describe("userReducer", () => {
         name: "George",
         email: "george@test.com",
         role: "Hacker",
+        darkMode: false,
       };
-      const action = { type: "STILL_LOGGED_IN", payload: user };
+      const action = { type: "LOGGED_IN", payload: user };
       const newState = reducer(initialState, action);
       const stillLoggedInAction = {
         type: "STILL_LOGGED_IN",
@@ -73,10 +78,64 @@ describe("userReducer", () => {
           name: "George",
           email: "george@test.com",
           role: "Hacker",
+          darkMode: false,
         },
       };
       const newLoggedInState = reducer(newState, stillLoggedInAction);
       expect(newLoggedInState).toEqual(user);
+    });
+  });
+  describe("when given a SET_MODE action type", () => {
+    test("returns a new state with with dark mode true SET_MODE", () => {
+      const user = {
+        token: 1234,
+        name: "George",
+        email: "george@test.com",
+        role: "Hacker",
+        darkMode: false,
+      };
+      const action = { type: "LOGGED_IN", payload: user };
+      const newState = reducer(initialState, action);
+      const modeAction = {
+        type: "SET_MODE",
+        payload: true,
+      };
+      const modeState = reducer(newState, modeAction);
+      expect(modeState).toEqual({
+        token: 1234,
+        name: "George",
+        email: "george@test.com",
+        role: "Hacker",
+        darkMode: true,
+      });
+    });
+    test("returns a new state with with dark mode false SET_MODE", () => {
+      const user = {
+        token: 1234,
+        name: "George",
+        email: "george@test.com",
+        role: "Hacker",
+        darkMode: false,
+      };
+      const action = { type: "LOGGED_IN", payload: user };
+      const newState = reducer(initialState, action);
+      const modeAction1 = {
+        type: "SET_MODE",
+        payload: true,
+      };
+      const modeState1 = reducer(newState, modeAction1);
+      const modeAction2 = {
+        type: "SET_MODE",
+        payload: false,
+      };
+      const modeState2 = reducer(modeState1, modeAction2);
+      expect(modeState2).toEqual({
+        token: 1234,
+        name: "George",
+        email: "george@test.com",
+        role: "Hacker",
+        darkMode: false,
+      });
     });
   });
 });

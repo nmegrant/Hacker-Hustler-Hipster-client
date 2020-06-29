@@ -9,3 +9,9 @@ export function selectUser() {
     return state.user;
   };
 }
+
+export function selectMode() {
+  return (state) => {
+    return state.user.darkMode;
+  };
+}

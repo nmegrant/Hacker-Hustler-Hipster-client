@@ -23,6 +23,13 @@ export function stillLoggedIn(userAndToken) {
   };
 }
 
+export function setDarkMode(mode) {
+  return {
+    type: "SET_MODE",
+    payload: mode,
+  };
+}
+
 export function loginThunkCreator(email, password) {
   return async function (dispatch, getState) {
     try {

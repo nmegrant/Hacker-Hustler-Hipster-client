@@ -2,20 +2,24 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loggedOut } from "../store/user/actions";
-import { selectToken, selectUser } from "../store/user/selectors";
+import { selectToken, selectUser, selectMode } from "../store/user/selectors";
+import { setDarkMode } from "../store/user/actions";
 import { showMessageThunkCreator } from "../store/appState/actions";
 
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 
-export default function NavBanner() {
+import Switch from "react-switch";
+
+export default function NavBanner(props) {
   const dispatch = useDispatch();
   const token = useSelector(selectToken());
   const user = useSelector(selectUser());
+  const darkMode = useSelector(selectMode());
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="info" expand="lg">
       <Navbar.Brand>Hacker Hipster Hustler</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -33,8 +37,23 @@ export default function NavBanner() {
             </Nav.Link>
           )}
         </Nav>
+        <Navbar.Text style={{ margin: "10px" }}>
+          {darkMode ? "Light" : "Dark"} Mode
+        </Navbar.Text>
+        <Nav style={{ margin: "4px 0px 0px 0px" }}>
+          <Switch
+            checked={darkMode}
+            onChange={() => {
+              dispatch(setDarkMode(!darkMode));
+            }}
+            checkedIcon={false}
+            uncheckedIcon={false}
+            onColor="#5bc0de"
+            offColor="#000000"
+          />
+        </Nav>
         {token ? (
-          <Navbar.Text style={{ marginRight: "10px" }}>
+          <Navbar.Text style={{ marginRight: "10px", marginLeft: "10px" }}>
             Welcome {user.name}
           </Navbar.Text>
         ) : null}
@@ -55,19 +74,5 @@ export default function NavBanner() {
         ) : null}
       </Navbar.Collapse>
     </Navbar>
-
-    // <div>
-    //   <h5>Hacker Hustler Hipster</h5>
-    //   <NavLink to="/">Search Homepages</NavLink>
-    //   {token ? (
-    //     <NavLink to="/mypage">My page</NavLink>
-    //   ) : (
-    //     <NavLink to="/login">Log in</NavLink>
-    //   )}
-    //   {token ? (
-    //     <button onClick={() => dispatch(loggedOut())}>Log Out</button>
-    //   ) : null}
-    //   <p>Welcome {user.name}</p>
-    // </div>
   );
 }
