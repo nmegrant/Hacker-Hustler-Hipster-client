@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loggedOut } from "../store/user/actions";
 import { selectToken, selectUser, selectMode } from "../store/user/selectors";
-import { setDarkMode } from "../store/user/actions";
+import { darkModeThunkCreator, setDarkMode } from "../store/user/actions";
 import { showMessageThunkCreator } from "../store/appState/actions";
 
 import Navbar from "react-bootstrap/Navbar";
@@ -12,7 +12,7 @@ import Button from "react-bootstrap/Button";
 
 import Switch from "react-switch";
 
-export default function NavBanner(props) {
+export default function NavBanner() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken());
   const user = useSelector(selectUser());
@@ -44,6 +44,7 @@ export default function NavBanner(props) {
           <Switch
             checked={darkMode}
             onChange={() => {
+              dispatch(darkModeThunkCreator(!darkMode));
               dispatch(setDarkMode(!darkMode));
             }}
             checkedIcon={false}
