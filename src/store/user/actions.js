@@ -41,7 +41,6 @@ export function darkModeThunkCreator(mode) {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      // dispatch(setDarkMode(response.data));
     } catch (error) {
       console.log(error);
     }
