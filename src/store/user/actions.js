@@ -30,6 +30,24 @@ export function setDarkMode(mode) {
   };
 }
 
+export function darkModeThunkCreator(mode) {
+  return async function (dispatch, getState) {
+    const token = localStorage.getItem("token");
+    try {
+      await axios.patch(
+        `/user/darkMode`,
+        { darkMode: mode },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      // dispatch(setDarkMode(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
 export function loginThunkCreator(email, password) {
   return async function (dispatch, getState) {
     try {
