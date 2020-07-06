@@ -30,6 +30,13 @@ export function setDarkMode(mode) {
   };
 }
 
+export function addFavourite(newFavourite) {
+  return {
+    type: "ADD_FAVOURITE",
+    payload: newFavourite,
+  };
+}
+
 export function darkModeThunkCreator(mode) {
   return async function (dispatch, getState) {
     const token = localStorage.getItem("token");
@@ -115,17 +122,17 @@ export function removeFromFavouritesThunkCreator(id) {
 }
 
 export function addToFavouritesThunkCreator(id) {
-  return async function addFavourite(dispatch, getState) {
-    const tokenFunction = selectToken();
-    const token = tokenFunction(getState());
+  return async function addNewFavourite(dispatch, getState) {
+    const token = localStorage.getItem("token");
     try {
-      const newFavouriteList = await axios.post(`/favourites`, {
-        headers: { Authorization: `Bearer ${token}` },
-        data: {
-          id,
-        },
-      });
-      console.log(newFavouriteList);
+      const newFavourite = await axios.post(
+        `/favourites`,
+        { id },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      dispatch(addFavourite(newFavourite.data));
     } catch (error) {
       console.log(error);
     }

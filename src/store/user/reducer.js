@@ -31,6 +31,11 @@ export default function (state = initialState, action) {
         ...state,
         darkMode: action.payload,
       };
+    case "ADD_FAVOURITE":
+      return {
+        ...state,
+        favourites: [...state.favourites, action.payload],
+      };
     default:
       return state;
   }
