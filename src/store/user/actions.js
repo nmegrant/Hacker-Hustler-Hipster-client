@@ -96,17 +96,28 @@ export function getLoggedInUserThunkCreator() {
   };
 }
 
-export function removeFromFavouritesThunkCreator(oldFavourite) {
+export function removeFromFavouritesThunkCreator(id) {
   return async function removeFavourite(dispatch, getState) {
+    const tokenFunction = selectToken();
+    const token = tokenFunction(getState());
     try {
+      const newFavouriteList = await axios.delete(`/favourites`, {
+        headers: { Authorization: `Bearer ${token}` },
+        data: {
+          id,
+        },
+      });
+      console.log(newFavouriteList);
     } catch (error) {
       console.log(error);
     }
   };
 }
 
-export function addToFavouritesThunkCreator(newFavourite) {
+export function addToFavouritesThunkCreator(id) {
   return async function addFavourite(dispatch, getState) {
+    const tokenFunction = selectToken();
+    const token = tokenFunction(getState());
     try {
     } catch (error) {
       console.log(error);

@@ -11,7 +11,7 @@ import {
 export default function FavouritesTeam(props) {
   const mode = useSelector(selectMode());
   const favouriteList = useSelector(selectFavourites());
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   const colorScheme = mode ? ["#222", "#FFF"] : ["#FFF", "#222"];
 
   const isFavourite = favouriteList.find(
