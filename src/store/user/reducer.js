@@ -4,6 +4,7 @@ const initialState = {
   email: null,
   role: null,
   darkMode: false,
+  favourites: [],
 };
 
 export default function (state = initialState, action) {
