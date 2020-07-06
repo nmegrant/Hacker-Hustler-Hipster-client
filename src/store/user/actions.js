@@ -119,6 +119,13 @@ export function addToFavouritesThunkCreator(id) {
     const tokenFunction = selectToken();
     const token = tokenFunction(getState());
     try {
+      const newFavouriteList = await axios.post(`/favourites`, {
+        headers: { Authorization: `Bearer ${token}` },
+        data: {
+          id,
+        },
+      });
+      console.log(newFavouriteList);
     } catch (error) {
       console.log(error);
     }
