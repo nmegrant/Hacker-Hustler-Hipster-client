@@ -37,7 +37,15 @@ export default function FavouritesTeam(props) {
       }}
       border="info"
     >
-      <Button onClick={favourUnfavour}>
+      <Button
+        style={{
+          border: colorScheme[0],
+          background: colorScheme[0],
+          margin: "5px",
+          color: colorScheme[1],
+        }}
+        onClick={favourUnfavour}
+      >
         Favourite {isFavourite === undefined ? "🤍" : "❤️"}
       </Button>
       <p>Add to Team ☆</p>
