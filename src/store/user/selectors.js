@@ -15,3 +15,9 @@ export function selectMode() {
     return state.user.darkMode;
   };
 }
+
+export function selectFavourites() {
+  return (state) => {
+    return state.user.favourites;
+  };
+}

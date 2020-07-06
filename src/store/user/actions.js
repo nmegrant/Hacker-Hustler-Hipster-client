@@ -95,3 +95,21 @@ export function getLoggedInUserThunkCreator() {
     }
   };
 }
+
+export function removeFromFavouritesThunkCreator(oldFavourite) {
+  return async function removeFavourite(dispatch, getState) {
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function addToFavouritesThunkCreator(newFavourite) {
+  return async function addFavourite(dispatch, getState) {
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}

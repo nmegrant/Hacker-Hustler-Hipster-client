@@ -1,13 +1,24 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { selectMode } from "../store/user/selectors";
+import { selectMode, selectFavourites } from "../store/user/selectors";
 
-export default function FavouritesTeam() {
+export default function FavouritesTeam(props) {
   const mode = useSelector(selectMode());
-
+  const favouriteList = useSelector(selectFavourites());
+  const dispatch = useDispatch;
   const colorScheme = mode ? ["#222", "#FFF"] : ["#FFF", "#222"];
+
+  const isFavourite = favouriteList.find(
+    (user) => user.favouriteId === props.id
+  );
+
+  function favourUnfavour(event) {
+    event.preventDefault();
+    if (isFavourite) {
+    }
+  }
 
   return (
     <Card
@@ -19,7 +30,9 @@ export default function FavouritesTeam() {
       }}
       border="info"
     >
-      <Button as="text">Favourite 🤍</Button>
+      <Button onClick={favourUnfavour}>
+        Favourite {isFavourite === undefined ? "🤍" : "❤️"}
+      </Button>
       <p>Add to Team ☆</p>
     </Card>
   );

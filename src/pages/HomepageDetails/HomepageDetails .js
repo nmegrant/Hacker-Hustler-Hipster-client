@@ -29,7 +29,7 @@ export default function HomepageDetails() {
   return (
     <Container>
       <Row style={{ alignSelf: "flexStart" }}>
-        <FavouritesTeam />
+        <FavouritesTeam id={details.id} />
       </Row>
       <Container
         className="bgcolor firstBlock"
