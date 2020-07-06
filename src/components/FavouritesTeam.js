@@ -3,6 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { selectMode, selectFavourites } from "../store/user/selectors";
+import {
+  removeFromFavouritesThunkCreator,
+  addToFavouritesThunkCreator,
+} from "../store/user/actions";
 
 export default function FavouritesTeam(props) {
   const mode = useSelector(selectMode());
@@ -17,6 +21,9 @@ export default function FavouritesTeam(props) {
   function favourUnfavour(event) {
     event.preventDefault();
     if (isFavourite) {
+      dispatch(removeFromFavouritesThunkCreator(props.id));
+    } else {
+      dispatch(addToFavouritesThunkCreator(props.id));
     }
   }
 
