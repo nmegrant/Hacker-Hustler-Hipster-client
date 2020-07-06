@@ -37,6 +37,13 @@ export function addFavourite(newFavourite) {
   };
 }
 
+export function removedFavourited(newList) {
+  return {
+    type: "REMOVE_FAVOURITE",
+    payload: newList,
+  };
+}
+
 export function darkModeThunkCreator(mode) {
   return async function (dispatch, getState) {
     const token = localStorage.getItem("token");
@@ -114,7 +121,7 @@ export function removeFromFavouritesThunkCreator(id) {
           id,
         },
       });
-      console.log(newFavouriteList);
+      dispatch(removedFavourited(newFavouriteList));
     } catch (error) {
       console.log(error);
     }
@@ -135,6 +142,7 @@ export function addToFavouritesThunkCreator(id) {
       dispatch(addFavourite(newFavourite.data));
     } catch (error) {
       console.log(error);
+      dispatch(showMessageThunkCreator(error.response.data.message, "danger"));
     }
   };
 }

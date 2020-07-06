@@ -36,6 +36,11 @@ export default function (state = initialState, action) {
         ...state,
         favourites: [...state.favourites, action.payload],
       };
+    case "REMOVE_FAVOURITE":
+      return {
+        ...state,
+        favourites: [action.payload],
+      };
     default:
       return state;
   }
