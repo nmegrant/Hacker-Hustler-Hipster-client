@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import FavouritesTeam from "../../components/FavouritesTeam";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchHomepageDetailsThunkCreator } from "../../store/homepageDetails/actions";
@@ -9,7 +10,7 @@ import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
-import { Col, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 import "./HomepageDetails.css";
 
@@ -26,7 +27,10 @@ export default function HomepageDetails() {
   }, [dispatch, parameters.homepageId]);
 
   return (
-    <Container as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
+    <Container>
+      <Row style={{ alignSelf: "flexStart" }}>
+        <FavouritesTeam id={details.id} />
+      </Row>
       <Container
         className="bgcolor firstBlock"
         style={{ background: colorScheme[0], color: colorScheme[1] }}

@@ -4,6 +4,7 @@ const initialState = {
   email: null,
   role: null,
   darkMode: false,
+  favourites: [],
 };
 
 export default function (state = initialState, action) {
@@ -29,6 +30,16 @@ export default function (state = initialState, action) {
       return {
         ...state,
         darkMode: action.payload,
+      };
+    case "ADD_FAVOURITE":
+      return {
+        ...state,
+        favourites: [...state.favourites, action.payload],
+      };
+    case "REMOVE_FAVOURITE":
+      return {
+        ...state,
+        favourites: [action.payload],
       };
     default:
       return state;

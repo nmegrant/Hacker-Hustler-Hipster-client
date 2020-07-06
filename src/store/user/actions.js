@@ -30,6 +30,20 @@ export function setDarkMode(mode) {
   };
 }
 
+export function addFavourite(newFavourite) {
+  return {
+    type: "ADD_FAVOURITE",
+    payload: newFavourite,
+  };
+}
+
+export function removedFavourited(newList) {
+  return {
+    type: "REMOVE_FAVOURITE",
+    payload: newList,
+  };
+}
+
 export function darkModeThunkCreator(mode) {
   return async function (dispatch, getState) {
     const token = localStorage.getItem("token");
@@ -92,6 +106,43 @@ export function getLoggedInUserThunkCreator() {
       console.log(`Error1: ${error}`);
       dispatch(showMessageThunkCreator(error.response.data.message, "danger"));
       dispatch(loggedOut());
+    }
+  };
+}
+
+export function removeFromFavouritesThunkCreator(id) {
+  return async function removeFavourite(dispatch, getState) {
+    const tokenFunction = selectToken();
+    const token = tokenFunction(getState());
+    try {
+      const newFavouriteList = await axios.delete(`/favourites`, {
+        headers: { Authorization: `Bearer ${token}` },
+        data: {
+          id,
+        },
+      });
+      dispatch(removedFavourited(newFavouriteList));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function addToFavouritesThunkCreator(id) {
+  return async function addNewFavourite(dispatch, getState) {
+    const token = localStorage.getItem("token");
+    try {
+      const newFavourite = await axios.post(
+        `/favourites`,
+        { id },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      dispatch(addFavourite(newFavourite.data));
+    } catch (error) {
+      console.log(error);
+      dispatch(showMessageThunkCreator(error.response.data.message, "danger"));
     }
   };
 }
