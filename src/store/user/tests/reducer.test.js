@@ -7,6 +7,7 @@ describe("userReducer", () => {
     email: null,
     role: null,
     darkMode: false,
+    favourites: [],
   };
   describe("if given no state and a random action", () => {
     test("returns the inital state", () => {
@@ -23,6 +24,7 @@ describe("userReducer", () => {
         email: "george@test.com",
         role: "Hacker",
         darkMode: false,
+        favourites: [],
       };
       const action = { type: "LOGGED_IN", payload: user };
       const newState = reducer(initialState, action);
@@ -52,6 +54,7 @@ describe("userReducer", () => {
         email: "george@test.com",
         role: "Hacker",
         darkMode: false,
+        favourites: [],
       };
       const action = { type: "LOGGED_IN", payload: user };
       const newState = reducer(initialState, action);
@@ -68,6 +71,7 @@ describe("userReducer", () => {
         email: "george@test.com",
         role: "Hacker",
         darkMode: false,
+        favourites: [],
       };
       const action = { type: "LOGGED_IN", payload: user };
       const newState = reducer(initialState, action);
@@ -79,6 +83,7 @@ describe("userReducer", () => {
           email: "george@test.com",
           role: "Hacker",
           darkMode: false,
+          favourites: [],
         },
       };
       const newLoggedInState = reducer(newState, stillLoggedInAction);
@@ -93,6 +98,7 @@ describe("userReducer", () => {
         email: "george@test.com",
         role: "Hacker",
         darkMode: false,
+        favourites: [],
       };
       const action = { type: "LOGGED_IN", payload: user };
       const newState = reducer(initialState, action);
@@ -107,6 +113,7 @@ describe("userReducer", () => {
         email: "george@test.com",
         role: "Hacker",
         darkMode: true,
+        favourites: [],
       });
     });
     test("returns a new state with with dark mode false SET_MODE", () => {
@@ -116,6 +123,7 @@ describe("userReducer", () => {
         email: "george@test.com",
         role: "Hacker",
         darkMode: false,
+        favourites: [],
       };
       const action = { type: "LOGGED_IN", payload: user };
       const newState = reducer(initialState, action);
@@ -135,6 +143,7 @@ describe("userReducer", () => {
         email: "george@test.com",
         role: "Hacker",
         darkMode: false,
+        favourites: [],
       });
     });
   });
