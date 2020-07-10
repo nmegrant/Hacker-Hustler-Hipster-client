@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 import { selectMode } from "../store/user/selectors";
+import { selectFavsList } from "../store/favourites/selectors";
 
 import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
@@ -16,6 +17,9 @@ export default function MyHomepage(props) {
   const mode = useSelector(selectMode());
   const [show, setShow] = useState(false);
   const colorScheme = mode ? ["#222", "#FFF"] : ["#FFF", "#222"];
+  const favsList = useSelector(selectFavsList());
+
+  console.log(favsList);
 
   return (
     <div>
