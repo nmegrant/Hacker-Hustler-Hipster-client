@@ -35,6 +35,7 @@ export default function MyHomepage(props) {
             margin: "5px",
             width: "170px",
           }}
+          onClick={() => setShow(true)}
         >
           Show My Favourites
         </Button>
@@ -53,7 +54,11 @@ export default function MyHomepage(props) {
         <Modal show={show}>
           <Modal.Header>My favourites</Modal.Header>
           <Modal.Body>List favourites here</Modal.Body>
-          <Modal.Footer></Modal.Footer>
+          <Modal.Footer>
+            <Button onClick={() => setShow(false)} variant="info">
+              Close
+            </Button>
+          </Modal.Footer>
         </Modal>
         <h2>{props.myInfo.user ? props.myInfo.user.role : null}</h2>
         <h5>
