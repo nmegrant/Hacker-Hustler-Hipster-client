@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { selectMode, selectFavourites } from "../store/user/selectors";
 import { selectFavsList } from "../store/favourites/selectors";
@@ -26,8 +27,6 @@ export default function MyHomepage(props) {
   useEffect(() => {
     dispatch(getFavouriteUsersThunkCreator(favUserIds));
   }, [dispatch, favUserIds]);
-
-  console.log(favsList);
 
   return (
     <div>
@@ -62,7 +61,26 @@ export default function MyHomepage(props) {
       <Container as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
         <Modal show={show}>
           <Modal.Header>My favourites</Modal.Header>
-          <Modal.Body>List favourites here</Modal.Body>
+          <Modal.Body>
+            <ListGroup>
+              {favsList.map((user) => {
+                if (user !== null) {
+                  return (
+                    <ListGroup.Item key={user.email}>
+                      <Link
+                        to={`/homepages/${user.id}`}
+                        style={{ color: "#6610f2" }}
+                      >
+                        {user.name}{" "}
+                      </Link>
+                    </ListGroup.Item>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </ListGroup>
+          </Modal.Body>
           <Modal.Footer>
             <Button onClick={() => setShow(false)} variant="info">
               Close

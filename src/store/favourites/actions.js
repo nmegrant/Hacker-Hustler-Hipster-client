@@ -1,5 +1,4 @@
 import axios from "../axios.js";
-import { showMessageThunkCreator } from "../appState/actions";
 
 export function favsUserList(favsList) {
   return {
@@ -20,7 +19,6 @@ export function getFavouriteUsersThunkCreator(favListUserIds) {
       });
       dispatch(favsUserList(response.data));
     } catch (error) {
-      dispatch(showMessageThunkCreator(error.response.data.message, "info"));
       console.log(error);
     }
   };
