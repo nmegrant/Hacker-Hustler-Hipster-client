@@ -14,6 +14,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function MyHomepage(props) {
   const mode = useSelector(selectMode());
+  const [show, setShow] = useState(false);
   const colorScheme = mode ? ["#222", "#FFF"] : ["#FFF", "#222"];
   const favouriteList = useSelector(selectFavourites());
 
@@ -49,7 +50,7 @@ export default function MyHomepage(props) {
         </Button>
       </Card>
       <Container as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-        <Modal show={true}>
+        <Modal show={show}>
           <Modal.Header>My favourites</Modal.Header>
           <Modal.Body>List favourites here</Modal.Body>
           <Modal.Footer></Modal.Footer>
