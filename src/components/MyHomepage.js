@@ -8,12 +8,18 @@ import Badge from "react-bootstrap/Badge";
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import { Col, Row } from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function MyHomepage(props) {
   const mode = useSelector(selectMode());
   const colorScheme = mode ? ["#222", "#FFF"] : ["#FFF", "#222"];
   return (
     <Container as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
+      <Modal show={true}>
+        <Modal.Header>My favourites</Modal.Header>
+        <Modal.Body>List favourites here</Modal.Body>
+      </Modal>
       <h2>{props.myInfo.user ? props.myInfo.user.role : null}</h2>
       <h5>
         Looking for
