@@ -1,5 +1,4 @@
 import axios from "../axios.js";
-import { selectFavourites } from "../store/user/selectors";
 
 export function favsUserList(favsList) {
   return {

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { selectMode } from "../store/user/selectors";
+import { selectMode, selectFavourites } from "../store/user/selectors";
 import { selectFavsList } from "../store/favourites/selectors";
 
 import Container from "react-bootstrap/Container";
@@ -14,11 +14,13 @@ import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function MyHomepage(props) {
+  const favUserIds = useSelector(selectFavourites());
   const mode = useSelector(selectMode());
   const [show, setShow] = useState(false);
   const colorScheme = mode ? ["#222", "#FFF"] : ["#FFF", "#222"];
   const favsList = useSelector(selectFavsList());
 
+  useEffect(() => {});
   console.log(favsList);
 
   return (
