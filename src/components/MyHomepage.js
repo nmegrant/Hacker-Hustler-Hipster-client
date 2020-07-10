@@ -25,7 +25,7 @@ export default function MyHomepage(props) {
 
   useEffect(() => {
     dispatch(getFavouriteUsersThunkCreator(favUserIds));
-  }, []);
+  }, [dispatch, favUserIds]);
 
   console.log(favsList);
 
