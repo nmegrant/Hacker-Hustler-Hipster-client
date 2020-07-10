@@ -13,6 +13,9 @@ export function getFavouriteUsersThunkCreator(favListUserIds) {
     try {
       const response = axios.get(`/favourites`, {
         headers: { Authorization: `Bearer ${token}` },
+        data: {
+          favs: favListUserIds,
+        },
       });
       dispatch(favsUserList(response.data));
     } catch (error) {

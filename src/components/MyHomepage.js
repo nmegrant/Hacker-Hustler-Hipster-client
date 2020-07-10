@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { selectMode, selectFavourites } from "../store/user/selectors";
 import { selectFavsList } from "../store/favourites/selectors";
+import { getFavouriteUsersThunkCreator } from "../store/favourites/actions";
 
 import Container from "react-bootstrap/Container";
 import Badge from "react-bootstrap/Badge";
@@ -14,13 +15,18 @@ import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function MyHomepage(props) {
-  const favUserIds = useSelector(selectFavourites());
-  const mode = useSelector(selectMode());
   const [show, setShow] = useState(false);
+  const mode = useSelector(selectMode());
   const colorScheme = mode ? ["#222", "#FFF"] : ["#FFF", "#222"];
+
+  const dispatch = useDispatch();
+  const favUserIds = useSelector(selectFavourites());
   const favsList = useSelector(selectFavsList());
 
-  useEffect(() => {});
+  useEffect(() => {
+    dispatch(getFavouriteUsersThunkCreator(favUserIds));
+  });
+
   console.log(favsList);
 
   return (
