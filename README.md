@@ -2,7 +2,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/7b51bad9-7f9c-4176-b3ca-25394a9f32c5/deploy-status)](https://app.netlify.com/sites/compassionate-babbage-d1f10e/deploys)
 [![Codeship Status for nmegrant/Hacker-Hustler-Hipster-client](https://app.codeship.com/projects/fdd316b0-97a2-0138-ed4e-363720613500/status?branch=master)](https://app.codeship.com/projects/400809)
 
-[See the deployed site here](https://compassionate-babbage-d1f10e.netlify.app/)
+[See the deployed site here](https://hacker-hipster-hustler.netlify.app/)
 
 ## Table of contents
 * [About](#about)
