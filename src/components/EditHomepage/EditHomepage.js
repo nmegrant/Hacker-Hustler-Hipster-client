@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Typeahead } from "react-bootstrap-typeahead";
-import Geocode from "react-geocode";
+// import Geocode from "react-geocode";
 
 import { sendHomepageInfoThunkCreator } from "../../store/mypage/actions";
 import { fetchSkillsThunkCreator } from "../../store/skills/actions";
@@ -20,26 +20,26 @@ import "./EditHomepage.css";
 require("dotenv").config();
 
 export default function EditHomepage() {
-  Geocode.setApiKey(process.env.REACT_APP_API_KEY);
+  // Geocode.setApiKey(process.env.REACT_APP_API_KEY);
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(getPosition);
-  }
-  function getPosition(position) {
-    Geocode.fromLatLng(
-      position.coords.latitude,
-      position.coords.longitude
-    ).then(
-      (response) => {
-        const address = response.results[0].formatted_address;
-        const addressArray = address.split(" ");
-        setLocation(`${addressArray[3]} ${addressArray[4]}`);
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
+  // if (navigator.geolocation) {
+  //   navigator.geolocation.getCurrentPosition(getPosition);
+  // }
+  // function getPosition(position) {
+  //   Geocode.fromLatLng(
+  //     position.coords.latitude,
+  //     position.coords.longitude
+  //   ).then(
+  //     (response) => {
+  //       const address = response.results[0].formatted_address;
+  //       const addressArray = address.split(" ");
+  //       setLocation(`${addressArray[3]} ${addressArray[4]}`);
+  //     },
+  //     (error) => {
+  //       console.error(error);
+  //     }
+  //   );
+  // }
 
   const dispatch = useDispatch();
 
