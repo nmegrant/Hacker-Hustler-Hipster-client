@@ -23,6 +23,8 @@ export default function MyHomepage(props) {
   const dispatch = useDispatch();
   const favUserIds = useSelector(selectFavourites());
   const favsList = useSelector(selectFavsList());
+  console.log("favsList", favsList);
+  console.log("favUserId", favUserIds);
 
   useEffect(() => {
     dispatch(getFavouriteUsersThunkCreator(favUserIds));
