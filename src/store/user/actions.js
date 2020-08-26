@@ -121,7 +121,7 @@ export function removeFromFavouritesThunkCreator(id) {
           id,
         },
       });
-      dispatch(removedFavourited(newFavouriteList));
+      dispatch(removedFavourited(newFavouriteList.data));
     } catch (error) {
       console.log(error);
     }
